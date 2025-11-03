@@ -14,5 +14,4 @@ What we will learn <br>
 10. Coding standards and semantics
 11. Backend (NodeJs, Express)
 
-<h2>Software to Install</h2>
-1. Vusial Studio Code : https://code.visualstudio.com/download
+

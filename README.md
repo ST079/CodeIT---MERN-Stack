@@ -19,3 +19,7 @@ What we will learn <br>
 
 <h2>Software to Install</h2>
 1. Vusial Studio Code : https://code.visualstudio.com/download
+2. Postman : https://www.postman.com/downloads/
+3. NodeJs : https://nodejs.org/en/download
+4. MongoDB Compass : https://www.mongodb.com/try/download/compass
+5. MongoDB Shell : https://www.mongodb.com/try/download/shell
