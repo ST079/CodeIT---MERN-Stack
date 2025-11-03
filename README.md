@@ -24,3 +24,4 @@ What we gonna make : https://mern-20250622-frontend-app.vercel.app/
 3. NodeJs : https://nodejs.org/en/download<br>
 4. MongoDB Compass : https://www.mongodb.com/try/download/compass<br>
 5. MongoDB Shell : https://www.mongodb.com/try/download/shell<br>
+6. Git : https://git-scm.com/install/windows
