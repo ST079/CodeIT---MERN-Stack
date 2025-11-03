@@ -18,8 +18,8 @@ What we will learn <br>
 11. Backend (NodeJs, Express)
 
 <h2>Software to Install</h2>
-1. Vusial Studio Code : https://code.visualstudio.com/download
-2. Postman : https://www.postman.com/downloads/
-3. NodeJs : https://nodejs.org/en/download
-4. MongoDB Compass : https://www.mongodb.com/try/download/compass
-5. MongoDB Shell : https://www.mongodb.com/try/download/shell
+1. Vusial Studio Code : https://code.visualstudio.com/download<br>
+2. Postman : https://www.postman.com/downloads/<br>
+3. NodeJs : https://nodejs.org/en/download<br>
+4. MongoDB Compass : https://www.mongodb.com/try/download/compass<br>
+5. MongoDB Shell : https://www.mongodb.com/try/download/shell<br>
