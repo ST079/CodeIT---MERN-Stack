@@ -4,7 +4,8 @@
 # Day 1 Of MERN JOURNEY
 What we gonna make : https://mern-20250622-frontend-app.vercel.app/ 
 <br>
-What we will learn <br>
+
+# What we will learn:
 1. HTML CSS JS
 2. Tailwind CSS and TypeScript
 3. Postman for API documentation and testing
