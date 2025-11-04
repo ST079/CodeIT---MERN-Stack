@@ -34,7 +34,7 @@
     </p>
 </pre>
 
-3. strong (bolds the text) 
+3. strong (bolds the text)
 4. em (something like itallic)
 <pre>
     <p>
@@ -44,7 +44,7 @@
     </p>
 </pre>
 
-5. sup 
+5. sup
 <pre>
 (Lifts the letter from its normal position like a<sup>2</sup>)
 </pre>
@@ -64,5 +64,18 @@
 <hr>
 <h1>Comments</h1>
 <p>Comments are those which are not displayed on the webpage. To Create a comment in HTML, <br> we do :<pre> < !-- your comment --> </pre></p>
+<hr>
 
-<>
+<h1>Media and links</h1>
+
+1. Anchor Tag - Creates Hyperlinks.
+<pre>
+    <a href="https://www.google.com">Google</a>
+    <a href="https://www.veltaraconsultants.com.np" target="_blank"> Sujan Tamang</a>
+</pre>
+
+2. Image Tag - insert image in the webpage.
+<pre>
+     <img src="https://hips.hearstapps.com/hmg-prod/images/ginger-maine-coon-kitten-running-on-lawn-in-royalty-free-image-1719608142.jpg?crop=1xw:0.84415xh;0,0.185xh"
+        alt="" height="100" />
+</pre>
