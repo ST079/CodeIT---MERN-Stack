@@ -1,11 +1,14 @@
 # CodeIT---MERN-Stack
+
 🖥️ MERN Stack Learning Journey <br> This repository contains all my practice projects, exercises, and notes from my MERN stack learning path on Codeit. It includes hands-on code examples using MongoDB, Express.js, React, and Node.js - covering everything from basic setups to full-stack application development.
 
 # Day 1 Of MERN JOURNEY
-What we gonna make : https://mern-20250622-frontend-app.vercel.app/ 
+
+What we gonna make : https://mern-20250622-frontend-app.vercel.app/
 <br>
 
 # What we will learn:
+
 1. HTML CSS JS
 2. Tailwind CSS and TypeScript
 3. Postman for API documentation and testing
@@ -13,7 +16,7 @@ What we gonna make : https://mern-20250622-frontend-app.vercel.app/
 5. Stripe payment integration for card payment
 6. AI (Gemini) Integration
 7. Layered architecture
-8. Next.js for performance and SEO optimization 
+8. Next.js for performance and SEO optimization
 9. Design principles
 10. Coding standards and semantics
 11. Backend (NodeJs, Express)
@@ -31,14 +34,16 @@ What we gonna make : https://mern-20250622-frontend-app.vercel.app/
 
 # WWW: World wide web,
 
-1. Runs on Internet 
+1. Runs on Internet
 2. Websites are made of HTML (structure), CSS (Styling), JavaScript (Interactivity/Behavior)
 
 # Client-Server Model
+
 1. Client: The browser that sends request to the server.
 2. Server: The machine that hosts website and sends response.
 
 # Lesson for the day
+
 1. Heading Tag (h1 to h6)
 2. Paragraph Tag (p)
 3. strong (bolds the text)
@@ -50,4 +55,4 @@ What we gonna make : https://mern-20250622-frontend-app.vercel.app/
 9. hr (Creates a horizontal line like a divider)
 <hr>
 <h1>Comments</h1>
-<p>Comments are those which are not displayed on the webpage. To Create a comment in HTML, <br> we do :<pre> < !-- your comment --> </pre> </p>
+<p>Comments are those which are not displayed on the webpage. To Create a comment in HTML, <br> we do :<pre> < !-- your comment --> </pre></p>
