@@ -70,12 +70,18 @@
 
 1. Anchor Tag - Creates Hyperlinks.
 <pre>
+    < a href="https://www.google.com">Google< /a>
+    < a href="https://www.veltaraconsultants.com.np" target="_blank"> Sujan Tamang< /a>
+
     <a href="https://www.google.com">Google</a>
     <a href="https://www.veltaraconsultants.com.np" target="_blank"> Sujan Tamang</a>
 </pre>
 
 2. Image Tag - insert image in the webpage.
 <pre>
+     < img src="https://hips.hearstapps.com/hmg-prod/images/ginger-maine-coon-kitten-running-on-lawn-in-royalty-free-image-1719608142.jpg?crop=1xw:0.84415xh;0,0.185xh"
+        alt="" height="100" />
+        
      <img src="https://hips.hearstapps.com/hmg-prod/images/ginger-maine-coon-kitten-running-on-lawn-in-royalty-free-image-1719608142.jpg?crop=1xw:0.84415xh;0,0.185xh"
         alt="" height="100" />
 </pre>
