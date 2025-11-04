@@ -89,9 +89,6 @@
      < div>
         < video  src="./assets/videos/cat.mp4" height="200" controls autoplay loop>< /video>
     < /div>
-     <div>
-        <video  src="./assets/videos/cat.mp4" height="200" controls autoplay loop></video>
-    </div>
 </pre>
 
 4. iframe - to embbed another html document
@@ -101,4 +98,48 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
     </iframe>
+</pre>
+
+<h1>List</h1>
+
+1. Ordered List
+<pre>
+    <ol>
+        <li>
+            Vegetables
+            <!-- Nested list items -->
+            <ol type="a">
+                <li>Tomato</li>
+                <li>Carrot</li>
+                <li>Cauli</li>
+            </ol>
+        </li>
+        <li>Fruits
+            <ul>
+                <li>Apple</li>
+                <li>Mango</li>
+                <li>Papaya</li>
+            </ul>
+        </li>
+        <li>Lunch</li>
+        <li>Dinner</li>
+        <li>Desserts</li>
+    </ol>
+</pre>
+
+2. Unordered List
+<pre>
+<ul>
+    <li>Vegetables
+        <ul>
+            <li>Tomato</li>
+            <li>Carrot</li>
+            <li>Cauli</li>
+        </ul>
+    </li>
+    <li>Fruits</li>
+    <li>Lunch</li>
+    <li>Dinner</li>
+    <li>Desserts</li>
+    </ul>
 </pre>
