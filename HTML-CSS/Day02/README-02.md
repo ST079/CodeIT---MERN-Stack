@@ -23,8 +23,23 @@
     <h6>Heading 6</h6>
 </pre>
 2. Paragraph Tag (p)
+<pre>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quos
+        aliquid, illo totam quibusdam voluptate ad, perspiciatis distinctio
+        architecto nemo id harum libero!Deleniti at animi iste facere modi earum
+        quis quod asperiores voluptatibus impedit cumque voluptatum dolor,
+        accusamus nemo, beatae sapiente aperiam quos nisi aliquam, corrupti
+        voluptas ducimus. Dicta?
+    </p>
+</pre>
 3. strong (bolds the text)
 4. em (something like itallic)
+ <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, labore sed.
+        <strong>Ratione</strong> quo enim <em>architecto</em> maxime mollitia
+        praesentium aliquid aut?
+    </p>
 5. sup (Lifts the letter from its normal position like a<sup>2</sup>)
 6. sub (push down the letter from its normal position like a<sub>2</sub>)
 7. pre (Displays without formating)
