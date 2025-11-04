@@ -73,15 +73,45 @@
     < a href="https://www.google.com">Google< /a>
     < a href="https://www.veltaraconsultants.com.np" target="_blank"> Sujan Tamang< /a>
 
+    <p>Output</p> 
     <a href="https://www.google.com">Google</a>
-    <a href="https://www.veltaraconsultants.com.np" target="_blank"> Sujan Tamang</a>
+    <a href="https://www.tamangsujan.com.np" target="_blank">Sujan Tamang</a>
 </pre>
 
 2. Image Tag - insert image in the webpage.
 <pre>
      < img src="https://hips.hearstapps.com/hmg-prod/images/ginger-maine-coon-kitten-running-on-lawn-in-royalty-free-image-1719608142.jpg?crop=1xw:0.84415xh;0,0.185xh"
         alt="" height="100" />
-        
+
+      <p>Output</p>  
      <img src="https://hips.hearstapps.com/hmg-prod/images/ginger-maine-coon-kitten-running-on-lawn-in-royalty-free-image-1719608142.jpg?crop=1xw:0.84415xh;0,0.185xh"
         alt="" height="100" />
+</pre>
+
+3. Video Tag - insert Video in the webpage
+<pre>
+     < div>
+        < video  src="./assets/videos/cat.mp4" height="200" controls autoplay loop>< /video>
+    < /div>
+
+    <p>Output</p> 
+     <div>
+        <video  src="./assets/videos/cat.mp4" height="200" controls autoplay loop></video>
+    </div>
+</pre>
+
+4. iframe - to embbed another html document
+<pre>
+    < iframe width="560" height="315" src="https://www.youtube.com/embed/AG_VuBlEVf0?si=qja6BqLD3YzcrRS4"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+    < /iframe>
+
+    <p>Output</p> 
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/AG_VuBlEVf0?si=qja6BqLD3YzcrRS4"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+    </iframe>
 </pre>
