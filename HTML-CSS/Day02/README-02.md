@@ -96,11 +96,6 @@
 
 4. iframe - to embbed another html document
 <pre>
-    < iframe width="560" height="315" src="https://www.youtube.com/embed/AG_VuBlEVf0?si=qja6BqLD3YzcrRS4"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-    < /iframe>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/AG_VuBlEVf0?si=qja6BqLD3YzcrRS4"
         title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
