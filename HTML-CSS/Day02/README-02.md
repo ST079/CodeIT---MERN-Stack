@@ -33,16 +33,32 @@
         voluptas ducimus. Dicta?
     </p>
 </pre>
-3. strong (bolds the text)
+
+3. strong (bolds the text) 
 4. em (something like itallic)
- <p>
+<pre>
+    <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, labore sed.
         <strong>Ratione</strong> quo enim <em>architecto</em> maxime mollitia
         praesentium aliquid aut?
     </p>
-5. sup (Lifts the letter from its normal position like a<sup>2</sup>)
-6. sub (push down the letter from its normal position like a<sub>2</sub>)
+</pre>
+
+5. sup 
+<pre>
+(Lifts the letter from its normal position like a<sup>2</sup>)
+</pre>
+
+6. sub
+<pre>
+ (push down the letter from its normal position like a<sub>2</sub>)
+</pre>
+
 7. pre (Displays without formating)
+<pre>
+    const name = "Sujan"
+</pre>
+
 8. br (Breaks into new line)
 9. hr (Creates a horizontal line like a divider)
 <hr>
