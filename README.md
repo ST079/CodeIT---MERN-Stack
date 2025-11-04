@@ -25,3 +25,6 @@ What we gonna make : https://mern-20250622-frontend-app.vercel.app/
 4. MongoDB Compass : https://www.mongodb.com/try/download/compass<br>
 5. MongoDB Shell : https://www.mongodb.com/try/download/shell<br>
 6. Git : https://git-scm.com/install/windows
+<hr>
+
+# Day 2 Of MERN JOURNEY
