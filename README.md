@@ -31,9 +31,9 @@ What we gonna make : https://mern-20250622-frontend-app.vercel.app/
 <hr>
 
 # Day 2 Of MERN JOURNEY
- Lesson for the day
-
+ 
 <h1>Text Formating </h1>
+
 1. Heading Tag (h1 to h6)
 2. Paragraph Tag (p)
 3. strong (bolds the text)
@@ -49,12 +49,14 @@ What we gonna make : https://mern-20250622-frontend-app.vercel.app/
 <p>Comments are those which are not displayed on the webpage. To Create a comment in HTML, <br> we do :<pre> < !-- your comment --> </pre></p>
 <hr>
 <h1>Media and links</h1>
+
 1. Anchor Tag - Creates Hyperlinks.
 2. Image Tag - insert image in the webpage.
 3. Video Tag - insert Video in the webpage
 4. iframe - to embbed another html document
 
 <h1>List</h1>
+
 1. Ordered List
 2. Unordered List
 
