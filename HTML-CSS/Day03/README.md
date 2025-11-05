@@ -26,3 +26,11 @@
     HTML file naming convention: kebab-case: e.g. hello-world, about-page, contact-us-page
     <em>basically all small letters and "-" in whitespaces.</em>
 </pre>
+
+<h2>Form Elements</h2>
+<pre>
+  <div>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required placeholder="Your full name" />
+    </div>
+</pre>

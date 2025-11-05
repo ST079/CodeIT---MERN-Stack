@@ -62,4 +62,15 @@ What we gonna make : https://mern-20250622-frontend-app.vercel.app/
 
 1. Ordered List
 2. Unordered List
+<hr>
 
+# Day 3 Of MERN JOURNEY
+
+1. Table Tag
+2. Block/Inline elements
+3. Form Elements
+<h2>Semantics</h2>
+<pre>
+    Semantics in HTML refers to the practice of using HTML elements to convey the 
+    meaning and purpose of the content they enclose
+</pre>
