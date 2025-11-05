@@ -28,9 +28,25 @@
 </pre>
 
 <h2>Form Elements</h2>
+Types of form element,
 <pre>
-  <div>
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" required placeholder="Your full name" />
-    </div>
+    text -> Displays a single-line text input field
+    radio -> Displays a radio button (for selecting one of many choices)
+    checkbox -> Displays a checkbox (for selecting zero or more of many choices)
+    email -> for email inputs it checks if the input field have @ or not
+    tel -> for phone numbers
+    number -> for numeric values like age, ward no, street no, etc...
+    password -> for secret text
+    date -> to select date
+    time -> to select time
+    date-time -> both in a single field.
+    color -> to pick color
+    range -> to select the range in number.
+    select -> to create a drop down
+    textarea -> for mult-line text field input typically used for message or comments.
+    submit -> to submit the form
+    reset -> to clear all the filled fields.
 </pre>
+
+<em>Note: Each elements must have name attribute .If the name attribute is omitted, the 
+value of the input field will not be sent at all.</em>

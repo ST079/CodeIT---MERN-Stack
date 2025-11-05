@@ -46,11 +46,10 @@ What we gonna make : https://mern-20250622-frontend-app.vercel.app/
 7. pre (Displays without formating)
 8. br (Breaks into new line)
 9. hr (Creates a horizontal line like a divider)
-<hr>
 
 <h1>Comments</h1>
 <p>Comments are those which are not displayed on the webpage. To Create a comment in HTML, <br> we do :<pre> < !-- your comment --> </pre></p>
-<hr>
+
 <h1>Media and links</h1>
 
 1. Anchor Tag - Creates Hyperlinks.
