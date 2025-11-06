@@ -67,3 +67,22 @@ What we gonna make : https://mern-20250622-frontend-app.vercel.app/
     Semantics in HTML refers to the practice of using HTML elements to convey the 
     meaning and purpose of the content they enclose
 </pre>
+
+# Day 4 Of MERN JOURNEY
+
+CSS -> Cascading Style Sheet
+-> It is the stylesheet that is used to style the HTML document.
+<pre> 
+    Web page styling like color, fonts, positioning, spacing
+
+    Syntax :
+    < selector > {
+    property: value;
+    ....
+    }
+</pre>
+<h2>Today's Learning</h2>
+1. Selector
+2. CSS Usage Methods
+3. CSS Properties
+4. box-model: margin, padding, border
