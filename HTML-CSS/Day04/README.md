@@ -48,5 +48,11 @@ We can use the css in three different ways,
 <h3>color & background-color</h3>
 <pre>
     In CSS, colors are specified by using a predefined color name, or with a RGB, HEX, HSL, RGBA, HSLA value.
+
+    color:rgb(255, 99, 71);
+    color:#ff6347;
+    color:hsl(9, 100%, 64%);
+    color:rgba(255, 99, 71, 0.5);
+    color:hsla(9, 100%, 64%, 0.5);
 </pre>
 
