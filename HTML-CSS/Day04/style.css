@@ -1,0 +1,66 @@
+span {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.info {
+  text-decoration: underline;
+}
+
+a {
+  text-decoration: none;
+  color: red;
+}
+
+/* Color properties  */
+.title {
+  color: rgb(14, 107, 129); /* Red, Green, Blue:  0-255 */
+  color: #ff0000; /* HEX: 0 - 9, A, B, C, D, E, F */
+  background-color: #ff000020;
+}
+
+.description {
+  color: rgb(14, 107, 129);
+  font-size: 2rem;
+}
+
+/* Text properties */
+
+.title {
+  text-align: center; /* left, right, center, justify */
+  text-decoration: underline;
+  text-transform: capitalize; /* uppercase, lowercase, capitalize */
+  word-spacing: 15px;
+  letter-spacing: 5px;
+  text-shadow: -10px -10px 10px black; /* horizontal vertical spread color */
+}
+
+.description {
+  text-align: justify;
+  line-height: 1.25;
+}
+
+/* Font properties  */
+.description {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* Box model properties  */
+
+.box {
+  height: 200px;
+  width: 100px;
+  background: #c89999;
+  margin: 20px; /* All side same */
+  margin: 10px 20px; /* top-bottom left-right */
+  margin: 10px 20px 30px; /* top left-right bottom */
+  margin: 10px 20px 30px 40px; /* top left bottom right */
+  margin-top: 20px;
+  border: 5px solid khaki;
+  border-top: 5px dashed red;
+  padding: 20px;
+  padding: 10px 20px 30px 40px; /* top left bottom right */
+}

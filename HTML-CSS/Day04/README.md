@@ -31,7 +31,7 @@ CSS -> Cascading Style Sheet
 Element Selector: h1, p, span : Lowest priority
 Class Selector : Element > Class Priority < Id : Recommended for CSS (.class-name)
 Id Selector: Highest priority (#id-name)
-
+<br>
 Note :<em> Class should be used for CSS, Id should be used for JS
            Class name can be reused multiple times, Id must be unique </em>
 </pre>
