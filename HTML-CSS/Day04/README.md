@@ -44,8 +44,9 @@ We can use the css in three different ways,
 3. external - least priority - separate css file is made and linked inside the head tag with link tage
 </pre>
 
-CSS Properties
-color, background-color
-text
-font
-box-model: margin, padding, border
+<h2>CSS Properties</h2>
+<h3>color & background-color</h3>
+<pre>
+    In CSS, colors are specified by using a predefined color name, or with a RGB, HEX, HSL, RGBA, HSLA value.
+</pre>
+
