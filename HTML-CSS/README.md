@@ -81,7 +81,7 @@ CSS -> Cascading Style Sheet
     ....
     }
 </pre>
-<h2>Today's Learning</h2>
+<h2>Learning</h2>
 
 1. Selector
 2. CSS Usage Methods
