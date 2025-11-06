@@ -1,7 +1,11 @@
-# Day 4 Of MERN JOURNEY 
+# Day 4 Of MERN JOURNEY
+
 CSS -> Cascading Style Sheet
+-> It is the stylesheet that is used to style the HTML document.
+
 <pre> 
     Web page styling like color, fonts, positioning, spacing
+
     Syntax :
     < selector > {
     property: value;
@@ -22,16 +26,18 @@ CSS -> Cascading Style Sheet
     }
 </pre>
 
+<h2>Selector</h2>
+<pre>
+    Element Selector: h1, p, span : Lowest priority
 
-Selector
+    Class Selector : Element > Class Priority < Id : Recommended for CSS (.class-name)
 
-Element : h1, p, span : Lowest priority
-Class : Element > Class Priority < Id : Recommended for CSS (.class-name)
-Id: Highest priority (#id-name)
-Class VS Id
+    Id Selector: Highest priority (#id-name)
 
-Class should be used for CSS, Id should be used for JS
-Class name can be reused multiple times, Id must be unique
+    Note :<em> Class should be used for CSS, Id should be used for JS
+               Class name can be reused multiple times, Id must be unique </em>
+</pre>
+
 CSS Usage
 
 Inline
