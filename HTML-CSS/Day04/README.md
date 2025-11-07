@@ -87,7 +87,10 @@ The CSS text-decoration-line property sets the type of decoration line added to 
 4. line-through - The decoration line is displayed through the text
 <br>
 Tip:<em> You can combine multiple values, like overline and underline to display lines both over and under a text. </em>
+you can check other text properties : https://www.w3schools.com/Css/css_text.asp
 </pre>
+
+
 <h3>Box Model</h3>
 In CSS, the term "box model" is used when talking about web design and layout.
 The CSS box model is essentially a box that wraps around every HTML element.
