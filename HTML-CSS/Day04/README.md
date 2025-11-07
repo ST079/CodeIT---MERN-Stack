@@ -76,3 +76,14 @@ This property can have one of the following values:
 2. italic - The text is shown in italics
 3. oblique - The text is "leaning" (oblique is very similar to italic)
 </pre>
+
+<h3>Box Model</h3>
+In CSS, the term "box model" is used when talking about web design and layout.
+The CSS box model is essentially a box that wraps around every HTML element.
+Every box consists of four parts: content, padding, borders and margin
+<pre>
+1. Content - The content of the box, where text and images appear
+2. Padding - Clears an area around the content. The padding is transparent (basically space inside the border)
+3. Border - A border that goes around the padding and content
+4. Margin - Clears an area outside the border. The margin is transparent
+</pre>
