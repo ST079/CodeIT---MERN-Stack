@@ -77,6 +77,17 @@ This property can have one of the following values:
 3. oblique - The text is "leaning" (oblique is very similar to italic)
 </pre>
 
+<h3>Text</h3>
+<pre>
+The CSS text-decoration-line property sets the type of decoration line added to the text.
+
+1. none - Default value. Displays no decoration line
+2. underline - The decoration line is displayed under the text
+3. overline - The decoration line is displayed over the text
+4. line-through - The decoration line is displayed through the text
+<br>
+Tip:<em> You can combine multiple values, like overline and underline to display lines both over and under a text. </em>
+</pre>
 <h3>Box Model</h3>
 In CSS, the term "box model" is used when talking about web design and layout.
 The CSS box model is essentially a box that wraps around every HTML element.
