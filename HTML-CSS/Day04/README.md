@@ -63,7 +63,16 @@ color:hsla(9, 100%, 64%, 0.5);
 3.Monospace fonts - here all the letters have the same fixed width. They create a mechanical look.
 4.Cursive fonts - imitate human handwriting.
 5.Fantasy fonts - are decorative/playful fonts.
-
+<br>
 Note: <em> If the font name is more than one word, it must be in quotation marks, like: "Times New Roman". </em>
 eg:  font-family: "Times New Roman", Times, serif;
+</pre>
+
+<h4>Font Style</h4>
+<pre>
+This property can have one of the following values:
+
+1. normal - The text is shown normally
+2. italic - The text is shown in italics
+3. oblique - The text is "leaning" (oblique is very similar to italic)
 </pre>
