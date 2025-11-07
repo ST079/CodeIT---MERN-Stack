@@ -1,4 +1,8 @@
 
+<pre>
+ Note :<em> Navigate to individual Day folder for descriptive content. </em>
+</pre>
+
 # Day 1 Of MERN JOURNEY
 
 What we gonna make : https://mern-20250622-frontend-app.vercel.app/
