@@ -8,24 +8,42 @@ Every HTML element has a default display value, depending on what type of elemen
 -> A block-level element ALWAYS starts on a new line and takes up the full width available (stretches out to the left and right as far as it can).
 Examples of block-level elements:
 div, h1 - h6, p, form, header, footer, section etc...
-
 2. inline
 -> An inline element DOES NOT start on a new line and only takes up as much width as necessary.
 Examples of inline elements:
 span, a, img etc....
-
 3. inline - block
 -> Displays an element as an inline-level block container. The element itself is formatted as an inline element, but you can apply height, width, padding, and margin values
-
 4. none
 -> When using display: none; the element is completely hidden from the document flow and does not take up any space.
 
-Note : <em> You can also use visibility:hidden; to hide an element. However, with this property, the element will be hidden, but it will still take up the same space as if it was visible:</em>
+Note : <em> You can also use visibility:hidden; to hide an element. However, with this property, the element will be hidden, 
+but it will still take up the same space as if it was visible:</em>
 </pre>
 
 
-flex
-list
+<h2> Flex Property </h2>
+This property helps to group the elements and align those elements in row or column.
+<pre>
+The flex property is a shorthand property for: flex-grow flex-shrink flex-basis
+flex-grow -> it grows the size of the flex element to fit in flex container.
+flex-shrink -> it  reduce the width of the flex element at the size of the frame decreases.
+flex-basis -> it sets the width of the flex item.  if 0 all the items will be of same size
+
+syntax : flex: flex-grow flex-shrink flex-basis
+recommended: flex: 1 1 0
+</pre>
+<h2>list</h2>
+<pre>
+The list-style property is a shorthand for the following properties:
+
+1. list-style-type -> Specifies the type of list-item marker. Default value is "disc"
+2. list-style-position ->Specifies where to place the list-item marker. Default value is "outside"
+3. list-style-image -> Specifies the type of list-item marker. Default value is "none"
+
+Note:<em>If one of the values are missing, the default value for that property will be used.
+also if we set list-style: none, disc will also be removed</em>
+</pre>
 pseudo-class
 units
 overflow
