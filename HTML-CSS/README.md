@@ -62,7 +62,7 @@ What we gonna make : https://mern-20250622-frontend-app.vercel.app/
 <hr>
 
 # Day 3 Of MERN JOURNEY
-
+<pre>task alert!!!!!</pre>
 1. Table Tag
 2. Block/Inline elements
 3. Form Elements
@@ -93,6 +93,7 @@ CSS -> Cascading Style Sheet
 4. box-model: margin, padding, border
 
 # Day 5 Of MERN JOURNEY
+<pre>task alert!!!!!</pre>
 1. display
 2. flex
 3. list
