@@ -91,3 +91,12 @@ CSS -> Cascading Style Sheet
 2. CSS Usage Methods
 3. CSS Properties
 4. box-model: margin, padding, border
+
+# Day 5 Of MERN JOURNEY
+1. display
+2. flex
+3. list
+4. pseudo-class
+5. units
+6. overflow
+7. table
