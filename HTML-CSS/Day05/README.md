@@ -44,7 +44,19 @@ The list-style property is a shorthand for the following properties:
 Note:<em>If one of the values are missing, the default value for that property will be used.
 also if we set list-style: none, disc will also be removed</em>
 </pre>
-pseudo-class
-units
+
+<h2>pseudo-class</h2>
+also called (fake) class properties. It is applied to the existing class. eg hover, before, after, etc..
+<pre>
+eg:
+.title:hover{
+    color:red;
+}
+</pre>
+<h2>Units</h2>
+<pre>
+px (pixel), em (relative to parent), rem (relative to root), vh (viewing height), vw (viewing width), in (inch), cm 
+</pre>
+
 overflow
 table
