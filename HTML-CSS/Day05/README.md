@@ -67,10 +67,8 @@ The CSS overflow property controls what happens to content that is too big to fi
 1. visible - Default. The overflow is not clipped. The content renders outside the element's box
 2. hidden - The overflow is clipped, and the rest of the content is hidden
 3. scroll - Scrollbars are added. User must scroll to see all content
-4. auto - Similar to scroll, but adds scrollbars only when necessary
-
+4. auto - Similar to scroll, but adds scrollbars only when necessary <br>
 The overflow-x and overflow-y properties specifies whether to change the overflow of content just horizontally or vertically (or both):
-
 1. overflow-x specifies what to do with the left/right edges of the content.
 2. overflow-y specifies what to do with the top/bottom edges of the content.
 </pre>
