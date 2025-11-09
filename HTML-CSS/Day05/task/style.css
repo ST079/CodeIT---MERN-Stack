@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&display=swap');
+:root{
+  --text-color:#000000;
+  --body-color: #F7F6F4;
+  --btn-color:#0050FF;
+  --background-box:#E6DACE;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Madefor', sans-serif;
+    background-color: var(--body-color);
+}
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  padding-bottom: 60px;
+  /* border: 1px solid black; */
+}
+.nav-items{
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  >li a{
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 20px;
+  }
+}
+
+.nav-menu{
+  margin-right: 100px;
+}
+
+.nav-item a:hover{
+  color: var(--btn-color);
+}
+
+.active a{
+  color: var(--btn-color) !important;
+}
+
+.header-text{
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-color);
+  display: flex;
+  align-items: baseline;
+  font-weight: 900;
+  >span{
+    font-size: 25px;
+    margin-left: 10px;
+    font-weight:100 !important;
+  }
+}
+.header-text::before{
+  content: '';
+  width: 30px;
+  height: 30px;
+  background-color: var(--btn-color);
+  display: inline-block;
+  margin-right: 15px;
+}
+
+
+/* main */
+main{
+  position: relative;
+}
+.background-box{
+  position: absolute;
+  top: 0;
+  width: 500px;
+  height: 100vh;
+  background-color: var(--background-box);
+}
+.profile-card{
+  z-index: 2;
+}
