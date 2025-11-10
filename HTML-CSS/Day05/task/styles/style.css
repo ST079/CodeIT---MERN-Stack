@@ -12,20 +12,24 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Madefor", sans-serif;
+  background-color: var(--body-color);
 }
 
-body {
-  background-color: var(--body-color);
-  position: relative;
-  overflow-x: hidden;
+.hidden {
+  display: none;
 }
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 40px;
   padding-bottom: 60px;
-  
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--body-color);
+
   /* border: 1px solid black; */
 }
 .nav-items {
@@ -41,7 +45,6 @@ header {
 
 .nav-menu {
   margin-right: 100px;
-  
 }
 
 .nav-item a:hover {
@@ -82,20 +85,22 @@ main {
 }
 
 .background-box {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 800px;
-  height: 100vh;
+  height: 120vh;
   background-color: var(--background-box);
 }
-
 
 .profile-card {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 800px;
+  position: absolute;
+  left: 500px;
+  margin-top: 100px;
 }
 
 .image {
@@ -199,14 +204,55 @@ main {
   text-align: justify;
 }
 
+/* resume */
+.resume {
+  background: var(--background-box) !important;
+  width: 100%;
+  padding: 0 100px 100px 100px;
+}
+.resume-header {
+  text-align: center;
+  background: inherit;
+  padding: 60px 0 20px 0;
+  position: relative;
 
+  > h2 {
+    font-size: 40px;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    background: inherit;
+    font-weight: 900;
+  }
+  > h2::before {
+    content: "";
+    width: 30px;
+    height: 30px;
+    background-color: var(--btn-color);
+    display: inline-block;
+    margin-right: 15px;
+  }
+
+  > p {
+    font-size: 20px;
+    color: var(--text-color);
+    background: inherit;
+  }
+}
+
+.experience-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* footer */
 footer {
   display: flex;
+  margin-top: 100vh;
   justify-content: space-between;
   align-items: center;
   padding: 40px 40px;
   /* border-top: 1px solid #ccc; */
-  margin-top: 40px;
   font-size: 19px;
   color: var(--text-color);
 
@@ -214,7 +260,9 @@ footer {
     display: flex;
     align-items: center;
     gap: 40px;
-
+    > p {
+      text-align: center;
+    }
     .socials {
       display: flex;
       gap: 15px;
