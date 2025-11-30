@@ -1,29 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JobConnect - Find Your Dream Job</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1E3A8A",
+                        secondary: "#1f1c20",
+                        
+                    },
+                },
+            },
+        };
+    </script>
 </head>
-<body>
-    <header class="w-full h-24 bg-blue-200">
-        <div class="w-full text-white bg-black py-2 text-center">Notice</div>
+
+<body class="border-box light">
+    <div class="w-full text-center bg-gray-500 text-white py-3">Notice</div>
+    <header class="w-full bg-white shadow-md sticky top-0 z-50 dark:bg-gray-800 dark:text-white">
+        <div class="container mx-auto py-2 px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- logo -->
+                <h1 class="text-lg font-semibold text-primary dark:text-white">
+                    <a href="#"><i class="fa-solid fa-briefcase mr-1"></i>JobConnect</a>
+                </h1>
+                <!-- navigation items -->
+                <nav class="hidden md:flex">
+                    <ul class="flex gap-4">
+                        <li><a href="#">Jobs</a></li>
+                        <li><a href="#">Employers</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">More</a></li>
+                    </ul>
+                </nav>
+
+                <div class="flex gap-4">
+                    <button><i class="fa-regular fa-moon"></i></button>
+                    <button
+                        class="focus:ring font-semibold rounded-2xl p-2 border dark:border-green-200 bg-primary text-white">Join
+                        Us</button>
+                    <button class="md:hidden"><i class="fa-solid fa-bars"></i></button>
+                </div>
+            </div>
+        </div>
     </header>
     <main>
-        <section class="w-full h-screen">Home</section>
-        <section class="w-full h-screen">Card</section>
-        <section class="w-full h-screen">Explore! What We Offer</section>
-        <section class="w-full h-screen">Why! Why Choose Us</section>
-        <section class="w-full h-screen">Features! How it works</section>
-        <section class="w-full h-screen">Services</section>
-        <section class="w-full h-screen">Success Stories</section>
-        <section class="w-full h-screen">Getting Started</section>
-        <section class="w-full h-screen">Testimonials</section>
-        <section class="w-full h-screen">FAQ</section>
+        <section class="w-full h-screen flex items-center justify-center dark:bg-secondary">
+            <div class="container grid grid-cols-1 border mx-5 gap-4 rounded-3xl shadow-lg overflow-hidden sm:grid-cols-1 sm:m-20 md:grid-cols-2  md:mx-10 ">
+                <div class="flex flex-col p-5 gap-4 items-start justify-center sm:p-6 md:p-10 dark:text-white">
+                    <h1 class="text-3xl font-bold  md:text-5xl lg:text-7xl">Find Work That Matters You</h1>
+                    <p class="color-slate-400">JobConnect connects talented people with meaningful opportunities.
+                        Search thousands of jobs, apply instantly, and start your next chapter today.
+                    </p>
+                    <!-- button -->
+                    <div class="flex gap-4">
+                        <button class="focus:ring font-semibold rounded-2xl py-2 px-4 border dark:border-primary-200 bg-primary text-white">Search</button>
+                        <button class="focus:ring font-semibold rounded-2xl p-2 border dark:border-secondary-200 bg-white dark:text-black">Post a Job</button>
+                    </div>
+                </div>
+                <div class="w-full sm:h-64 md:h-auto border-1 overflow-hidden">
+                    <img src="../assets/images/hero-light.jpg" class="md:h-full md:object-cover" alt="">
+                </div>
+            </div>
+        </section>
+        <section class="w-full h-screen">Hero</section>
+        <section class="w-full h-screen">Hero</section>
+        <section class="w-full h-screen">Hero</section>
+        <section class="w-full h-screen">Hero</section>
+        <section class="w-full h-screen">Hero</section>
     </main>
-    <footer>
-        <div>footer</div>
-    </footer>
+
 </body>
+
 </html>
