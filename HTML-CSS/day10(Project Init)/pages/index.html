@@ -5,10 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JobConnect - Find Your Dream Job</title>
+    <!-- tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Icons/Fontaswome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- google fonts -->
+    <!-- Urbanist Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <!-- custom tailwind config -->
     <script>
         tailwind.config = {
             darkMode: "class",
@@ -17,7 +34,10 @@
                     colors: {
                         primary: "#1E3A8A",
                         secondary: "#1f1c20",
-
+                    },
+                    fontFamily: {
+                        heading: ["Urbanist", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
                     },
                 },
             },
@@ -25,13 +45,13 @@
     </script>
 </head>
 
-<body class="border-box light">
+<body class="border-box light font-body">
     <div class="w-full text-center bg-gray-500 text-white py-2">Notice</div>
     <header class="w-full bg-white shadow-md sticky top-0 z-50 dark:bg-gray-800 dark:text-white">
         <div class="container mx-auto py-2 px-4">
             <div class="flex justify-between items-center py-4">
                 <!-- logo -->
-                <h1 class="text-lg font-semibold text-primary dark:text-white">
+                <h1 class="text-lg font-semibold text-primary font-head dark:text-white">
                     <a href="#"><i class="fa-solid fa-briefcase mr-1"></i>JobConnect</a>
                 </h1>
                 <!-- navigation items -->
@@ -56,7 +76,7 @@
         </div>
     </header>
     <main>
-        <section class="w-full h-screen flex items-center justify-center dark:bg-secondary mb-10">
+        <section class="w-full h-screen flex items-center justify-center dark:bg-secondary mb-5">
             <div
                 class="container grid grid-cols-1 border mx-5 gap-4 rounded-3xl shadow-lg overflow-hidden sm:grid-cols-1 sm:m-20 md:grid-cols-2  md:mx-10 ">
                 <div class="flex flex-col p-5 gap-4 items-start justify-center sm:p-6 md:p-10 dark:text-white">
@@ -79,59 +99,78 @@
             </div>
         </section>
 
-        <section class="w-full h-screen">
+        <section class="w-full h-screen mb-10 flex items-center justify-center flex-col">
             <div class="flex flex-col text-center gap-4 mb-10">
                 <p class="font-bold">Explore</p>
-                <h1 class="text-4xl">What We Offer ?</h1>
+                <h1 class="text-4xl font-head">What We Offer ?</h1>
                 <p class="text-slate-600">Everything you need to land your next role.</p>
             </div>
 
-            <div class="flex flex-col">
+            <div class="flex flex-col gap-4 mx-10 sm:flex-col md:flex-row md:justify-center md:items-stretch">
                 <!-- card one -->
                 <div
-                    class="flex flex-col border p-5 m-5 rounded-lg shadow-lg gap-4 bg-[url('../assets/images/card1.jpg')] object-fit bg-center text-white ">
-                    <p class="text-sm font-bold">Search</p>
-                    <h2 class="text-3xl font-semibold mb-2">Advance Job Search and Filters</h2>
-                    <p class="">
-                        Find position tailored to your skills and experience.
-                    </p>
-                    <!-- card buttons -->
-                    <div class="flex gap-2">
-                        <button class="bg-transparent border-2 p-2 px-4 rounded-lg"> Learn </button>
-                        <button class="flex items-center justify-center gap-2"> More <i
-                                class="fa-solid fa-greater-than text-[5px]"></i> </button>
+                    class="relative flex border p-5 rounded-lg shadow-lg gap-4 text-white md:basis-1/2  ">
+                    <div class="absolute inset-0  rounded-lg overflow-hidden">
+                        <img src="../assets/images/card1.jpg" class="h-full w-full object-cover" />
+                    </div>
+                    <div class=" absolute inset-0 bg-black/40 rounded-lg"></div>
+                    <div class="flex  flex-col justify-center gap-4 relative z-10 ">
+                        <p class="font-bold text-sm">Search</p>
+                        <h2 class="text-4xl font-semibold font-head mb-2">Advanced job search and filters</h2>
+                        <p class="text-lg font-medium">
+                            Find position tailored to your skills and experience
+                        </p>
+                        <!-- card buttons -->
+                        <div class="flex gap-2">
+                            <button class="bg-transparent border-2 p-2 px-4 rounded-lg"> Learn </button>
+                            <button class="flex items-center justify-center gap-2"> More <i
+                                    class="fa-solid fa-greater-than text-[5px]"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-              <!-- card 2     -->
+                <!-- card 2     -->
                 <div
-                    class="flex flex-col border p-5 m-5 rounded-lg shadow-lg gap-4 bg-[url('../assets/images/card2.jpg')] object-fit bg-center text-white ">
-                    <p class="font-bold text-3xl"><i class="fa-solid fa-dice-d6"></i></p>
-                    <h2 class="text-3xl font-semibold mb-2">Advance Job Search and Filters</h2>
-                    <p class="">
-                        Find position tailored to your skills and experience.
-                    </p>
-                    <!-- card buttons -->
-                    <div class="flex gap-2">
-                        <button class="bg-transparent border-2 p-2 px-4 rounded-lg"> Learn </button>
-                        <button class="flex items-center justify-center gap-2"> More <i
-                                class="fa-solid fa-greater-than text-[5px]"></i>
-                        </button>
+                    class="relative border p-5 rounded-lg shadow-lg gap-4  text-white md:basis-1/4">
+                    <div class="absolute inset-0  rounded-lg overflow-hidden">
+                        <img src="../assets/images/card2.jpg" class="h-full w-full object-cover" />
+                    </div>
+                    <div class=" absolute inset-0 bg-black/40 rounded-lg"></div>
+                    <div class="flex flex-col gap-4 relative z-10">
+                        <p class="font-bold text-3xl"><i class="fa-solid fa-dice-d6"></i></p>
+                        <h2 class="text-4xl font-semibold mb-2 font-head">One-click application process</h2>
+                        <p class="text-lg font-medium">
+                            You can apply to multiple jobs in minutes, not hours
+                        </p>
+                        <!-- card buttons -->
+                        <div class="flex gap-2">
+                            <button class="bg-transparent border-2 p-2 px-4 rounded-lg hidden"> Learn </button>
+                            <button class="flex items-center justify-center gap-2"> More <i
+                                    class="fa-solid fa-greater-than text-[5px]"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-
+                <!-- card 3 -->
                 <div
-                    class="flex flex-col border p-5 m-5 rounded-lg shadow-lg gap-4 bg-[url('../assets/images/card1.jpg')] object-fit bg-left-bottom text-white ">
-                    <p class="text-sm font-bold">Search</p>
-                    <h2 class="text-3xl font-semibold mb-2">Advance Job Search and Filters</h2>
-                    <p class="">
-                        Find position tailored to your skills and experience.
-                    </p>
-                    <!-- card buttons -->
-                    <div class="flex gap-2">
-                        <button class="bg-transparent border-2 p-2 px-4 rounded-lg"> Learn </button>
-                        <button class="flex items-center justify-center gap-2"> More <i
-                                class="fa-solid fa-greater-than text-[5px]"></i>
-                        </button>
+                    class="relative border p-5 rounded-lg shadow-lg gap-4 text-white md:basis-1/4">
+                    <div class="absolute inset-0  rounded-lg overflow-hidden">
+                        <img src="../assets/images/card3.jpg" class="h-full w-full object-cover" />
+                    </div>
+                    <div class=" absolute inset-0 bg-black/40 rounded-lg"></div>
+                    <div class="flex flex-col gap-4 relative z-10 ">
+                        <p class="font-bold text-3xl"><i class="fa-solid fa-dice-d6"></i></p>
+                        <h2 class="text-4xl font-semibold mb-2 font-head">Real-time aplication tracking</h2>
+                        <p class="text-lg font-medium">
+                            Monitor your progress and stay informed every step
+                        </p>
+                        <!-- card buttons -->
+                        <div class="flex gap-2">
+                            <button class="bg-transparent border-2 p-2 px-4 rounded-lg hidden"> Learn </button>
+                            <button class="flex items-center justify-center gap-2"> More <i
+                                    class="fa-solid fa-greater-than text-[5px]"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
