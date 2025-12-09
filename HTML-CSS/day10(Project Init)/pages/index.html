@@ -17,7 +17,7 @@
                     colors: {
                         primary: "#1E3A8A",
                         secondary: "#1f1c20",
-                        
+
                     },
                 },
             },
@@ -26,7 +26,7 @@
 </head>
 
 <body class="border-box light">
-    <div class="w-full text-center bg-gray-500 text-white py-3">Notice</div>
+    <div class="w-full text-center bg-gray-500 text-white py-2">Notice</div>
     <header class="w-full bg-white shadow-md sticky top-0 z-50 dark:bg-gray-800 dark:text-white">
         <div class="container mx-auto py-2 px-4">
             <div class="flex justify-between items-center py-4">
@@ -56,8 +56,9 @@
         </div>
     </header>
     <main>
-        <section class="w-full h-screen flex items-center justify-center dark:bg-secondary">
-            <div class="container grid grid-cols-1 border mx-5 gap-4 rounded-3xl shadow-lg overflow-hidden sm:grid-cols-1 sm:m-20 md:grid-cols-2  md:mx-10 ">
+        <section class="w-full h-screen flex items-center justify-center dark:bg-secondary mb-10">
+            <div
+                class="container grid grid-cols-1 border mx-5 gap-4 rounded-3xl shadow-lg overflow-hidden sm:grid-cols-1 sm:m-20 md:grid-cols-2  md:mx-10 ">
                 <div class="flex flex-col p-5 gap-4 items-start justify-center sm:p-6 md:p-10 dark:text-white">
                     <h1 class="text-3xl font-bold  md:text-5xl lg:text-7xl">Find Work That Matters You</h1>
                     <p class="color-slate-400">JobConnect connects talented people with meaningful opportunities.
@@ -65,8 +66,11 @@
                     </p>
                     <!-- button -->
                     <div class="flex gap-4">
-                        <button class="focus:ring font-semibold rounded-2xl py-2 px-4 border dark:border-primary-200 bg-primary text-white">Search</button>
-                        <button class="focus:ring font-semibold rounded-2xl p-2 border dark:border-secondary-200 bg-white dark:text-black">Post a Job</button>
+                        <button
+                            class="focus:ring font-semibold rounded-2xl py-2 px-4 border dark:border-primary-200 bg-primary text-white">Search</button>
+                        <button
+                            class="focus:ring font-semibold rounded-2xl p-2 border dark:border-secondary-200 bg-white dark:text-black">Post
+                            a Job</button>
                     </div>
                 </div>
                 <div class="w-full sm:h-64 md:h-auto border-1 overflow-hidden">
@@ -74,7 +78,65 @@
                 </div>
             </div>
         </section>
-        <section class="w-full h-screen">Hero</section>
+
+        <section class="w-full h-screen">
+            <div class="flex flex-col text-center gap-4 mb-10">
+                <p class="font-bold">Explore</p>
+                <h1 class="text-4xl">What We Offer ?</h1>
+                <p class="text-slate-600">Everything you need to land your next role.</p>
+            </div>
+
+            <div class="flex flex-col">
+                <!-- card one -->
+                <div
+                    class="flex flex-col border p-5 m-5 rounded-lg shadow-lg gap-4 bg-[url('../assets/images/card1.jpg')] object-fit bg-center text-white ">
+                    <p class="text-sm font-bold">Search</p>
+                    <h2 class="text-3xl font-semibold mb-2">Advance Job Search and Filters</h2>
+                    <p class="">
+                        Find position tailored to your skills and experience.
+                    </p>
+                    <!-- card buttons -->
+                    <div class="flex gap-2">
+                        <button class="bg-transparent border-2 p-2 px-4 rounded-lg"> Learn </button>
+                        <button class="flex items-center justify-center gap-2"> More <i
+                                class="fa-solid fa-greater-than text-[5px]"></i> </button>
+                    </div>
+                </div>
+              <!-- card 2     -->
+                <div
+                    class="flex flex-col border p-5 m-5 rounded-lg shadow-lg gap-4 bg-[url('../assets/images/card2.jpg')] object-fit bg-center text-white ">
+                    <p class="font-bold text-3xl"><i class="fa-solid fa-dice-d6"></i></p>
+                    <h2 class="text-3xl font-semibold mb-2">Advance Job Search and Filters</h2>
+                    <p class="">
+                        Find position tailored to your skills and experience.
+                    </p>
+                    <!-- card buttons -->
+                    <div class="flex gap-2">
+                        <button class="bg-transparent border-2 p-2 px-4 rounded-lg"> Learn </button>
+                        <button class="flex items-center justify-center gap-2"> More <i
+                                class="fa-solid fa-greater-than text-[5px]"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div
+                    class="flex flex-col border p-5 m-5 rounded-lg shadow-lg gap-4 bg-[url('../assets/images/card1.jpg')] object-fit bg-left-bottom text-white ">
+                    <p class="text-sm font-bold">Search</p>
+                    <h2 class="text-3xl font-semibold mb-2">Advance Job Search and Filters</h2>
+                    <p class="">
+                        Find position tailored to your skills and experience.
+                    </p>
+                    <!-- card buttons -->
+                    <div class="flex gap-2">
+                        <button class="bg-transparent border-2 p-2 px-4 rounded-lg"> Learn </button>
+                        <button class="flex items-center justify-center gap-2"> More <i
+                                class="fa-solid fa-greater-than text-[5px]"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="w-full h-screen">Hero</section>
         <section class="w-full h-screen">Hero</section>
         <section class="w-full h-screen">Hero</section>
