@@ -50,14 +50,16 @@ Tailwind CSS:
 ```
 ---
 ## ⚙️ Installation (Beginner Friendly)
-### Option 1: CDN (Best for Learning)
+Option 1: CDN (Best for Learning)
 <script src="https://cdn.tailwindcss.com"></script>
+<br>
 📌 Use this for practice, labs, and small projects.
 ---
 
-### Option 2: Using npm (Production)
+Option 2: Using npm (Production)
 npm install -D tailwindcss
-npx tailwindcss init
+npx tailwindcss init 
+<br>
 📌 Recommended for real-world projects.
 ---
 
