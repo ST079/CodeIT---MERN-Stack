@@ -34,6 +34,7 @@
                     colors: {
                         primary: "#1E3A8A",
                         secondary: "#1f1c20",
+                        teritrary: "#D9D9D9"
                     },
                     fontFamily: {
                         heading: ["Urbanist", "sans-serif"],
@@ -75,8 +76,10 @@
             </div>
         </div>
     </header>
-    <main>
-        <section class="w-full h-screen flex items-center justify-center dark:bg-secondary mb-5">
+
+    <main class="flex flex-col gap-4 dark:bg-secondary">
+        <!-- landing -->
+        <section class="w-full h-screen flex items-center justify-center dark:bg-secondary mb-5 ">
             <div
                 class="container grid grid-cols-1 border mx-5 gap-4 rounded-3xl shadow-lg overflow-hidden sm:grid-cols-1 sm:m-20 md:grid-cols-2  md:mx-10 ">
                 <div class="flex flex-col p-5 gap-4 items-start justify-center sm:p-6 md:p-10 dark:text-white">
@@ -99,7 +102,8 @@
             </div>
         </section>
 
-        <section class="w-full h-screen mb-10 flex items-center justify-center flex-col">
+        <!-- offer -->
+        <section class="w-full mb-10 flex items-center justify-center flex-col dark:text-white dark:bg-secondary">
             <div class="flex flex-col text-center gap-4 mb-10">
                 <p class="font-bold">Explore</p>
                 <h1 class="text-4xl font-head">What We Offer ?</h1>
@@ -108,8 +112,7 @@
 
             <div class="flex flex-col gap-4 mx-10 sm:flex-col md:flex-row md:justify-center md:items-stretch">
                 <!-- card one -->
-                <div
-                    class="relative flex border p-5 rounded-lg shadow-lg gap-4 text-white md:basis-1/2  ">
+                <div class="relative flex border p-5 rounded-lg shadow-lg gap-4 text-white md:basis-1/2  ">
                     <div class="absolute inset-0  rounded-lg overflow-hidden">
                         <img src="../assets/images/card1.jpg" class="h-full w-full object-cover" />
                     </div>
@@ -130,8 +133,7 @@
                     </div>
                 </div>
                 <!-- card 2     -->
-                <div
-                    class="relative border p-5 rounded-lg shadow-lg gap-4  text-white md:basis-1/4">
+                <div class="relative border p-5 rounded-lg shadow-lg gap-4  text-white md:basis-1/4">
                     <div class="absolute inset-0  rounded-lg overflow-hidden">
                         <img src="../assets/images/card2.jpg" class="h-full w-full object-cover" />
                     </div>
@@ -152,8 +154,7 @@
                     </div>
                 </div>
                 <!-- card 3 -->
-                <div
-                    class="relative border p-5 rounded-lg shadow-lg gap-4 text-white md:basis-1/4">
+                <div class="relative border p-5 rounded-lg shadow-lg gap-4 text-white md:basis-1/4">
                     <div class="absolute inset-0  rounded-lg overflow-hidden">
                         <img src="../assets/images/card3.jpg" class="h-full w-full object-cover" />
                     </div>
@@ -176,7 +177,54 @@
             </div>
         </section>
 
-        <section class="w-full h-screen">Hero</section>
+        <!-- why us -->
+        <section class="w-full mb-10 flex items-center justify-center flex-col dark:text-white bg-teritrary py-10">
+            <div class="flex flex-col text-center gap-4 mb-10">
+                <p class="font-bold">Why</p>
+                <h1 class="text-4xl font-head">Why choose us ?</h1>
+                <p class="text-slate-600">We make hiring and job hunting simple.</p>
+            </div>
+
+            <div class="flex flex-col gap-2 md:p-10 md:justify-center">
+
+                <div class="flex-1 grid grid-cols-1 gap-2 border-2 border-[#BAB9BA] m-4 rounded-lg md:grid-cols-2">
+                    <div class="h-52 w-full overflow-hidden rounded-t-lg md:rounded-l-lg">
+                        <img src="../assets/images/why1.jpg" class="object-cover w-full h-52" alt="img">
+                    </div>
+                    <div class="flex flex-col justify-center gap-2 p-5">
+                        <p class="font-bold text-sm">Seekers</p>
+                        <h2 class="text-lg font-semibold font-head">Find time and better fits</h2>
+                        <p class="text-lg font-medium">
+                            Discover opportuinites that matches up your goals.
+                        </p>
+                        <!-- card buttons -->
+                        <div class="flex gap-2">
+                            <button class="flex items-center justify-center gap-2"> More <i
+                                    class="fa-solid fa-greater-than text-[5px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-1 grid-cols-1 gap-2 border-2 border-[#BAB9BA] m-4 rounded-lg">
+                    <div class="image overflow-hidden rounded-t-lg h-52">
+                        <img src="../assets/images/why2.jpg" alt="img">
+                    </div>
+                    <div class="flex flex-col justify-center gap-2 p-5">
+                        <p class="font-bold text-sm">Employers</p>
+                        <h2 class="text-lg font-semibold font-head">Reach qualified candidates first</h2>
+                        <p class="text-lg font-medium">
+                            Build your team with right talent
+                        </p>
+                        <!-- card buttons -->
+                        <div class="flex gap-2">
+                            <button class="flex items-center justify-center gap-2"> More <i
+                                    class="fa-solid fa-greater-than text-[5px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+        </section>
         <section class="w-full h-screen">Hero</section>
         <section class="w-full h-screen">Hero</section>
         <section class="w-full h-screen">Hero</section>

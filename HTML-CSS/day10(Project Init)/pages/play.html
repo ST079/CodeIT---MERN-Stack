@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerConnect | Corporate Job Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+        }
+        
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .job-card {
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header/Navigation -->
+    <header class="sticky top-0 z-50 shadow-sm bg-white">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center">
+                        <i class="fas fa-briefcase text-white text-xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-800">Career<span class="text-blue-700">Connect</span></h1>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="font-medium text-gray-700 hover:text-blue-700 transition">Home</a>
+                    <a href="#" class="font-medium text-gray-700 hover:text-blue-700 transition">Find Jobs</a>
+                    <a href="#" class="font-medium text-gray-700 hover:text-blue-700 transition">Companies</a>
+                    <a href="#" class="font-medium text-gray-700 hover:text-blue-700 transition">Career Resources</a>
+                    <a href="#" class="font-medium text-gray-700 hover:text-blue-700 transition">Post a Job</a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="hidden md:inline-block px-5 py-2 text-blue-700 font-medium hover:bg-blue-50 rounded-lg transition">Sign In</button>
+                    <button class="px-5 py-2 bg-blue-700 text-white font-medium rounded-lg hover:bg-blue-800 transition">Register</button>
+                    <button class="md:hidden p-2 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-bars text-gray-700"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white">
+        <div class="container mx-auto px-4 py-16 md:py-24">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight">Find Your Dream Job in the Corporate World</h1>
+                <p class="text-xl mt-6 text-blue-100">Connect with top employers, discover opportunities that match your skills, and take the next step in your career journey.</p>
+                
+                <div class="mt-10 bg-white rounded-xl p-2 shadow-lg flex flex-col md:flex-row">
+                    <div class="flex-1 p-2">
+                        <input type="text" placeholder="Job title, keywords, or company" class="w-full p-4 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div class="flex-1 p-2">
+                        <input type="text" placeholder="City, state, or remote" class="w-full p-4 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div class="p-2">
+                        <button class="w-full md:w-auto bg-blue-700 hover:bg-blue-800 text-white font-semibold py-4 px-8 rounded-lg transition flex items-center justify-center">
+                            <i class="fas fa-search mr-2"></i> Search Jobs
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <span class="text-blue-100">Popular Searches:</span>
+                    <a href="#" class="bg-blue-800/40 hover:bg-blue-800/60 px-4 py-2 rounded-full text-sm transition">Software Engineer</a>
+                    <a href="#" class="bg-blue-800/40 hover:bg-blue-800/60 px-4 py-2 rounded-full text-sm transition">Marketing Manager</a>
+                    <a href="#" class="bg-blue-800/40 hover:bg-blue-800/60 px-4 py-2 rounded-full text-sm transition">Financial Analyst</a>
+                    <a href="#" class="bg-blue-800/40 hover:bg-blue-800/60 px-4 py-2 rounded-full text-sm transition">Project Manager</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Stats Section -->
+        <section class="mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="stat-card rounded-xl p-6 shadow-sm border border-gray-100">
+                    <div class="text-3xl font-bold text-blue-700">12,540+</div>
+                    <div class="text-gray-600 mt-2">Live Job Openings</div>
+                </div>
+                <div class="stat-card rounded-xl p-6 shadow-sm border border-gray-100">
+                    <div class="text-3xl font-bold text-blue-700">3,200+</div>
+                    <div class="text-gray-600 mt-2">Companies Hiring</div>
+                </div>
+                <div class="stat-card rounded-xl p-6 shadow-sm border border-gray-100">
+                    <div class="text-3xl font-bold text-blue-700">45,800+</div>
+                    <div class="text-gray-600 mt-2">Success Stories</div>
+                </div>
+                <div class="stat-card rounded-xl p-6 shadow-sm border border-gray-100">
+                    <div class="text-3xl font-bold text-blue-700">98%</div>
+                    <div class="text-gray-600 mt-2">Satisfaction Rate</div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Job Listings Section -->
+            <div class="lg:w-2/3">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800">Featured Job Listings</h2>
+                    <a href="#" class="text-blue-700 font-medium hover:text-blue-800">View All Jobs <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+                
+                <div class="space-y-6">
+                    <!-- Job Card 1 -->
+                    <div class="job-card bg-white hover-card rounded-xl shadow-sm border border-gray-100 p-6">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-14 h-14 rounded-lg bg-blue-50 flex items-center justify-center">
+                                    <i class="fas fa-laptop-code text-blue-700 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Senior Frontend Developer</h3>
+                                    <div class="flex flex-wrap items-center gap-2 mt-2">
+                                        <span class="text-gray-600"><i class="fas fa-building mr-1"></i> TechCorp Solutions</span>
+                                        <span class="text-gray-600"><i class="fas fa-map-marker-alt mr-1"></i> San Francisco, CA</span>
+                                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Remote</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 md:mt-0 md:text-right">
+                                <div class="text-2xl font-bold text-gray-800">$120,000 - $150,000</div>
+                                <div class="text-gray-600">Full-time</div>
+                                <button class="mt-4 px-5 py-2 bg-blue-700 hover:bg-blue-800 text-white font-medium rounded-lg transition">Apply Now</button>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-gray-100">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">React</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">TypeScript</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">Next.js</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">Tailwind CSS</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Job Card 2 -->
+                    <div class="job-card bg-white hover-card rounded-xl shadow-sm border border-gray-100 p-6">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-14 h-14 rounded-lg bg-blue-50 flex items-center justify-center">
+                                    <i class="fas fa-chart-line text-blue-700 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Financial Analyst</h3>
+                                    <div class="flex flex-wrap items-center gap-2 mt-2">
+                                        <span class="text-gray-600"><i class="fas fa-building mr-1"></i> Global Finance Inc.</span>
+                                        <span class="text-gray-600"><i class="fas fa-map-marker-alt mr-1"></i> New York, NY</span>
+                                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">Hybrid</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 md:mt-0 md:text-right">
+                                <div class="text-2xl font-bold text-gray-800">$85,000 - $110,000</div>
+                                <div class="text-gray-600">Full-time</div>
+                                <button class="mt-4 px-5 py-2 bg-blue-700 hover:bg-blue-800 text-white font-medium rounded-lg transition">Apply Now</button>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-gray-100">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">Financial Modeling</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">Excel</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">Data Analysis</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">SQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Job Card 3 -->
+                    <div class="job-card bg-white hover-card rounded-xl shadow-sm border border-gray-100 p-6">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-14 h-14 rounded-lg bg-blue-50 flex items-center justify-center">
+                                    <i class="fas fa-users text-blue-700 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">HR Manager</h3>
+                                    <div class="flex flex-wrap items-center gap-2 mt-2">
+                                        <span class="text-gray-600"><i class="fas fa-building mr-1"></i> PeopleFirst Corp</span>
+                                        <span class="text-gray-600"><i class="fas fa-map-marker-alt mr-1"></i> Chicago, IL</span>
+                                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">On-site</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 md:mt-0 md:text-right">
+                                <div class="text-2xl font-bold text-gray-800">$95,000 - $125,000</div>
+                                <div class="text-gray-600">Full-time</div>
+                                <button class="mt-4 px-5 py-2 bg-blue-700 hover:bg-blue-800 text-white font-medium rounded-lg transition">Apply Now</button>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-gray-100">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">Recruitment</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">Employee Relations</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">HR Policies</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">Talent Management</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Filters & Featured Companies -->
+            <div class="lg:w-1/3">
+                <!-- Filters -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Filter Jobs</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-medium text-gray-700 mb-3">Job Type</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-blue-700 focus:ring-blue-500">
+                                    <span class="ml-2 text-gray-600">Full-time</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-blue-700 focus:ring-blue-500">
+                                    <span class="ml-2 text-gray-600">Part-time</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-blue-700 focus:ring-blue-500">
+                                    <span class="ml-2 text-gray-600">Contract</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-blue-700 focus:ring-blue-500">
+                                    <span class="ml-2 text-gray-600">Internship</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium text-gray-700 mb-3">Experience Level</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-blue-700 focus:ring-blue-500">
+                                    <span class="ml-2 text-gray-600">Entry Level</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-blue-700 focus:ring-blue-500">
+                                    <span class="ml-2 text-gray-600">Mid Level</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-blue-700 focus:ring-blue-500">
+                                    <span class="ml-2 text-gray-600">Senior Level</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-blue-700 focus:ring-blue-500">
+                                    <span class="ml-2 text-gray-600">Executive</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium text-gray-700 mb-3">Work Location</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-blue-700 focus:ring-blue-500" checked>
+                                    <span class="ml-2 text-gray-600">Remote</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-blue-700 focus:ring-blue-500">
+                                    <span class="ml-2 text-gray-600">Hybrid</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-blue-700 focus:ring-blue-500">
+                                    <span class="ml-2 text-gray-600">On-site</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full py-3 bg-blue-700 hover:bg-blue-800 text-white font-medium rounded-lg transition">Apply Filters</button>
+                        <button class="w-full py-3 border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium rounded-lg transition">Reset Filters</button>
+                    </div>
+                </div>
+                
+                <!-- Featured Companies -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Featured Companies</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center p-4 hover:bg-gray-50 rounded-lg transition">
+                            <div class="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center mr-4">
+                                <i class="fas fa-cube text-blue-700 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">InnovateTech</h4>
+                                <p class="text-sm text-gray-600">12 open positions</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center p-4 hover:bg-gray-50 rounded-lg transition">
+                            <div class="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center mr-4">
+                                <i class="fas fa-university text-blue-700 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Capital Bank</h4>
+                                <p class="text-sm text-gray-600">8 open positions</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center p-4 hover:bg-gray-50 rounded-lg transition">
+                            <div class="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center mr-4">
+                                <i class="fas fa-store text-blue-700 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">RetailGlobal</h4>
+                                <p class="text-sm text-gray-600">15 open positions</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center p-4 hover:bg-gray-50 rounded-lg transition">
+                            <div class="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center mr-4">
+                                <i class="fas fa-heartbeat text-blue-700 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">HealthPlus</h4>
+                                <p class="text-sm text-gray-600">9 open positions</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="block mt-6 text-center text-blue-700 font-medium hover:text-blue-800">View All Companies <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Features Section -->
+        <section class="mt-20">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Why Choose CareerConnect?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 text-center">
+                    <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-shield-alt text-blue-700 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Verified Employers</h3>
+                    <p class="text-gray-600">All companies on our platform are thoroughly vetted to ensure legitimate job opportunities.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 text-center">
+                    <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-bolt text-blue-700 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Quick Apply</h3>
+                    <p class="text-gray-600">Submit your application to multiple jobs with just one click using our streamlined process.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 text-center">
+                    <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-chart-pie text-blue-700 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Career Insights</h3>
+                    <p class="text-gray-600">Get personalized salary data and career path recommendations based on your profile.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-20">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center">
+                            <i class="fas fa-briefcase text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold">Career<span class="text-blue-400">Connect</span></h2>
+                    </div>
+                    <p class="text-gray-400">Connecting talented professionals with top corporate employers since 2015.</p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">For Job Seekers</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Browse Jobs</a></li>
+                        <li><a href="#" class="hover:text-white transition">Browse Companies</a></li>
+                        <li><a href="#" class="hover:text-white transition">Salary Calculator</a></li>
+                        <li><a href="#" class="hover:text-white transition">Career Advice</a></li>
+                        <li><a href="#" class="hover:text-white transition">Resume Builder</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">For Employers</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Post a Job</a></li>
+                        <li><a href="#" class="hover:text-white transition">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition">Employer Resources</a></li>
+                        <li><a href="#" class="hover:text-white transition">HR Solutions</a></li>
+                        <li><a href="#" class="hover:text-white transition">Talent Search</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Stay Updated</h3>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for the latest job opportunities and career tips.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="flex-1 px-4 py-3 rounded-l-lg text-gray-900 focus:outline-none">
+                        <button class="bg-blue-700 hover:bg-blue-600 px-4 py-3 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-10 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 CareerConnect. All rights reserved. | <a href="#" class="hover:text-white transition">Privacy Policy</a> | <a href="#" class="hover:text-white transition">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple interactive functionality for the job portal
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply button click handlers
+            const applyButtons = document.querySelectorAll('.job-card button');
+            applyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const jobTitle = this.closest('.job-card').querySelector('h3').textContent;
+                    alert(`Thank you for your interest in the "${jobTitle}" position! You'll be redirected to the application page.`);
+                });
+            });
+            
+            // Filter apply button
+            const filterButton = document.querySelector('.bg-blue-700');
+            if (filterButton) {
+                filterButton.addEventListener('click', function() {
+                    alert('Filters applied! Updating job listings...');
+                });
+            }
+            
+            // Search button
+            const searchButton = document.querySelector('.bg-blue-700.text-white.font-semibold.py-4');
+            if (searchButton) {
+                searchButton.addEventListener('click', function() {
+                    const jobInput = document.querySelector('input[placeholder*="Job title"]');
+                    const locationInput = document.querySelector('input[placeholder*="City, state"]');
+                    
+                    if (jobInput.value || locationInput.value) {
+                        alert(`Searching for "${jobInput.value}" jobs in "${locationInput.value}"...`);
+                    } else {
+                        alert('Please enter a job title or location to search.');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
