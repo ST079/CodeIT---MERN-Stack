@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard | Kaam Yeta Hai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#8b5cf6',
+                        dark: '#1f2937',
+                        light: '#f8fafc',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444',
+                        info: '#0ea5e9'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                        'slide-in-right': 'slideInRight 0.3s ease-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        slideInRight: {
+                            '0%': { transform: 'translateX(20px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .stats-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .sidebar-gradient {
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        .form-input:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: #3b82f6;
+        }
+
+        .sidebar-link.active {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+        }
+
+        .sidebar-link:hover {
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        /* Custom scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Main Container -->
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="sidebar-gradient w-64 min-h-screen text-white hidden lg:block fixed">
+            <div class="p-6">
+                <!-- Logo -->
+                <div class="flex items-center mb-8">
+                    <div class="w-10 h-10 stats-gradient rounded-lg flex items-center justify-center mr-3">
+                        <span class="text-white font-bold text-xl">का</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">Kaam Yeta Hai</h1>
+                        <p class="text-xs text-gray-400 -mt-1">Employer Dashboard</p>
+                    </div>
+                </div>
+
+                <!-- Company Info -->
+                <div class="mb-8 p-4 bg-white/10 rounded-lg">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-building text-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium">TechCorp Inc.</h3>
+                            <p class="text-xs text-gray-400">Premium Employer</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center text-sm">
+                        <i class="fas fa-star text-yellow-500 mr-1"></i>
+                        <span class="mr-3">4.8</span>
+                        <i class="fas fa-briefcase text-blue-400 mr-1"></i>
+                        <span>24 Jobs Posted</span>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="space-y-1">
+                    <a href="#" class="sidebar-link active flex items-center px-4 py-3 text-white">
+                        <i class="fas fa-chart-line mr-3"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="post-job.html"
+                        class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-briefcase mr-3"></i>
+                        <span>Post Job</span>
+                    </a>
+                    <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-list mr-3"></i>
+                        <span>Jobs</span>
+                        <span class="ml-auto bg-primary/20 text-primary text-xs px-2 py-1 rounded-full">12</span>
+                    </a>
+                    <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-users mr-3"></i>
+                        <span>Candidates</span>
+                        <span class="ml-auto bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded-full">245</span>
+                    </a>
+                    <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-envelope mr-3"></i>
+                        <span>Messages</span>
+                        <span class="ml-auto bg-yellow-500/20 text-yellow-400 text-xs px-2 py-1 rounded-full">3</span>
+                    </a>
+                    <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-chart-bar mr-3"></i>
+                        <span>Analytics</span>
+                    </a>
+                    <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-cog mr-3"></i>
+                        <span>Settings</span>
+                    </a>
+                </nav>
+
+                <!-- Upgrade Banner -->
+                <div class="mt-8 p-4 bg-gradient-to-r from-primary to-secondary rounded-lg">
+                    <h4 class="font-medium mb-2">Upgrade to Pro</h4>
+                    <p class="text-sm opacity-90 mb-3">Get access to advanced features and unlimited job posts.</p>
+                    <button
+                        class="w-full bg-white text-primary font-medium py-2 rounded-lg hover:bg-gray-100 transition">
+                        Upgrade Now
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Mobile Header -->
+        <header class="lg:hidden bg-white shadow-sm fixed w-full z-10">
+            <div class="flex justify-between items-center p-4">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 stats-gradient rounded-lg flex items-center justify-center mr-3">
+                        <span class="text-white font-bold text-xl">का</span>
+                    </div>
+                    <div>
+                        <h1 class="font-bold">Kaam Yeta Hai</h1>
+                        <p class="text-xs text-gray-600">Employer Dashboard</p>
+                    </div>
+                </div>
+                <button id="mobileMenuButton" class="text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="lg:ml-64 w-full pt-16 lg:pt-0">
+            <!-- Top Bar -->
+            <div class="bg-white shadow-sm border-b">
+                <div class="flex justify-between items-center px-6 py-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-dark">Dashboard Overview</h2>
+                        <p class="text-gray-600">Welcome back, TechCorp Team</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <button class="text-gray-600 hover:text-gray-900">
+                                <i class="fas fa-bell text-xl"></i>
+                                <span class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
+                            </button>
+                        </div>
+                        <div class="relative group">
+                            <button class="flex items-center space-x-2">
+                                <div class="w-10 h-10 stats-gradient rounded-full flex items-center justify-center">
+                                    <span class="text-white font-bold">TC</span>
+                                </div>
+                            </button>
+                            <div
+                                class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 hidden group-hover:block z-50">
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"><i
+                                        class="fas fa-building mr-2"></i>Company Profile</a>
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"><i
+                                        class="fas fa-cog mr-2"></i>Settings</a>
+                                <div class="border-t my-2"></div>
+                                <a href="#" class="block px-4 py-2 text-red-600 hover:bg-gray-100"><i
+                                        class="fas fa-sign-out-alt mr-2"></i>Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div class="p-6">
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <!-- Stat Card 1 -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 animate-fade-in">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-sm text-gray-600">Active Jobs</p>
+                                <h3 class="text-3xl font-bold text-dark mt-2">12</h3>
+                                <div class="flex items-center mt-2">
+                                    <span class="text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full">
+                                        <i class="fas fa-arrow-up mr-1"></i> 2 new
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-briefcase text-primary text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stat Card 2 -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 animate-fade-in" style="animation-delay: 0.1s;">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-sm text-gray-600">Total Applications</p>
+                                <h3 class="text-3xl font-bold text-dark mt-2">1,245</h3>
+                                <div class="flex items-center mt-2">
+                                    <span class="text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full">
+                                        <i class="fas fa-arrow-up mr-1"></i> 15% increase
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-file-alt text-success text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stat Card 3 -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 animate-fade-in" style="animation-delay: 0.2s;">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-sm text-gray-600">Shortlisted</p>
+                                <h3 class="text-3xl font-bold text-dark mt-2">48</h3>
+                                <div class="flex items-center mt-2">
+                                    <span class="text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded-full">
+                                        <i class="fas fa-eye mr-1"></i> 12 viewed
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-star text-secondary text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stat Card 4 -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 animate-fade-in" style="animation-delay: 0.3s;">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-sm text-gray-600">Hired This Month</p>
+                                <h3 class="text-3xl font-bold text-dark mt-2">8</h3>
+                                <div class="flex items-center mt-2">
+                                    <span class="text-xs text-yellow-600 bg-yellow-100 px-2 py-1 rounded-full">
+                                        <i class="fas fa-trophy mr-1"></i> 92% success
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-handshake text-warning text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts & Analytics -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    <!-- Applications Chart -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 animate-slide-up">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-bold text-dark">Applications Overview</h3>
+                            <select class="text-sm border border-gray-300 rounded-lg px-3 py-2">
+                                <option>Last 7 days</option>
+                                <option selected>Last 30 days</option>
+                                <option>Last 90 days</option>
+                            </select>
+                        </div>
+                        <div class="h-80">
+                            <canvas id="applicationsChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Job Status Chart -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 animate-slide-up" style="animation-delay: 0.1s;">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-bold text-dark">Job Status Distribution</h3>
+                            <button class="text-sm text-primary hover:text-secondary font-medium">
+                                <i class="fas fa-download mr-2"></i>Export
+                            </button>
+                        </div>
+                        <div class="h-80">
+                            <canvas id="jobStatusChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity & Quick Actions -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                    <!-- Recent Applications -->
+                    <div class="lg:col-span-2">
+                        <div class="bg-white rounded-xl shadow-lg p-6 animate-slide-in-right">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-xl font-bold text-dark">Recent Applications</h3>
+                                <a href="#" class="text-primary hover:text-secondary font-medium">
+                                    View All <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+
+                            <div class="space-y-4 custom-scrollbar max-h-[500px] overflow-y-auto pr-2">
+                                <!-- Application 1 -->
+                                <div
+                                    class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                                    <div class="flex items-center">
+                                        <div
+                                            class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                            <span class="font-bold text-primary">JD</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-dark">John Doe</h4>
+                                            <div class="flex items-center text-sm text-gray-600">
+                                                <span class="mr-3">Senior Frontend Developer</span>
+                                                <span class="text-xs text-gray-500">Applied 2 hours ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
+                                            92% Match
+                                        </span>
+                                        <div class="dropdown relative">
+                                            <button class="text-gray-500 hover:text-gray-700">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
+                                            <div
+                                                class="dropdown-menu absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg py-2 hidden z-10">
+                                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"><i
+                                                        class="fas fa-eye mr-2"></i>View Profile</a>
+                                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"><i
+                                                        class="fas fa-comment mr-2"></i>Message</a>
+                                                <div class="border-t my-1"></div>
+                                                <a href="#" class="block px-4 py-2 text-green-600 hover:bg-gray-100"><i
+                                                        class="fas fa-check mr-2"></i>Shortlist</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Application 2 -->
+                                <div
+                                    class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                                    <div class="flex items-center">
+                                        <div
+                                            class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                            <span class="font-bold text-success">SA</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-dark">Sarah Ahmed</h4>
+                                            <div class="flex items-center text-sm text-gray-600">
+                                                <span class="mr-3">Product Manager</span>
+                                                <span class="text-xs text-gray-500">Applied 1 day ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">
+                                            88% Match
+                                        </span>
+                                        <div class="dropdown relative">
+                                            <button class="text-gray-500 hover:text-gray-700">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
+                                            <div
+                                                class="dropdown-menu absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg py-2 hidden z-10">
+                                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"><i
+                                                        class="fas fa-eye mr-2"></i>View Profile</a>
+                                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"><i
+                                                        class="fas fa-comment mr-2"></i>Message</a>
+                                                <div class="border-t my-1"></div>
+                                                <a href="#" class="block px-4 py-2 text-green-600 hover:bg-gray-100"><i
+                                                        class="fas fa-check mr-2"></i>Shortlist</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Application 3 -->
+                                <div
+                                    class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                                    <div class="flex items-center">
+                                        <div
+                                            class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                                            <span class="font-bold text-secondary">MS</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-dark">Michael Smith</h4>
+                                            <div class="flex items-center text-sm text-gray-600">
+                                                <span class="mr-3">DevOps Engineer</span>
+                                                <span class="text-xs text-gray-500">Applied 2 days ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">
+                                            76% Match
+                                        </span>
+                                        <div class="dropdown relative">
+                                            <button class="text-gray-500 hover:text-gray-700">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
+                                            <div
+                                                class="dropdown-menu absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg py-2 hidden z-10">
+                                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"><i
+                                                        class="fas fa-eye mr-2"></i>View Profile</a>
+                                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"><i
+                                                        class="fas fa-comment mr-2"></i>Message</a>
+                                                <div class="border-t my-1"></div>
+                                                <a href="#" class="block px-4 py-2 text-green-600 hover:bg-gray-100"><i
+                                                        class="fas fa-check mr-2"></i>Shortlist</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Application 4 -->
+                                <div
+                                    class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                                    <div class="flex items-center">
+                                        <div
+                                            class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                            <span class="font-bold text-danger">RJ</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-dark">Rebecca Johnson</h4>
+                                            <div class="flex items-center text-sm text-gray-600">
+                                                <span class="mr-3">UX Designer</span>
+                                                <span class="text-xs text-gray-500">Applied 3 days ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="px-3 py-1 bg-red-100 text-red-800 text-sm rounded-full">
+                                            65% Match
+                                        </span>
+                                        <div class="dropdown relative">
+                                            <button class="text-gray-500 hover:text-gray-700">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
+                                            <div
+                                                class="dropdown-menu absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg py-2 hidden z-10">
+                                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"><i
+                                                        class="fas fa-eye mr-2"></i>View Profile</a>
+                                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"><i
+                                                        class="fas fa-comment mr-2"></i>Message</a>
+                                                <div class="border-t my-1"></div>
+                                                <a href="#" class="block px-4 py-2 text-green-600 hover:bg-gray-100"><i
+                                                        class="fas fa-check mr-2"></i>Shortlist</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions & Updates -->
+                    <div class="space-y-8">
+                        <!-- Quick Actions -->
+                        <div class="bg-white rounded-xl shadow-lg p-6 animate-slide-in-right"
+                            style="animation-delay: 0.1s;">
+                            <h3 class="text-xl font-bold text-dark mb-6">Quick Actions</h3>
+                            <div class="grid grid-cols-2 gap-3">
+                                <a href="post-job.html"
+                                    class="p-4 bg-blue-50 rounded-lg text-center hover:bg-blue-100 transition">
+                                    <div
+                                        class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                        <i class="fas fa-plus text-primary"></i>
+                                    </div>
+                                    <p class="text-sm font-medium">Post New Job</p>
+                                </a>
+                                <a href="#"
+                                    class="p-4 bg-green-50 rounded-lg text-center hover:bg-green-100 transition">
+                                    <div
+                                        class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                        <i class="fas fa-search text-success"></i>
+                                    </div>
+                                    <p class="text-sm font-medium">Find Candidates</p>
+                                </a>
+                                <a href="#"
+                                    class="p-4 bg-purple-50 rounded-lg text-center hover:bg-purple-100 transition">
+                                    <div
+                                        class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                        <i class="fas fa-chart-line text-secondary"></i>
+                                    </div>
+                                    <p class="text-sm font-medium">View Reports</p>
+                                </a>
+                                <a href="#"
+                                    class="p-4 bg-yellow-50 rounded-lg text-center hover:bg-yellow-100 transition">
+                                    <div
+                                        class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                        <i class="fas fa-cog text-warning"></i>
+                                    </div>
+                                    <p class="text-sm font-medium">Settings</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Recent Updates -->
+                        <div class="bg-white rounded-xl shadow-lg p-6 animate-slide-in-right"
+                            style="animation-delay: 0.2s;">
+                            <h3 class="text-xl font-bold text-dark mb-6">Recent Updates</h3>
+                            <div class="space-y-4">
+                                <div class="flex">
+                                    <div
+                                        class="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                        <i class="fas fa-check text-green-600 text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-dark">Job posted successfully</p>
+                                        <p class="text-xs text-gray-500">Senior React Developer position is now live</p>
+                                        <p class="text-xs text-gray-400">2 hours ago</p>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div
+                                        class="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                        <i class="fas fa-users text-blue-600 text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-dark">New candidates matched</p>
+                                        <p class="text-xs text-gray-500">5 candidates matched for UX Designer role</p>
+                                        <p class="text-xs text-gray-400">1 day ago</p>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div
+                                        class="flex-shrink-0 w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                                        <i class="fas fa-calendar-alt text-purple-600 text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-dark">Interview scheduled</p>
+                                        <p class="text-xs text-gray-500">Interview with John Doe scheduled for tomorrow
+                                        </p>
+                                        <p class="text-xs text-gray-400">2 days ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Jobs Table -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-8 animate-slide-up">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-dark">Active Job Postings</h3>
+                        <a href="#" class="text-primary hover:text-secondary font-medium">
+                            <i class="fas fa-plus mr-2"></i>Create New Job
+                        </a>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b border-gray-200">
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Job Title</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Applications</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Status</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Posted</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Job 1 -->
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-4 px-4">
+                                        <div>
+                                            <h4 class="font-medium text-dark">Senior Frontend Developer</h4>
+                                            <p class="text-sm text-gray-600">React, TypeScript, Remote</p>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center">
+                                            <span class="font-medium text-dark">124</span>
+                                            <span
+                                                class="text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full ml-2">
+                                                +12 new
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">
+                                            Active
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">5 days ago</td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex space-x-2">
+                                            <button class="text-primary hover:text-secondary">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-gray-600 hover:text-gray-900">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-red-500 hover:text-red-700">
+                                                <i class="fas fa-pause"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Job 2 -->
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-4 px-4">
+                                        <div>
+                                            <h4 class="font-medium text-dark">Product Manager</h4>
+                                            <p class="text-sm text-gray-600">Strategy, Agile, On-site</p>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center">
+                                            <span class="font-medium text-dark">89</span>
+                                            <span
+                                                class="text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full ml-2">
+                                                +8 new
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">
+                                            Active
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">1 week ago</td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex space-x-2">
+                                            <button class="text-primary hover:text-secondary">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-gray-600 hover:text-gray-900">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-red-500 hover:text-red-700">
+                                                <i class="fas fa-pause"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Job 3 -->
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-4 px-4">
+                                        <div>
+                                            <h4 class="font-medium text-dark">DevOps Engineer</h4>
+                                            <p class="text-sm text-gray-600">AWS, Kubernetes, Hybrid</p>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center">
+                                            <span class="font-medium text-dark">67</span>
+                                            <span
+                                                class="text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full ml-2">
+                                                +5 new
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">
+                                            Closing Soon
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">2 weeks ago</td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex space-x-2">
+                                            <button class="text-primary hover:text-secondary">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-gray-600 hover:text-gray-900">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-green-500 hover:text-green-700">
+                                                <i class="fas fa-sync"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Job 4 -->
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-4 px-4">
+                                        <div>
+                                            <h4 class="font-medium text-dark">UX Designer</h4>
+                                            <p class="text-sm text-gray-600">Figma, Research, Remote</p>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center">
+                                            <span class="font-medium text-dark">42</span>
+                                            <span class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-full ml-2">
+                                                Stable
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
+                                            Draft
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">1 month ago</td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex space-x-2">
+                                            <button class="text-primary hover:text-secondary">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-gray-600 hover:text-gray-900">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-green-500 hover:text-green-700">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="flex justify-between items-center mt-6 pt-6 border-t border-gray-200">
+                        <p class="text-sm text-gray-600">Showing 4 of 12 active jobs</p>
+                        <div class="flex space-x-2">
+                            <button class="px-3 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">
+                                Previous
+                            </button>
+                            <button class="px-3 py-2 bg-primary text-white rounded-lg text-sm hover:bg-blue-700">
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div id="mobileSidebar" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden">
+        <div class="absolute right-0 top-0 h-full w-64 sidebar-gradient text-white animate-slide-in-right">
+            <div class="p-6">
+                <!-- Close Button -->
+                <div class="flex justify-end mb-6">
+                    <button id="closeMobileMenu" class="text-white">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Navigation -->
+                <nav class="space-y-1">
+                    <a href="#" class="sidebar-link active flex items-center px-4 py-3 text-white">
+                        <i class="fas fa-chart-line mr-3"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="post-job.html"
+                        class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-briefcase mr-3"></i>
+                        <span>Post Job</span>
+                    </a>
+                    <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-list mr-3"></i>
+                        <span>Jobs</span>
+                        <span class="ml-auto bg-primary/20 text-primary text-xs px-2 py-1 rounded-full">12</span>
+                    </a>
+                    <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-users mr-3"></i>
+                        <span>Candidates</span>
+                        <span class="ml-auto bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded-full">245</span>
+                    </a>
+                    <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-envelope mr-3"></i>
+                        <span>Messages</span>
+                    </a>
+                    <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-cog mr-3"></i>
+                        <span>Settings</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Charts
+        const applicationsCtx = document.getElementById('applicationsChart').getContext('2d');
+        const applicationsChart = new Chart(applicationsCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                datasets: [
+                    {
+                        label: 'Applications',
+                        data: [65, 78, 90, 81, 86, 124, 145],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Shortlisted',
+                        data: [12, 15, 18, 20, 22, 24, 28],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            display: true,
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        const jobStatusCtx = document.getElementById('jobStatusChart').getContext('2d');
+        const jobStatusChart = new Chart(jobStatusCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Active', 'Draft', 'Closed', 'Paused'],
+                datasets: [{
+                    data: [12, 4, 8, 2],
+                    backgroundColor: [
+                        '#3b82f6',
+                        '#8b5cf6',
+                        '#10b981',
+                        '#f59e0b'
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    }
+                },
+                cutout: '65%'
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileSidebar = document.getElementById('mobileSidebar');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileSidebar.classList.remove('hidden');
+        });
+
+        closeMobileMenu.addEventListener('click', () => {
+            mobileSidebar.classList.add('hidden');
+        });
+
+        // Click outside to close mobile menu
+        mobileSidebar.addEventListener('click', (e) => {
+            if (e.target === mobileSidebar) {
+                mobileSidebar.classList.add('hidden');
+            }
+        });
+
+        // Dropdown functionality
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+            const button = dropdown.querySelector('button');
+            const menu = dropdown.querySelector('.dropdown-menu');
+
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menu.classList.toggle('hidden');
+            });
+        });
+
+        // Close dropdowns when clicking elsewhere
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Table row actions
+        document.querySelectorAll('table button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const action = button.querySelector('i').className;
+
+                if (action.includes('fa-eye')) {
+                    alert('View job details');
+                } else if (action.includes('fa-edit')) {
+                    alert('Edit job posting');
+                } else if (action.includes('fa-pause')) {
+                    const row = button.closest('tr');
+                    const statusCell = row.querySelector('td:nth-child(3) span');
+                    statusCell.textContent = 'Paused';
+                    statusCell.className = 'px-3 py-1 bg-gray-100 text-gray-800 text-sm rounded-full';
+                    button.innerHTML = '<i class="fas fa-play"></i>';
+                    button.className = 'text-green-500 hover:text-green-700';
+                } else if (action.includes('fa-play')) {
+                    const row = button.closest('tr');
+                    const statusCell = row.querySelector('td:nth-child(3) span');
+                    statusCell.textContent = 'Active';
+                    statusCell.className = 'px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full';
+                    button.innerHTML = '<i class="fas fa-pause"></i>';
+                    button.className = 'text-red-500 hover:text-red-700';
+                } else if (action.includes('fa-sync')) {
+                    alert('Extend job posting');
+                }
+            });
+        });
+
+        // Quick action buttons
+        document.querySelectorAll('.grid.grid-cols-2 a').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const text = button.querySelector('p').textContent;
+
+                switch (text) {
+                    case 'Post New Job':
+                        window.location.href = 'post-job.html';
+                        break;
+                    case 'Find Candidates':
+                        alert('Opening candidate search...');
+                        break;
+                    case 'View Reports':
+                        alert('Loading reports...');
+                        break;
+                    case 'Settings':
+                        alert('Opening settings...');
+                        break;
+                }
+            });
+        });
+
+        // Update metrics periodically (simulated)
+        setInterval(() => {
+            const activeJobs = document.querySelector('.text-3xl.font-bold.text-dark:nth-child(2)');
+            const currentCount = parseInt(activeJobs.textContent);
+            if (currentCount < 15) {
+                activeJobs.textContent = currentCount + 1;
+            }
+        }, 30000); // Every 30 seconds
+    </script>
+</body>
+
+</html>

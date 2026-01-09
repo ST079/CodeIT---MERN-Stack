@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job | Kaam Yeta Hai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#8b5cf6',
+                        dark: '#1f2937',
+                        light: '#f8fafc',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .stats-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .form-input:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: #3b82f6;
+        }
+
+        .skill-tag {
+            transition: all 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Rich text editor custom styles */
+        .ql-container {
+            border-bottom-left-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+            font-family: inherit;
+        }
+
+        .ql-toolbar {
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+            background-color: #f9fafb;
+        }
+
+        .ql-editor {
+            min-height: 200px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .ql-editor.ql-blank::before {
+            color: #9ca3af;
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="stats-gradient w-12 h-12 rounded-xl flex items-center justify-center shadow-lg mr-3">
+                        <span class="text-white font-bold text-2xl">का</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">Kaam Yeta Hai</h1>
+                        <p class="text-xs text-gray-600 -mt-1">Career. Connected.</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="text-gray-600 hover:text-primary transition">
+                        <i class="fas fa-search mr-2"></i>Find Candidates
+                    </a>
+                    <a href="#" class="text-primary font-medium">
+                        <i class="fas fa-briefcase mr-2"></i>Post Job
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition">
+                        <i class="fas fa-chart-line mr-2"></i>Dashboard
+                    </a>
+                    <div class="relative group">
+                        <button class="flex items-center space-x-2">
+                            <div class="w-8 h-8 stats-gradient rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm font-bold">TC</span>
+                            </div>
+                        </button>
+                        <div
+                            class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 hidden group-hover:block z-50">
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"><i
+                                    class="fas fa-building mr-2"></i>Company Profile</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"><i
+                                    class="fas fa-cog mr-2"></i>Settings</a>
+                            <div class="border-t my-2"></div>
+                            <a href="#" class="block px-4 py-2 text-red-600 hover:bg-gray-100"><i
+                                    class="fas fa-sign-out-alt mr-2"></i>Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Page Header -->
+        <div class="mb-8 animate-fade-in">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-dark mb-2">Post a New Job</h1>
+                    <p class="text-gray-600">Reach thousands of qualified candidates with your job posting</p>
+                </div>
+                <div class="text-sm text-gray-500 bg-gray-100 px-4 py-2 rounded-lg">
+                    <i class="fas fa-clock mr-2"></i>Average posting time: 5 minutes
+                </div>
+            </div>
+
+            <!-- Progress Steps -->
+            <div class="mt-6">
+                <div class="flex items-center">
+                    <div class="flex-1 h-1 bg-primary"></div>
+                    <div class="flex-1 h-1 bg-gray-200"></div>
+                    <div class="flex-1 h-1 bg-gray-200"></div>
+                </div>
+                <div class="flex justify-between mt-2">
+                    <div class="text-center">
+                        <div
+                            class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-1">
+                            <i class="fas fa-edit text-sm"></i>
+                        </div>
+                        <span class="text-sm font-medium text-primary">Job Details</span>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="w-8 h-8 bg-gray-200 text-gray-500 rounded-full flex items-center justify-center mx-auto mb-1">
+                            <span class="text-sm font-bold">2</span>
+                        </div>
+                        <span class="text-sm text-gray-500">Requirements</span>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="w-8 h-8 bg-gray-200 text-gray-500 rounded-full flex items-center justify-center mx-auto mb-1">
+                            <span class="text-sm font-bold">3</span>
+                        </div>
+                        <span class="text-sm text-gray-500">Review</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form id="postJobForm" class="space-y-8">
+            <!-- Job Details Card -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 animate-slide-up">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-dark">Job Details</h2>
+                    <span class="text-sm text-green-600 bg-green-100 px-3 py-1 rounded-full">
+                        <i class="fas fa-check-circle mr-2"></i>Required
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Job Title -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Job Title <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                            placeholder="e.g., Senior Frontend Developer" required>
+                        <p class="text-xs text-gray-500 mt-2">Be specific and use keywords that candidates might search
+                            for</p>
+                    </div>
+
+                    <!-- Company Display -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Company <span class="text-red-500">*</span>
+                        </label>
+                        <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+                            <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                                <i class="fas fa-building text-white text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium text-dark">TechCorp Inc.</h3>
+                                <p class="text-sm text-gray-600">San Francisco, CA • Technology</p>
+                            </div>
+                            <button type="button" class="text-primary hover:text-secondary text-sm font-medium">
+                                <i class="fas fa-edit mr-2"></i>Edit Company
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Job Location -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Job Location <span class="text-red-500">*</span>
+                        </label>
+                        <div class="space-y-3">
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition">
+                                <option value="">Select Work Type</option>
+                                <option value="onsite">On-site</option>
+                                <option value="remote" selected>Remote</option>
+                                <option value="hybrid">Hybrid</option>
+                            </select>
+
+                            <div id="locationFields" class="hidden">
+                                <input type="text"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    placeholder="City, State or Country">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Type -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Job Type <span class="text-red-500">*</span>
+                        </label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition">
+                            <option value="">Select Job Type</option>
+                            <option value="full-time" selected>Full-time</option>
+                            <option value="part-time">Part-time</option>
+                            <option value="contract">Contract</option>
+                            <option value="internship">Internship</option>
+                            <option value="temporary">Temporary</option>
+                        </select>
+                    </div>
+
+                    <!-- Salary Range -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Salary Range <span class="text-gray-500">(Optional)</span>
+                        </label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <input type="number"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    placeholder="Min ($)" min="0" step="1000">
+                            </div>
+                            <div>
+                                <input type="number"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    placeholder="Max ($)" min="0" step="1000">
+                            </div>
+                        </div>
+                        <div class="flex items-center mt-3">
+                            <input type="checkbox" id="showSalary" class="h-4 w-4 text-primary">
+                            <label for="showSalary" class="ml-2 text-sm text-gray-700">Display salary in job
+                                posting</label>
+                        </div>
+                    </div>
+
+                    <!-- Experience Level -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Experience Level <span class="text-red-500">*</span>
+                        </label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition">
+                            <option value="">Select Experience</option>
+                            <option value="entry">Entry Level (0-2 years)</option>
+                            <option value="mid" selected>Mid Level (2-5 years)</option>
+                            <option value="senior">Senior Level (5+ years)</option>
+                            <option value="executive">Executive Level</option>
+                        </select>
+                    </div>
+
+                    <!-- Application Deadline -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Application Deadline <span class="text-gray-500">(Optional)</span>
+                        </label>
+                        <input type="date"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                            min="<?php echo date('Y-m-d'); ?>">
+                        <p class="text-xs text-gray-500 mt-2">Leave empty to accept applications indefinitely</p>
+                    </div>
+
+                    <!-- Number of Openings -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Number of Openings <span class="text-gray-500">(Optional)</span>
+                        </label>
+                        <input type="number"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                            placeholder="e.g., 2" min="1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Description Card -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 animate-slide-up">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-dark">Job Description</h2>
+                    <div class="text-sm text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
+                        <i class="fas fa-lightbulb mr-2"></i>Rich text editor
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Job Description <span class="text-red-500">*</span>
+                    </label>
+                    <div id="editor-container" class="border border-gray-300 rounded-lg overflow-hidden">
+                        <!-- Rich text editor will be initialized here -->
+                        <div id="editor" style="min-height: 300px;">
+                            <p><strong>About the Role:</strong></p>
+                            <p>We are looking for a talented Frontend Developer to join our team. In this role, you will
+                                be responsible for developing user-facing features using modern web technologies.</p>
+                            <p><br></p>
+                            <p><strong>Key Responsibilities:</strong></p>
+                            <ul>
+                                <li>Develop new user-facing features</li>
+                                <li>Build reusable code and libraries for future use</li>
+                                <li>Ensure the technical feasibility of UI/UX designs</li>
+                                <li>Optimize applications for maximum speed and scalability</li>
+                                <li>Collaborate with back-end developers and web designers</li>
+                            </ul>
+                            <p><br></p>
+                            <p><strong>What We Offer:</strong></p>
+                            <ul>
+                                <li>Competitive salary and benefits</li>
+                                <li>Remote work flexibility</li>
+                                <li>Professional development opportunities</li>
+                                <li>Collaborative and inclusive work environment</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template Suggestions -->
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div class="flex items-start">
+                        <i class="fas fa-magic text-primary mt-1 mr-3"></i>
+                        <div>
+                            <h4 class="font-medium text-dark mb-2">Need help writing a description?</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <button type="button"
+                                    class="px-3 py-1 bg-white border border-blue-300 text-blue-700 rounded-full text-sm hover:bg-blue-50 transition">
+                                    <i class="fas fa-rocket mr-1"></i> Tech Startup
+                                </button>
+                                <button type="button"
+                                    class="px-3 py-1 bg-white border border-blue-300 text-blue-700 rounded-full text-sm hover:bg-blue-50 transition">
+                                    <i class="fas fa-building mr-1"></i> Corporate
+                                </button>
+                                <button type="button"
+                                    class="px-3 py-1 bg-white border border-blue-300 text-blue-700 rounded-full text-sm hover:bg-blue-50 transition">
+                                    <i class="fas fa-users mr-1"></i> Team Culture
+                                </button>
+                                <button type="button"
+                                    class="px-3 py-1 bg-white border border-blue-300 text-blue-700 rounded-full text-sm hover:bg-blue-50 transition">
+                                    <i class="fas fa-graduation-cap mr-1"></i> Learning & Growth
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Requirements & Skills Card -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 animate-slide-up">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-dark">Requirements & Skills</h2>
+                    <span class="text-sm text-green-600 bg-green-100 px-3 py-1 rounded-full">
+                        <i class="fas fa-star mr-2"></i>Used for candidate matching
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Required Skills -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Required Skills <span
+                                class="text-red-500">*</span></label>
+                        <div class="mb-4">
+                            <div class="flex">
+                                <input type="text" id="skillInput"
+                                    class="flex-1 px-4 py-3 border border-gray-300 rounded-l-lg form-input transition"
+                                    placeholder="e.g., React, JavaScript, TypeScript">
+                                <button type="button" id="addSkillButton"
+                                    class="px-4 py-3 bg-gray-100 border border-l-0 border-gray-300 text-gray-700 rounded-r-lg hover:bg-gray-200 transition">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2">Press Enter or click + to add skills. Candidates will
+                                be matched based on these skills.</p>
+                        </div>
+
+                        <!-- Skills Tags -->
+                        <div class="mb-6">
+                            <div id="skillsContainer" class="flex flex-wrap gap-2">
+                                <span
+                                    class="skill-tag px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium flex items-center">
+                                    React
+                                    <button type="button" class="ml-2 text-blue-600 hover:text-blue-800">
+                                        <i class="fas fa-times text-xs"></i>
+                                    </button>
+                                </span>
+                                <span
+                                    class="skill-tag px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium flex items-center">
+                                    JavaScript
+                                    <button type="button" class="ml-2 text-blue-600 hover:text-blue-800">
+                                        <i class="fas fa-times text-xs"></i>
+                                    </button>
+                                </span>
+                                <span
+                                    class="skill-tag px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium flex items-center">
+                                    TypeScript
+                                    <button type="button" class="ml-2 text-blue-600 hover:text-blue-800">
+                                        <i class="fas fa-times text-xs"></i>
+                                    </button>
+                                </span>
+                                <span
+                                    class="skill-tag px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium flex items-center">
+                                    HTML/CSS
+                                    <button type="button" class="ml-2 text-blue-600 hover:text-blue-800">
+                                        <i class="fas fa-times text-xs"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education Requirement -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Minimum Education</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition">
+                            <option value="">Any</option>
+                            <option value="high-school">High School Diploma</option>
+                            <option value="associate">Associate Degree</option>
+                            <option value="bachelor" selected>Bachelor's Degree</option>
+                            <option value="master">Master's Degree</option>
+                            <option value="phd">PhD</option>
+                        </select>
+                    </div>
+
+                    <!-- Years of Experience -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Minimum Experience</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition">
+                            <option value="">Any</option>
+                            <option value="1">1+ years</option>
+                            <option value="2">2+ years</option>
+                            <option value="3" selected>3+ years</option>
+                            <option value="5">5+ years</option>
+                            <option value="10">10+ years</option>
+                        </select>
+                    </div>
+
+                    <!-- Additional Requirements -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Additional Requirements</label>
+                        <textarea rows="3"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                            placeholder="e.g., Must be available for occasional meetings in US timezone, Portfolio required, etc."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Application Process Card -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 animate-slide-up">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-dark">Application Process</h2>
+                    <span class="text-sm text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
+                        <i class="fas fa-cog mr-2"></i>Customizable
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Application Method -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-4">How would you like to receive
+                            applications?</label>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <label class="relative">
+                                <input type="radio" name="applicationMethod" value="platform" class="sr-only peer"
+                                    checked>
+                                <div
+                                    class="p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-primary peer-checked:border-primary peer-checked:bg-blue-50 transition">
+                                    <div class="flex items-center mb-2">
+                                        <div
+                                            class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mr-3">
+                                            <i class="fas fa-briefcase text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-dark">Platform</h4>
+                                            <p class="text-xs text-gray-600">Use our built-in system</p>
+                                        </div>
+                                    </div>
+                                    <ul class="text-xs text-gray-600 space-y-1">
+                                        <li><i class="fas fa-check text-green-500 mr-1"></i> Manage all applications in
+                                            one place</li>
+                                        <li><i class="fas fa-check text-green-500 mr-1"></i> Automated candidate
+                                            screening</li>
+                                        <li><i class="fas fa-check text-green-500 mr-1"></i> Interview scheduling tools
+                                        </li>
+                                    </ul>
+                                </div>
+                            </label>
+
+                            <label class="relative">
+                                <input type="radio" name="applicationMethod" value="email" class="sr-only peer">
+                                <div
+                                    class="p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-primary peer-checked:border-primary peer-checked:bg-blue-50 transition">
+                                    <div class="flex items-center mb-2">
+                                        <div
+                                            class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mr-3">
+                                            <i class="fas fa-envelope text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-dark">Email</h4>
+                                            <p class="text-xs text-gray-600">Send applications to your email</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="relative">
+                                <input type="radio" name="applicationMethod" value="external" class="sr-only peer">
+                                <div
+                                    class="p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-primary peer-checked:border-primary peer-checked:bg-blue-50 transition">
+                                    <div class="flex items-center mb-2">
+                                        <div
+                                            class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mr-3">
+                                            <i class="fas fa-external-link-alt text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-dark">External Link</h4>
+                                            <p class="text-xs text-gray-600">Link to your career page</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Application Questions -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-4">Application Questions <span
+                                class="text-gray-500">(Optional)</span></label>
+                        <div id="questionsContainer" class="space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <input type="text"
+                                    class="flex-1 px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    placeholder="e.g., Why are you interested in this position?">
+                                <button type="button" class="text-red-500 hover:text-red-700">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="button" id="addQuestion"
+                            class="mt-3 text-primary hover:text-secondary font-medium">
+                            <i class="fas fa-plus mr-2"></i>Add another question
+                        </button>
+                        <p class="text-xs text-gray-500 mt-2">These questions will appear in the application form</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Settings Card -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 animate-slade-up">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-dark">Job Settings</h2>
+                    <div class="text-sm text-purple-600 bg-purple-100 px-3 py-1 rounded-full">
+                        <i class="fas fa-eye mr-2"></i>Visibility Options
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Job Visibility -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-4">Job Visibility</label>
+                        <div class="space-y-3">
+                            <label class="flex items-center">
+                                <input type="radio" name="visibility" value="public" class="h-4 w-4 text-primary"
+                                    checked>
+                                <span class="ml-3">
+                                    <span class="font-medium text-dark">Public</span>
+                                    <p class="text-sm text-gray-600">Visible to all job seekers</p>
+                                </span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="visibility" value="private" class="h-4 w-4 text-primary">
+                                <span class="ml-3">
+                                    <span class="font-medium text-dark">Private</span>
+                                    <p class="text-sm text-gray-600">Only visible to selected candidates</p>
+                                </span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="visibility" value="draft" class="h-4 w-4 text-primary">
+                                <span class="ml-3">
+                                    <span class="font-medium text-dark">Save as Draft</span>
+                                    <p class="text-sm text-gray-600">Only visible to you</p>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Job Duration -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-4">Job Duration</label>
+                        <div class="space-y-3">
+                            <label class="flex items-center">
+                                <input type="radio" name="duration" value="30" class="h-4 w-4 text-primary" checked>
+                                <span class="ml-3">
+                                    <span class="font-medium text-dark">30 Days</span>
+                                    <p class="text-sm text-gray-600">Standard posting period</p>
+                                </span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="duration" value="60" class="h-4 w-4 text-primary">
+                                <span class="ml-3">
+                                    <span class="font-medium text-dark">60 Days</span>
+                                    <p class="text-sm text-gray-600">Extended visibility</p>
+                                </span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="duration" value="until-filled" class="h-4 w-4 text-primary">
+                                <span class="ml-3">
+                                    <span class="font-medium text-dark">Until Filled</span>
+                                    <p class="text-sm text-gray-600">Auto-remove when position is filled</p>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Auto-Matching -->
+                    <div class="md:col-span-2">
+                        <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                            <input type="checkbox" id="autoMatching" class="h-5 w-5 mt-1 text-primary" checked>
+                            <div class="ml-3">
+                                <label for="autoMatching" class="font-medium text-dark">Enable Smart Candidate
+                                    Matching</label>
+                                <p class="text-sm text-gray-600 mt-1">Our AI will automatically suggest qualified
+                                    candidates based on your job requirements</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing & Preview -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 animate-slade-up">
+                <div
+                    class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 md:space-y-0">
+                    <div>
+                        <h3 class="font-medium text-dark mb-1">Job Posting Summary</h3>
+                        <div class="flex items-center space-x-4 text-sm text-gray-600">
+                            <span><i class="fas fa-briefcase mr-2"></i>Standard Job Posting</span>
+                            <span><i class="fas fa-eye mr-2"></i>~10,000 impressions</span>
+                            <span><i class="fas fa-users mr-2"></i>AI Candidate Matching</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-3xl font-bold text-dark mb-1">$199<span
+                                class="text-lg text-gray-600">/month</span></div>
+                        <p class="text-sm text-gray-600">First month free for new employers</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-gray-200">
+                    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                        <div>
+                            <button type="button" id="previewButton"
+                                class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition flex items-center">
+                                <i class="fas fa-eye mr-2"></i>Preview Job Posting
+                            </button>
+                            <p class="text-xs text-gray-500 mt-2">See how your job will appear to candidates</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button type="button" id="saveDraftButton"
+                                class="px-6 py-3 border border-primary text-primary rounded-lg hover:bg-primary/5 transition">
+                                Save as Draft
+                            </button>
+                            <button type="submit"
+                                class="px-6 py-3 stats-gradient text-white rounded-lg hover:shadow-lg transition flex items-center">
+                                <i class="fas fa-paper-plane mr-2"></i>Publish Job
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="previewModal"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
+            <div class="p-6 border-b">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-bold text-dark">Job Preview</h2>
+                    <button id="closePreview" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <p class="text-gray-600 mt-1">This is how your job will appear to candidates</p>
+            </div>
+            <div class="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+                <!-- Preview Content -->
+                <div class="space-y-6">
+                    <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl p-6 text-white">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h1 class="text-2xl font-bold mb-2">Senior Frontend Developer</h1>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Remote</span>
+                                    <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Full-time</span>
+                                    <span class="bg-white/20 px-3 py-1 rounded-full text-sm">$90,000 - $120,000</span>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-building mr-2"></i>
+                                        <span>TechCorp Inc.</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-map-marker-alt mr-2"></i>
+                                        <span>San Francisco, CA</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-16 h-16 bg-white rounded-xl flex items-center justify-center">
+                                <i class="fas fa-briefcase text-primary text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-dark mb-3">Job Description</h3>
+                            <div class="prose max-w-none">
+                                <p><strong>About the Role:</strong></p>
+                                <p>We are looking for a talented Frontend Developer to join our team. In this role, you
+                                    will be responsible for developing user-facing features using modern web
+                                    technologies.</p>
+                                <p><br></p>
+                                <p><strong>Key Responsibilities:</strong></p>
+                                <ul>
+                                    <li>Develop new user-facing features</li>
+                                    <li>Build reusable code and libraries for future use</li>
+                                    <li>Ensure the technical feasibility of UI/UX designs</li>
+                                    <li>Optimize applications for maximum speed and scalability</li>
+                                    <li>Collaborate with back-end developers and web designers</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-bold text-dark mb-3">Requirements</h3>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">React</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">JavaScript</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">TypeScript</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">HTML/CSS</span>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <i class="fas fa-graduation-cap text-gray-400 mr-3"></i>
+                                    <span>Bachelor's Degree or higher</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-briefcase text-gray-400 mr-3"></i>
+                                    <span>3+ years of experience</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6 border-t bg-gray-50">
+                <div class="flex justify-end space-x-3">
+                    <button id="closePreview2"
+                        class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">
+                        Close Preview
+                    </button>
+                    <button class="px-6 py-3 stats-gradient text-white rounded-lg hover:shadow-lg transition">
+                        Continue Editing
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        // Initialize rich text editor
+        const quill = new Quill('#editor', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{ 'header': [1, 2, 3, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                    ['link', 'blockquote', 'code-block'],
+                    ['clean']
+                ]
+            },
+            placeholder: 'Write a compelling job description...',
+        });
+
+        // Work type location toggle
+        document.querySelector('select').addEventListener('change', function (e) {
+            const locationFields = document.getElementById('locationFields');
+            if (e.target.value === 'onsite' || e.target.value === 'hybrid') {
+                locationFields.classList.remove('hidden');
+            } else {
+                locationFields.classList.add('hidden');
+            }
+        });
+
+        // Skills management
+        const skillInput = document.getElementById('skillInput');
+        const addSkillButton = document.getElementById('addSkillButton');
+        const skillsContainer = document.getElementById('skillsContainer');
+
+        function addSkill() {
+            const skill = skillInput.value.trim();
+            if (skill && skill.length > 0 && !Array.from(skillsContainer.children).some(tag => tag.textContent.includes(skill))) {
+                const skillTag = document.createElement('span');
+                skillTag.className = 'skill-tag px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium flex items-center';
+                skillTag.innerHTML = `
+                    ${skill}
+                    <button type="button" class="ml-2 text-blue-600 hover:text-blue-800 remove-skill">
+                        <i class="fas fa-times text-xs"></i>
+                    </button>
+                `;
+
+                skillsContainer.appendChild(skillTag);
+                skillInput.value = '';
+
+                skillTag.querySelector('.remove-skill').addEventListener('click', function () {
+                    skillTag.remove();
+                });
+            }
+        }
+
+        addSkillButton.addEventListener('click', addSkill);
+        skillInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addSkill();
+            }
+        });
+
+        // Remove existing skills
+        document.querySelectorAll('#skillsContainer .skill-tag button').forEach(button => {
+            button.addEventListener('click', function () {
+                this.closest('.skill-tag').remove();
+            });
+        });
+
+        // Application questions
+        const questionsContainer = document.getElementById('questionsContainer');
+        const addQuestionButton = document.getElementById('addQuestion');
+        let questionCount = 1;
+
+        addQuestionButton.addEventListener('click', function () {
+            if (questionCount < 5) { // Limit to 5 questions
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'flex items-center space-x-3';
+                questionDiv.innerHTML = `
+                    <input type="text" class="flex-1 px-4 py-3 border border-gray-300 rounded-lg form-input transition" 
+                           placeholder="e.g., What experience do you have with React?">
+                    <button type="button" class="text-red-500 hover:text-red-700 remove-question">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+
+                questionsContainer.appendChild(questionDiv);
+                questionCount++;
+
+                questionDiv.querySelector('.remove-question').addEventListener('click', function () {
+                    questionDiv.remove();
+                    questionCount--;
+                });
+            } else {
+                alert('Maximum 5 application questions allowed');
+            }
+        });
+
+        // Remove existing questions
+        document.querySelectorAll('.remove-question').forEach(button => {
+            button.addEventListener('click', function () {
+                this.closest('.flex.items-center').remove();
+                questionCount--;
+            });
+        });
+
+        // Preview modal
+        const previewModal = document.getElementById('previewModal');
+        const previewButton = document.getElementById('previewButton');
+        const closePreview = document.getElementById('closePreview');
+        const closePreview2 = document.getElementById('closePreview2');
+
+        previewButton.addEventListener('click', function () {
+            previewModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closePreview.addEventListener('click', function () {
+            previewModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+
+        closePreview2.addEventListener('click', function () {
+            previewModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Click outside to close modal
+        previewModal.addEventListener('click', function (e) {
+            if (e.target === previewModal) {
+                previewModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Form submission
+        document.getElementById('postJobForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Show loading state
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Publishing...';
+            submitButton.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                // Success feedback
+                submitButton.innerHTML = '<i class="fas fa-check mr-2"></i>Job Published!';
+                submitButton.classList.add('bg-green-500');
+
+                // Redirect after delay
+                setTimeout(() => {
+                    alert('Job posted successfully! Redirecting to job dashboard...');
+                    window.location.href = 'employer-dashboard.html';
+                }, 1500);
+            }, 2000);
+        });
+
+        // Save as draft
+        document.getElementById('saveDraftButton').addEventListener('click', function () {
+            if (confirm('Save this job posting as draft? You can publish it later.')) {
+                this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Saving...';
+                this.disabled = true;
+
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-check mr-2"></i>Saved as Draft';
+                    this.classList.add('bg-green-100', 'text-green-700', 'border-green-300');
+
+                    setTimeout(() => {
+                        alert('Draft saved successfully!');
+                        window.location.href = 'employer-dashboard.html';
+                    }, 1000);
+                }, 1500);
+            }
+        });
+
+        // Template buttons
+        document.querySelectorAll('.bg-blue-50 button').forEach(button => {
+            button.addEventListener('click', function () {
+                const template = this.textContent.trim();
+                let content = '';
+
+                switch (template) {
+                    case 'Tech Startup':
+                        content = '<p><strong>About Us:</strong></p><p>We are a fast-growing tech startup revolutionizing the industry. Join us in building the future!</p><p><strong>Perks:</strong></p><ul><li>Equity options</li><li>Flexible work hours</li><li>Startup culture</li><li>Rapid growth opportunities</li></ul>';
+                        break;
+                    case 'Corporate':
+                        content = '<p><strong>About the Company:</strong></p><p>We are a leading corporation with decades of industry experience, offering stability and comprehensive benefits.</p><p><strong>Benefits:</strong></p><ul><li>Comprehensive health insurance</li><li>401(k) matching</li><li>Paid time off</li><li>Professional development budget</li></ul>';
+                        break;
+                    case 'Team Culture':
+                        content = '<p><strong>Our Culture:</strong></p><p>We believe in collaboration, innovation, and work-life balance. Our team is our greatest asset.</p><p><strong>What Makes Us Special:</strong></p><ul><li>Inclusive and diverse team</li><li>Regular team-building activities</li><li>Open communication channels</li><li>Supportive management</li></ul>';
+                        break;
+                    case 'Learning & Growth':
+                        content = '<p><strong>Growth Opportunities:</strong></p><p>We invest in our employees\' development through continuous learning and career advancement paths.</p><p><strong>Development Programs:</strong></p><ul><li>Mentorship programs</li><li>Conference attendance</li><li>Certification support</li><li>Internal mobility</li></ul>';
+                        break;
+                }
+
+                quill.clipboard.dangerouslyPasteHTML(content);
+            });
+        });
+    </script>
+</body>
+
+</html>

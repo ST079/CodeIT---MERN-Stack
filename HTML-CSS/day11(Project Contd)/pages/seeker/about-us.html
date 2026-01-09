@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Kaam Yeta Hai</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('../assets/images/about/about.png');
+            background-size: fit;
+            background-position: top center;
+            background-repeat: no-repeat;
+        }
+
+        .section-spacing {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            position: absolute;
+            left: -8px;
+            top: 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 0;
+            top: 16px;
+            bottom: -16px;
+            width: 2px;
+            background: linear-gradient(to bottom, #667eea 0%, #764ba2 100%);
+        }
+
+        @media (max-width: 768px) {
+            .section-spacing {
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-10 md:py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Connecting Talent with Opportunity</h1>
+                <p class="text-xl opacity-90 mb-8">Kaam Yeta Hai is Nepal's fastest-growing job portal, revolutionizing
+                    how people find meaningful work and companies discover exceptional talent.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center p-6">
+                    <div class="text-3xl md:text-4xl font-bold text-purple-600 mb-2">500K+</div>
+                    <p class="text-gray-600">Job Seekers</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="text-3xl md:text-4xl font-bold text-purple-600 mb-2">50K+</div>
+                    <p class="text-gray-600">Jobs Filled</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="text-3xl md:text-4xl font-bold text-purple-600 mb-2">5K+</div>
+                    <p class="text-gray-600">Companies</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="text-3xl md:text-4xl font-bold text-purple-600 mb-2">85%</div>
+                    <p class="text-gray-600">Success Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section id="story" class="section-spacing bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Story</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Founded in 2018 with a vision to simplify job hunting in
+                        Nepal's digital age, Kaam Yeta Hai has grown to become one of the most trusted job portals in
+                        the country.</p>
+                </div>
+
+                <div class="relative pl-6">
+                    <!-- Timeline Item 1 -->
+                    <div class="relative mb-12">
+                        <div class="timeline-dot"></div>
+                        <div class="pl-6">
+                            <div class="bg-gray-50 p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">2018 - The Beginning</h3>
+                                <p class="text-gray-600">Founded with a vision to simplify job hunting in Nepal's
+                                    digital age. Started with a small team in Bhaktapur focused on connecting local
+                                    talent
+                                    with opportunities.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-line"></div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="relative mb-12">
+                        <div class="timeline-dot"></div>
+                        <div class="pl-6">
+                            <div class="bg-gray-50 p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">2020 - Technology Milestone</h3>
+                                <p class="text-gray-600">Introduced our AI-powered job matching algorithm,
+                                    revolutionizing how candidates find relevant opportunities and how companies
+                                    discover talent.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-line"></div>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="relative mb-12">
+                        <div class="timeline-dot"></div>
+                        <div class="pl-6">
+                            <div class="bg-gray-50 p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">2021 - National Expansion</h3>
+                                <p class="text-gray-600">Expanded operations to 25+ cities across Nepal.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-line"></div>
+                    </div>
+
+                    <!-- Timeline Item 4 -->
+                    <div class="relative">
+                        <div class="timeline-dot"></div>
+                        <div class="pl-6">
+                            <div class="bg-gray-50 p-6 rounded-lg">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">2023 - Present Day</h3>
+                                <p class="text-gray-600">Now serving 500,000+ job seekers and 5,000+ companies with a
+                                    team of 100+ professionals dedicated to transforming India's job market.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Mission -->
+    <section class="bg-gray-50 section-spacing">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Mission & Vision</h2>
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-lg card-hover">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-bullseye text-purple-600 text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800">Our Mission</h3>
+                            </div>
+                            <p class="text-gray-600">To connect every job seeker in India with meaningful career
+                                opportunities through technology that makes job searching simple, efficient, and
+                                effective.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg card-hover">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-eye text-purple-600 text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800">Our Vision</h3>
+                            </div>
+                            <p class="text-gray-600">To become India's most trusted career platform, where talent meets
+                                opportunity, and every professional can achieve their career aspirations.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-white p-8 rounded-xl shadow-sm">
+                        <div
+                            class="w-20 h-20 bg-gradient-to-r from-purple-100 to-indigo-100 rounded-xl flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-handshake text-purple-600 text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Why Choose Kaam Yeta Hai?</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                <span class="text-gray-600">AI-powered job matching for personalized
+                                    opportunities</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                <span class="text-gray-600">Verified company profiles for trust and transparency</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                <span class="text-gray-600">Completely free for job seekers with no hidden
+                                    charges</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                <span class="text-gray-600">Dedicated career support and guidance</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                <span class="text-gray-600">Secure platform with data privacy at its core</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section id="values" class="section-spacing bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Values</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">The principles that guide everything we do at Kaam Yeta Hai
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Value 1 -->
+                <div class="bg-gray-50 p-6 rounded-xl card-hover">
+                    <div class="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-purple-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">People First</h3>
+                    <p class="text-gray-600">We prioritize the needs of both job seekers and employers, creating
+                        meaningful connections that transform careers and businesses.</p>
+                </div>
+
+                <!-- Value 2 -->
+                <div class="bg-gray-50 p-6 rounded-xl card-hover">
+                    <div class="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-lightbulb text-purple-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Innovation Driven</h3>
+                    <p class="text-gray-600">We continuously improve our platform with cutting-edge technology to
+                        deliver exceptional results and user experiences.</p>
+                </div>
+
+                <!-- Value 3 -->
+                <div class="bg-gray-50 p-6 rounded-xl card-hover">
+                    <div class="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-purple-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Trust & Transparency</h3>
+                    <p class="text-gray-600">We build trust through complete transparency in our processes, verified
+                        profiles, and secure handling of personal data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Simple hover effect for cards
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '';
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId !== '#') {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

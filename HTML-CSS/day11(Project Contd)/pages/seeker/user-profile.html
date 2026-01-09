@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | JobConnect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#8b5cf6',
+                        dark: '#1f2937',
+                        light: '#f8fafc',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                        'pulse-subtle': 'pulseSubtle 2s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        pulseSubtle: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.8' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                <div class="stats-gradient w-12 h-12 rounded-xl flex items-center justify-center shadow-lg">
+                    <span class="text-white font-bold text-2xl">का</span>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-800">Kaam Yeta Hai</h1>
+                    <p class="text-xs text-gray-600 -mt-1">Career. Connected.</p>
+                </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="text-gray-600 hover:text-primary transition">
+                        <i class="fas fa-search mr-2"></i>Jobs
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition">
+                        <i class="fas fa-bell mr-2"></i>Alerts
+                    </a>
+                    <a href="#" class="text-primary font-medium">
+                        <i class="fas fa-user mr-2"></i>Profile
+                    </a>
+                    <div class="relative group">
+                        <button class="flex items-center space-x-2">
+                            <div
+                                class="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm font-bold">JD</span>
+                            </div>
+                            <i class="fas fa-chevron-down text-gray-500 text-sm"></i>
+                        </button>
+                        <div
+                            class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 hidden group-hover:block z-50">
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"><i
+                                    class="fas fa-cog mr-2"></i>Settings</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"><i
+                                    class="fas fa-question-circle mr-2"></i>Help</a>
+                            <div class="border-t my-2"></div>
+                            <a href="#" class="block px-4 py-2 text-red-600 hover:bg-gray-100"><i
+                                    class="fas fa-sign-out-alt mr-2"></i>Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Profile Header -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-8 animate-fade-in">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+                <div class="flex items-start space-x-4 mb-6 md:mb-0">
+                    <!-- Profile Picture -->
+                    <div class="relative">
+                        <div
+                            class="w-24 h-24 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-3xl font-bold text-white">
+                            JD
+                        </div>
+                        <button
+                            class="absolute bottom-0 right-0 w-8 h-8 bg-white rounded-full shadow flex items-center justify-center hover:bg-gray-50">
+                            <i class="fas fa-camera text-gray-600 text-sm"></i>
+                        </button>
+                    </div>
+
+                    <!-- User Info -->
+                    <div>
+                        <h1 class="text-2xl font-bold text-dark mb-1">John Doe</h1>
+                        <div class="flex items-center space-x-3 mb-2">
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                                <i class="fas fa-code mr-2"></i>Frontend Developer
+                            </span>
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                <i class="fas fa-map-marker-alt mr-2"></i>San Francisco, CA
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-3">
+                            <i class="fas fa-star text-yellow-500 mr-2"></i>
+                            <span class="font-medium">4.8/5</span> (12 reviews) •
+                            <i class="fas fa-briefcase text-primary ml-4 mr-2"></i>
+                            5 years experience
+                        </p>
+                        <div class="flex items-center space-x-4">
+                            <a href="#" class="text-gray-600 hover:text-primary">
+                                <i class="fab fa-github mr-2"></i>GitHub
+                            </a>
+                            <a href="#" class="text-gray-600 hover:text-primary">
+                                <i class="fab fa-linkedin mr-2"></i>LinkedIn
+                            </a>
+                            <a href="#" class="text-gray-600 hover:text-primary">
+                                <i class="fas fa-link mr-2"></i>Portfolio
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex space-x-3">
+                    <button
+                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition flex items-center">
+                        <i class="fas fa-edit mr-2"></i>Edit Profile
+                    </button>
+                    <button
+                        class="px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary/5 transition flex items-center">
+                        <i class="fas fa-file-pdf mr-2"></i>Resume
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Profile Completeness Card -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 animate-slide-up">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-dark">Profile Completeness</h2>
+                        <span class="text-2xl font-bold text-primary">85%</span>
+                    </div>
+                    <div class="h-2 bg-gray-200 rounded-full mb-6">
+                        <div class="h-full bg-gradient-to-r from-primary to-secondary rounded-full" style="width: 85%">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="text-center">
+                            <div
+                                class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-check text-success"></i>
+                            </div>
+                            <p class="text-sm font-medium">Basic Info</p>
+                        </div>
+                        <div class="text-center">
+                            <div
+                                class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-check text-success"></i>
+                            </div>
+                            <p class="text-sm font-medium">Experience</p>
+                        </div>
+                        <div class="text-center">
+                            <div
+                                class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-exclamation text-warning"></i>
+                            </div>
+                            <p class="text-sm font-medium">Skills</p>
+                        </div>
+                        <div class="text-center">
+                            <div
+                                class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-plus text-gray-500"></i>
+                            </div>
+                            <p class="text-sm font-medium">Portfolio</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Section -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 animate-slide-up">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-dark">About Me</h2>
+                        <button class="text-primary hover:text-secondary">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Passionate Frontend Developer with 5+ years of experience building responsive web applications.
+                        Specialized in React, Vue.js, and modern CSS frameworks. Strong advocate for clean code,
+                        accessibility, and user-centered design.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        Currently seeking opportunities to work on challenging projects with modern tech stacks.
+                        Open to remote positions and relocation for the right opportunity.
+                    </p>
+                </div>
+
+                <!-- Experience Section -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 animate-slide-up">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-dark">Work Experience</h2>
+                        <button class="text-primary hover:text-secondary">
+                            <i class="fas fa-plus"></i> Add Experience
+                        </button>
+                    </div>
+                    <div class="space-y-6">
+                        <!-- Experience Item -->
+                        <div class="flex">
+                            <div
+                                class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-briefcase text-primary"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between">
+                                    <div>
+                                        <h3 class="font-bold text-dark">Senior Frontend Developer</h3>
+                                        <p class="text-primary font-medium">TechCorp Inc.</p>
+                                    </div>
+                                    <span class="text-sm text-gray-500">2020 - Present</span>
+                                </div>
+                                <p class="text-gray-600 mt-2">
+                                    Lead frontend development for multiple products. Improved application performance by
+                                    40%
+                                    through code optimization and modern frameworks.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mt-3">
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">React</span>
+                                    <span
+                                        class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">TypeScript</span>
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Tailwind
+                                        CSS</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Experience Item -->
+                        <div class="flex">
+                            <div
+                                class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-briefcase text-primary"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between">
+                                    <div>
+                                        <h3 class="font-bold text-dark">Frontend Developer</h3>
+                                        <p class="text-primary font-medium">Digital Solutions LLC</p>
+                                    </div>
+                                    <span class="text-sm text-gray-500">2018 - 2020</span>
+                                </div>
+                                <p class="text-gray-600 mt-2">
+                                    Developed responsive web applications using Vue.js and modern JavaScript.
+                                    Collaborated with design team to implement pixel-perfect UI components.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mt-3">
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Vue.js</span>
+                                    <span
+                                        class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">JavaScript</span>
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">SCSS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 animate-slide-up">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-dark">Skills & Expertise</h2>
+                        <button class="text-primary hover:text-secondary">
+                            <i class="fas fa-plus"></i> Add Skill
+                        </button>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium text-dark">React</span>
+                                <span class="text-sm text-gray-600">Expert</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 rounded-full">
+                                <div class="h-full bg-primary rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium text-dark">JavaScript</span>
+                                <span class="text-sm text-gray-600">Expert</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 rounded-full">
+                                <div class="h-full bg-primary rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium text-dark">TypeScript</span>
+                                <span class="text-sm text-gray-600">Advanced</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 rounded-full">
+                                <div class="h-full bg-primary rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium text-dark">Tailwind CSS</span>
+                                <span class="text-sm text-gray-600">Advanced</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 rounded-full">
+                                <div class="h-full bg-primary rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium text-dark">Vue.js</span>
+                                <span class="text-sm text-gray-600">Intermediate</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 rounded-full">
+                                <div class="h-full bg-primary rounded-full" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Skills -->
+                    <div class="mt-6">
+                        <h4 class="font-medium text-dark mb-3">Additional Skills</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Git</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Webpack</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Jest</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Figma</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">AWS</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">GraphQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="space-y-8">
+                <!-- Job Preferences -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 animate-slide-up">
+                    <h2 class="text-xl font-bold text-dark mb-6">Job Preferences</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-medium text-dark">Job Type</p>
+                                <p class="text-sm text-gray-600">Full-time, Remote</p>
+                            </div>
+                            <button class="text-primary">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-medium text-dark">Salary Expectation</p>
+                                <p class="text-sm text-gray-600">$90,000 - $120,000</p>
+                            </div>
+                            <button class="text-primary">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-medium text-dark">Work Location</p>
+                                <p class="text-sm text-gray-600">Remote, San Francisco Bay Area</p>
+                            </div>
+                            <button class="text-primary">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-medium text-dark">Start Date</p>
+                                <p class="text-sm text-gray-600">Immediately, 2 weeks notice</p>
+                            </div>
+                            <button class="text-primary">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Application Stats -->
+                <div
+                    class="bg-gradient-to-r from-primary to-secondary rounded-2xl shadow-lg p-6 text-white animate-slide-up">
+                    <h2 class="text-xl font-bold mb-6">Application Stats</h2>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-sm opacity-90">Total Applications</p>
+                                <p class="text-2xl font-bold">24</p>
+                            </div>
+                            <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-paper-plane"></i>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-sm opacity-90">Interviews</p>
+                                <p class="text-2xl font-bold">8</p>
+                            </div>
+                            <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-sm opacity-90">Offers</p>
+                                <p class="text-2xl font-bold">3</p>
+                            </div>
+                            <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 animate-slide-up">
+                    <h2 class="text-xl font-bold text-dark mb-6">Quick Actions</h2>
+                    <div class="grid grid-cols-2 gap-3">
+                        <a href="#" class="p-4 bg-blue-50 rounded-lg text-center hover:bg-blue-100 transition">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-file-pdf text-primary"></i>
+                            </div>
+                            <p class="text-sm font-medium">Update Resume</p>
+                        </a>
+                      
+                        <a href="#" class="p-4 bg-yellow-50 rounded-lg text-center hover:bg-yellow-100 transition">
+                            <div
+                                class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-share-alt text-warning"></i>
+                            </div>
+                            <p class="text-sm font-medium">Share Profile</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 mt-8 animate-slide-up">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-dark">Education</h2>
+                <button class="text-primary hover:text-secondary">
+                    <i class="fas fa-plus"></i> Add Education
+                </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex">
+                    <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-graduation-cap text-primary"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-dark">Master of Science in Computer Science</h3>
+                        <p class="text-primary font-medium">Stanford University</p>
+                        <p class="text-sm text-gray-600 mt-1">2016 - 2018</p>
+                        <p class="text-gray-600 mt-2">GPA: 3.9/4.0</p>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-graduation-cap text-primary"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-dark">Bachelor of Science in Software Engineering</h3>
+                        <p class="text-primary font-medium">MIT</p>
+                        <p class="text-sm text-gray-600 mt-1">2012 - 2016</p>
+                        <p class="text-gray-600 mt-2">Graduated with Honors</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certifications -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 mt-8 animate-slide-up">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-dark">Certifications</h2>
+                <button class="text-primary hover:text-secondary">
+                    <i class="fas fa-plus"></i> Add Certification
+                </button>
+            </div>
+            <div class="flex flex-wrap gap-4">
+                <div class="border rounded-lg p-4 flex-1 min-w-[200px]">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fab fa-google text-red-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-dark">Google Cloud Engineer</h3>
+                            <p class="text-sm text-gray-600">Issued 2022</p>
+                        </div>
+                    </div>
+                    <div class="text-sm text-gray-600">Valid until 2024</div>
+                </div>
+                <div class="border rounded-lg p-4 flex-1 min-w-[200px]">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fab fa-aws text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-dark">AWS Developer</h3>
+                            <p class="text-sm text-gray-600">Issued 2021</p>
+                        </div>
+                    </div>
+                    <div class="text-sm text-gray-600">Valid until 2024</div>
+                </div>
+                <div class="border rounded-lg p-4 flex-1 min-w-[200px]">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fab fa-react text-blue-500"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-dark">React Certification</h3>
+                            <p class="text-sm text-gray-600">Issued 2020</p>
+                        </div>
+                    </div>
+                    <div class="text-sm text-gray-600">No expiration</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Edit Profile Button
+        document.querySelectorAll('.fa-edit').forEach(icon => {
+            icon.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const section = this.closest('.bg-white').querySelector('h2').textContent;
+                alert(`Edit ${section} section clicked. In a real app, this would open an edit form.`);
+            });
+        });
+
+        // Add Experience/Education/Skill Buttons
+        document.querySelectorAll('button:has(.fa-plus)').forEach(button => {
+            button.addEventListener('click', function () {
+                const section = this.closest('.bg-white').querySelector('h2').textContent;
+                alert(`Add new item to ${section} section.`);
+            });
+        });
+
+        // Toggle dropdown menu
+        document.querySelector('.group button').addEventListener('click', function (e) {
+            e.stopPropagation();
+            const menu = this.nextElementSibling;
+            menu.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function () {
+            document.querySelectorAll('.group .hidden').forEach(menu => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Profile completeness animation
+        const progressBar = document.querySelector('.h-2 > div');
+        let width = 0;
+        const targetWidth = 85;
+        const interval = setInterval(() => {
+            if (width >= targetWidth) {
+                clearInterval(interval);
+            } else {
+                width++;
+                progressBar.style.width = width + '%';
+            }
+        }, 10);
+
+        // Skill bars animation
+        document.querySelectorAll('.h-2.bg-gray-200 > .bg-primary').forEach(bar => {
+            const computedWidth = getComputedStyle(bar).width;
+            bar.style.width = '0%';
+            setTimeout(() => {
+                bar.style.width = computedWidth;
+            }, 300);
+        });
+
+        // Quick action buttons animation
+        document.querySelectorAll('.grid.grid-cols-2 a').forEach((link, index) => {
+            link.style.opacity = '0';
+            link.style.transform = 'translateY(10px)';
+
+            setTimeout(() => {
+                link.style.transition = 'all 0.3s ease';
+                link.style.opacity = '1';
+                link.style.transform = 'translateY(0)';
+            }, 100 * index);
+        });
+    </script>
+</body>
+
+</html>

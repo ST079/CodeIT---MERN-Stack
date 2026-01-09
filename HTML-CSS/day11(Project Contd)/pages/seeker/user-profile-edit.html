@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile | Kaam Yeta Hai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#8b5cf6',
+                        dark: '#1f2937',
+                        light: '#f8fafc',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .stats-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .form-input:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: #3b82f6;
+        }
+
+        .skill-tag {
+            transition: all 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="stats-gradient w-12 h-12 rounded-xl flex items-center justify-center shadow-lg mr-3">
+                        <span class="text-white font-bold text-2xl">का</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">Kaam Yeta Hai</h1>
+                        <p class="text-xs text-gray-600 -mt-1">Career. Connected.</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="flex items-center space-x-6">
+                    <a href="user-profile.html" class="text-gray-600 hover:text-primary transition">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Profile
+                    </a>
+                    <div class="relative group">
+                        <button class="flex items-center space-x-2">
+                            <div class="w-8 h-8 stats-gradient rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm font-bold">JD</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-dark mb-2">Edit Profile</h1>
+            <p class="text-gray-600">Update your professional information to get better job matches</p>
+        </div>
+
+        <form id="editProfileForm" class="space-y-8">
+            <!-- Personal Information Card -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 animate-fade-in">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-dark">Personal Information</h2>
+                    <span class="text-sm text-green-600 bg-green-100 px-3 py-1 rounded-full">
+                        <i class="fas fa-check-circle mr-2"></i>Visible to employers
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Profile Picture -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-4">Profile Picture</label>
+                        <div class="flex items-center space-x-6">
+                            <div class="relative">
+                                <div
+                                    class="w-24 h-24 stats-gradient rounded-full flex items-center justify-center text-3xl font-bold text-white">
+                                    JD
+                                </div>
+                                <button type="button"
+                                    class="absolute bottom-0 right-0 w-8 h-8 bg-white rounded-full shadow flex items-center justify-center hover:bg-gray-50">
+                                    <i class="fas fa-camera text-gray-600 text-sm"></i>
+                                </button>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm text-gray-600 mb-3">Upload a professional photo (Max 2MB, JPG/PNG)</p>
+                                <div class="flex space-x-3">
+                                    <button type="button"
+                                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition text-sm">
+                                        Upload New
+                                    </button>
+                                    <button type="button"
+                                        class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition text-sm">
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Name Fields -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            First Name <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                            value="John" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Last Name <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition" value="Doe"
+                            required>
+                    </div>
+
+                    <!-- Professional Title -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Professional Title <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                            value="Frontend Developer" required>
+                        <p class="text-xs text-gray-500 mt-2">Example: Senior Frontend Developer, Product Manager, etc.
+                        </p>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Email Address <span class="text-red-500">*</span>
+                        </label>
+                        <input type="email"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                            value="john.doe@example.com" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Phone Number
+                        </label>
+                        <input type="tel"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                            value="+1 (555) 123-4567">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Location <span class="text-red-500">*</span>
+                        </label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition">
+                            <option value="san-francisco" selected>San Francisco, CA</option>
+                            <option value="new-york">New York, NY</option>
+                            <option value="remote">Remote</option>
+                            <option value="seattle">Seattle, WA</option>
+                            <option value="austin">Austin, TX</option>
+                        </select>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-4">Social Profiles</label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fab fa-linkedin text-blue-700"></i>
+                                </div>
+                                <input type="text"
+                                    class="flex-1 px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    placeholder="LinkedIn profile URL" value="linkedin.com/in/johndoe">
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fab fa-github text-gray-800"></i>
+                                </div>
+                                <input type="text"
+                                    class="flex-1 px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    placeholder="GitHub profile URL" value="github.com/johndoe">
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-globe text-blue-500"></i>
+                                </div>
+                                <input type="text"
+                                    class="flex-1 px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    placeholder="Portfolio website" value="johndoe.dev">
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fab fa-twitter text-blue-400"></i>
+                                </div>
+                                <input type="text"
+                                    class="flex-1 px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    placeholder="Twitter handle" value="@johndoe">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Me Card -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 animate-slide-up">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-dark">Professional Summary</h2>
+                    <span class="text-sm text-gray-500">Recommended: 150-500 words</span>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        About Me <span class="text-red-500">*</span>
+                    </label>
+                    <textarea rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                        required>Passionate Frontend Developer with 5+ years of experience building responsive web applications. Specialized in React, Vue.js, and modern CSS frameworks. Strong advocate for clean code, accessibility, and user-centered design. Currently seeking opportunities to work on challenging projects with modern tech stacks. Open to remote positions and relocation for the right opportunity.</textarea>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-xs text-gray-500">This will appear at the top of your profile</p>
+                        <span class="text-xs text-gray-500">387 characters</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Work Experience Card -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 animate-slide-up">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-dark">Work Experience</h2>
+                    <button type="button" id="addExperience"
+                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition flex items-center">
+                        <i class="fas fa-plus mr-2"></i>Add Experience
+                    </button>
+                </div>
+
+                <!-- Experience Items -->
+                <div id="experienceContainer" class="space-y-6">
+                    <!-- Experience 1 -->
+                    <div class="border border-gray-200 rounded-lg p-4">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="font-medium text-dark">Experience #1</h3>
+                            <button type="button" class="text-red-500 hover:text-red-700">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Job Title *</label>
+                                <input type="text"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    value="Senior Frontend Developer" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Company *</label>
+                                <input type="text"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    value="TechCorp Inc." required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Start Date *</label>
+                                <input type="month"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    value="2020-01" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">End Date</label>
+                                <input type="month"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    value="">
+                                <div class="flex items-center mt-2">
+                                    <input type="checkbox" id="currentJob1" class="h-4 w-4 text-primary">
+                                    <label for="currentJob1" class="ml-2 text-sm text-gray-700">I currently work
+                                        here</label>
+                                </div>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                                <textarea rows="3"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition">Lead frontend development for multiple products. Improved application performance by 40% through code optimization and modern frameworks.</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience 2 -->
+                    <div class="border border-gray-200 rounded-lg p-4">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="font-medium text-dark">Experience #2</h3>
+                            <button type="button" class="text-red-500 hover:text-red-700">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Job Title *</label>
+                                <input type="text"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    value="Frontend Developer" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Company *</label>
+                                <input type="text"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    value="Digital Solutions LLC" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Start Date *</label>
+                                <input type="month"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    value="2018-06" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">End Date *</label>
+                                <input type="month"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    value="2020-01" required>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                                <textarea rows="3"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition">Developed responsive web applications using Vue.js and modern JavaScript. Collaborated with design team to implement pixel-perfect UI components.</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Card -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 animate-slide-up">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-dark">Skills & Expertise</h2>
+                    <div class="flex space-x-3">
+                        <button type="button" id="addSkill"
+                            class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition flex items-center">
+                            <i class="fas fa-plus mr-2"></i>Add Skill
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Skills Input -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Add Skills</label>
+                    <div class="flex">
+                        <input type="text" id="skillInput"
+                            class="flex-1 px-4 py-3 border border-gray-300 rounded-l-lg form-input transition"
+                            placeholder="e.g., React, JavaScript, TypeScript">
+                        <button type="button" id="addSkillButton"
+                            class="px-4 py-3 bg-gray-100 border border-l-0 border-gray-300 text-gray-700 rounded-r-lg hover:bg-gray-200 transition">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">Press Enter or click + to add skills</p>
+                </div>
+
+                <!-- Skills Tags -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-3">Your Skills</label>
+                    <div id="skillsContainer" class="flex flex-wrap gap-2">
+                        <span
+                            class="skill-tag px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium flex items-center">
+                            React
+                            <button type="button" class="ml-2 text-blue-600 hover:text-blue-800">
+                                <i class="fas fa-times text-xs"></i>
+                            </button>
+                        </span>
+                        <span
+                            class="skill-tag px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium flex items-center">
+                            JavaScript
+                            <button type="button" class="ml-2 text-blue-600 hover:text-blue-800">
+                                <i class="fas fa-times text-xs"></i>
+                            </button>
+                        </span>
+                        <span
+                            class="skill-tag px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium flex items-center">
+                            TypeScript
+                            <button type="button" class="ml-2 text-blue-600 hover:text-blue-800">
+                                <i class="fas fa-times text-xs"></i>
+                            </button>
+                        </span>
+                        <span
+                            class="skill-tag px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium flex items-center">
+                            Tailwind CSS
+                            <button type="button" class="ml-2 text-blue-600 hover:text-blue-800">
+                                <i class="fas fa-times text-xs"></i>
+                            </button>
+                        </span>
+                        <span
+                            class="skill-tag px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium flex items-center">
+                            Vue.js
+                            <button type="button" class="ml-2 text-blue-600 hover:text-blue-800">
+                                <i class="fas fa-times text-xs"></i>
+                            </button>
+                        </span>
+                        <span
+                            class="skill-tag px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium flex items-center">
+                            Git
+                            <button type="button" class="ml-2 text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-times text-xs"></i>
+                            </button>
+                        </span>
+                        <span
+                            class="skill-tag px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium flex items-center">
+                            Webpack
+                            <button type="button" class="ml-2 text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-times text-xs"></i>
+                            </button>
+                        </span>
+                        <span
+                            class="skill-tag px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium flex items-center">
+                            Jest
+                            <button type="button" class="ml-2 text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-times text-xs"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Preferences Card -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 animate-slide-up">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-dark">Job Preferences</h2>
+                    <span class="text-sm text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
+                        <i class="fas fa-eye mr-2"></i>Used for job matching
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Job Type *</label>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="fulltime" class="h-4 w-4 text-primary" checked>
+                                <label for="fulltime" class="ml-2 text-gray-700">Full-time</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="parttime" class="h-4 w-4 text-primary">
+                                <label for="parttime" class="ml-2 text-gray-700">Part-time</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="contract" class="h-4 w-4 text-primary">
+                                <label for="contract" class="ml-2 text-gray-700">Contract</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="remote" class="h-4 w-4 text-primary" checked>
+                                <label for="remote" class="ml-2 text-gray-700">Remote</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Salary Expectation *</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1">Min ($)</label>
+                                <input type="number"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    value="90000" min="0" step="1000">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1">Max ($)</label>
+                                <input type="number"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"
+                                    value="120000" min="0" step="1000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Preferred Locations</label>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium flex items-center">
+                                Remote
+                                <button type="button" class="ml-2 text-blue-600 hover:text-blue-800">
+                                    <i class="fas fa-times text-xs"></i>
+                                </button>
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium flex items-center">
+                                San Francisco Bay Area
+                                <button type="button" class="ml-2 text-blue-600 hover:text-blue-800">
+                                    <i class="fas fa-times text-xs"></i>
+                                </button>
+                            </span>
+                            <input type="text"
+                                class="px-3 py-1 border border-gray-300 rounded-full text-sm form-input transition"
+                                placeholder="Add location...">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition">
+                            <option value="immediately" selected>Immediately</option>
+                            <option value="2weeks">2 weeks notice</option>
+                            <option value="1month">1 month notice</option>
+                            <option value="3months">3 months notice</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Willing to Relocate?</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition">
+                            <option value="yes">Yes</option>
+                            <option value="no" selected>No</option>
+                            <option value="maybe">Maybe for the right opportunity</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 animate-slide-up">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <div>
+                        <h3 class="font-medium text-dark mb-1">Save your changes</h3>
+                        <p class="text-sm text-gray-600">Your profile will be updated immediately</p>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button type="button" id="cancelButton"
+                            class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">
+                            Cancel
+                        </button>
+                        <button type="submit"
+                            class="px-6 py-3 stats-gradient text-white rounded-lg hover:shadow-lg transition flex items-center">
+                            <i class="fas fa-save mr-2"></i>Save Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Add Experience
+        document.getElementById('addExperience').addEventListener('click', function () {
+            const container = document.getElementById('experienceContainer');
+            const experienceCount = container.children.length + 1;
+
+            const newExperience = document.createElement('div');
+            newExperience.className = 'border border-gray-200 rounded-lg p-4';
+            newExperience.innerHTML = `
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="font-medium text-dark">Experience #${experienceCount}</h3>
+                    <button type="button" class="text-red-500 hover:text-red-700 remove-experience">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Job Title *</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Company *</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Start Date *</label>
+                        <input type="month" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">End Date</label>
+                        <input type="month" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition">
+                        <div class="flex items-center mt-2">
+                            <input type="checkbox" class="h-4 w-4 text-primary">
+                            <label class="ml-2 text-sm text-gray-700">I currently work here</label>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                        <textarea rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input transition"></textarea>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(newExperience);
+
+            // Add event listener to remove button
+            newExperience.querySelector('.remove-experience').addEventListener('click', function () {
+                newExperience.remove();
+            });
+        });
+
+        // Remove experience items
+        document.querySelectorAll('.border.border-gray-200 button.text-red-500').forEach(button => {
+            button.addEventListener('click', function () {
+                this.closest('.border.border-gray-200').remove();
+            });
+        });
+
+        // Add skills functionality
+        const skillInput = document.getElementById('skillInput');
+        const addSkillButton = document.getElementById('addSkillButton');
+        const skillsContainer = document.getElementById('skillsContainer');
+
+        function addSkill() {
+            const skill = skillInput.value.trim();
+            if (skill && skill.length > 0) {
+                const skillTag = document.createElement('span');
+                skillTag.className = 'skill-tag px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium flex items-center';
+                skillTag.innerHTML = `
+                    ${skill}
+                    <button type="button" class="ml-2 text-gray-500 hover:text-gray-700 remove-skill">
+                        <i class="fas fa-times text-xs"></i>
+                    </button>
+                `;
+
+                skillsContainer.appendChild(skillTag);
+                skillInput.value = '';
+
+                // Add event listener to remove button
+                skillTag.querySelector('.remove-skill').addEventListener('click', function () {
+                    skillTag.remove();
+                });
+            }
+        }
+
+        addSkillButton.addEventListener('click', addSkill);
+
+        skillInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addSkill();
+            }
+        });
+
+        // Remove existing skills
+        document.querySelectorAll('#skillsContainer .skill-tag button').forEach(button => {
+            button.addEventListener('click', function () {
+                this.closest('.skill-tag').remove();
+            });
+        });
+
+        // Form submission
+        document.getElementById('editProfileForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Show loading state
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Saving...';
+            submitButton.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                // Success feedback
+                submitButton.innerHTML = '<i class="fas fa-check mr-2"></i>Changes Saved!';
+                submitButton.classList.add('bg-green-500');
+
+                // Redirect after delay
+                setTimeout(() => {
+                    window.location.href = 'user-profile.html';
+                }, 1500);
+            }, 2000);
+        });
+
+        // Cancel button
+        document.getElementById('cancelButton').addEventListener('click', function () {
+            if (confirm('Are you sure you want to cancel? Any unsaved changes will be lost.')) {
+                window.location.href = 'user-profile.html';
+            }
+        });
+
+        // Current job checkbox functionality
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            if (checkbox.previousElementSibling && checkbox.previousElementSibling.tagName === 'LABEL' &&
+                checkbox.previousElementSibling.textContent.includes('I currently work here')) {
+                checkbox.addEventListener('change', function () {
+                    const endDateInput = this.closest('div').previousElementSibling.querySelector('input[type="month"]');
+                    if (this.checked) {
+                        endDateInput.disabled = true;
+                        endDateInput.value = '';
+                    } else {
+                        endDateInput.disabled = false;
+                    }
+                });
+            }
+        });
+
+        // Initialize current job checkboxes
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            if (checkbox.id && checkbox.id.startsWith('currentJob')) {
+                const endDateInput = checkbox.closest('div').previousElementSibling.querySelector('input[type="month"]');
+                if (checkbox.checked) {
+                    endDateInput.disabled = true;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
