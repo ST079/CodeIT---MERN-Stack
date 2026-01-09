@@ -1,8 +1,9 @@
 # Day 11 Of Mern Stack Journey
 
 ## Kaam Yeta Hai - Job Portal Platform | Career. Connected.
-
-Kaam Yeta Hai is a comprehensive job portal platform connecting job seekers with employers through an intuitive, modern, and feature-rich interface. The platform provides separate experiences for job seekers, employers, and administrators, each tailored to their specific needs.
+``` 
+Kaam Yeta Hai is a comprehensive job portal platform connecting job seekers with employers through an intuitive, modern, and feature-rich interface. The platform provides separate experiences for job seekers, employers, and administrators, each tailored to their specific needs. 
+```
 ---
 ### 🎨 Design Features
 - Modern UI/UX
