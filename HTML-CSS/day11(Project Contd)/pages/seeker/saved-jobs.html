@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Jobs - Kaam Yeta Hai</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .section-spacing {
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        .job-card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .job-card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .empty-state {
+            background: linear-gradient(135deg, #f6f8ff 0%, #f0f4ff 100%);
+        }
+
+        .saved-icon {
+            color: #ff6b6b;
+            transition: all 0.3s ease;
+        }
+
+        .saved-icon:hover {
+            color: #ff4757;
+            transform: scale(1.2);
+        }
+
+        .applied-badge {
+            background: linear-gradient(135deg, #4cd964 0%, #5ac8fa 100%);
+        }
+
+        .sticky-tabs {
+            position: sticky;
+            top: 0px;
+            background: white;
+            z-index: 40;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .section-spacing {
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+
+            .sticky-tabs {
+                top: 70px;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Saved Jobs Tabs -->
+    <div class="sticky-tabs py-4 border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="flex space-x-1 overflow-x-auto">
+                <button
+                    class="tab-active px-6 py-3 rounded-xl font-medium transition-all duration-300 whitespace-nowrap">
+                    <i class="far fa-bookmark mr-2"></i>All Saved Jobs
+                </button>
+                <button
+                    class="px-6 py-3 rounded-xl text-gray-700 hover:bg-gray-100 font-medium transition-all duration-300 whitespace-nowrap"
+                    id="applied-tab">
+                    <i class="fas fa-paper-plane mr-2"></i>Applied Jobs
+                </button>
+                <button
+                    class="px-6 py-3 rounded-xl text-gray-700 hover:bg-gray-100 font-medium transition-all duration-300 whitespace-nowrap"
+                    id="expiring-tab">
+                    <i class="fas fa-clock mr-2"></i>Expiring Soon
+                </button>
+                <button
+                    class="px-6 py-3 rounded-xl text-gray-700 hover:bg-gray-100 font-medium transition-all duration-300 whitespace-nowrap"
+                    id="archived-tab">
+                    <i class="fas fa-archive mr-2"></i>Archived
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <section class="section-spacing">
+        <div class="container mx-auto px-4">
+            <!-- Saved Jobs Section -->
+            <div id="saved-jobs-section">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Your Saved Jobs</h2>
+                        <p class="text-gray-600">Jobs you've saved for later</p>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <div class="flex items-center space-x-3">
+                            <div class="text-sm text-gray-700">
+                                <i class="fas fa-filter mr-1"></i> Filter by:
+                            </div>
+                            <select
+                                class="border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-purple-500">
+                                <option>Recently Saved</option>
+                                <option>Expiring Soon</option>
+                                <option>Highest Salary</option>
+                                <option>Most Relevant</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty State (hidden by default) -->
+                <div id="empty-state" class="hidden">
+                    <div class="empty-state rounded-2xl p-12 text-center">
+                        <div
+                            class="w-24 h-24 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="far fa-bookmark text-gray-400 text-4xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">No Saved Jobs Yet</h3>
+                        <p class="text-gray-600 max-w-md mx-auto mb-8">Start saving jobs that interest you by clicking
+                            the bookmark icon on any job listing.</p>
+                        <a href="all-jobs.html"
+                            class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-8 rounded-lg transition duration-300 inline-block">
+                            <i class="fas fa-search mr-2"></i>Browse Jobs
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Saved Jobs Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8" id="saved-jobs-container">
+                    <!-- Job Card 1 -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 job-card-hover fade-in"
+                        data-job-id="1" data-applied="false" data-expiring="true">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mr-4">
+                                    <span class="text-white font-bold">T</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800">Senior Frontend Developer</h3>
+                                    <p class="text-gray-600">TechCorp Inc.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span
+                                        class="bg-yellow-100 text-yellow-800 text-xs font-medium px-3 py-1 rounded-full">Expiring
+                                        in 2 days</span>
+                                    <button class="saved-icon">
+                                        <i class="fas fa-bookmark text-lg"></i>
+                                    </button>
+                                </div>
+                                <span class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i>Saved 3 days
+                                    ago</span>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-700 mb-4 line-clamp-2">Looking for an experienced frontend developer to join
+                            our team working on cutting-edge web applications.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-blue-50 text-blue-700 text-sm px-3 py-1 rounded">React</span>
+                            <span class="bg-blue-50 text-blue-700 text-sm px-3 py-1 rounded">TypeScript</span>
+                            <span class="bg-blue-50 text-blue-700 text-sm px-3 py-1 rounded">Tailwind</span>
+                        </div>
+
+                        <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+                            <div>
+                                <span class="text-gray-800 font-bold">₹12L - ₹18L</span>
+                                <span class="text-gray-600 text-sm ml-2">/ year</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button
+                                    class="border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition duration-300 view-job-btn">
+                                    View Details
+                                </button>
+                                <button
+                                    class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 apply-job-btn">
+                                    Apply Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Card 2 -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 job-card-hover fade-in"
+                        data-job-id="2" data-applied="true" data-expiring="false">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-lg flex items-center justify-center mr-4">
+                                    <span class="text-white font-bold">M</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800">Marketing Manager</h3>
+                                    <p class="text-gray-600">MarketGrow Solutions</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span
+                                        class="applied-badge text-white text-xs font-medium px-3 py-1 rounded-full">Applied</span>
+                                    <button class="saved-icon">
+                                        <i class="fas fa-bookmark text-lg"></i>
+                                    </button>
+                                </div>
+                                <span class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i>Saved 1 week
+                                    ago</span>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-700 mb-4 line-clamp-2">Lead our marketing team to develop and execute
+                            strategies that drive growth and brand awareness.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-green-50 text-green-700 text-sm px-3 py-1 rounded">Digital Marketing</span>
+                            <span class="bg-green-50 text-green-700 text-sm px-3 py-1 rounded">SEO/SEM</span>
+                            <span class="bg-green-50 text-green-700 text-sm px-3 py-1 rounded">Team Management</span>
+                        </div>
+
+                        <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+                            <div>
+                                <span class="text-gray-800 font-bold">₹10L - ₹15L</span>
+                                <span class="text-gray-600 text-sm ml-2">/ year</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button
+                                    class="border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition duration-300 view-job-btn">
+                                    View Details
+                                </button>
+                                <button
+                                    class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300"
+                                    disabled>
+                                    <i class="fas fa-check mr-1"></i>Applied
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Card 3 -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 job-card-hover fade-in"
+                        data-job-id="3" data-applied="false" data-expiring="false">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mr-4">
+                                    <span class="text-white font-bold">D</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800">UI/UX Designer</h3>
+                                    <p class="text-gray-600">CreativeStudio</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span
+                                        class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">Remote</span>
+                                    <button class="saved-icon">
+                                        <i class="fas fa-bookmark text-lg"></i>
+                                    </button>
+                                </div>
+                                <span class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i>Saved 2 days
+                                    ago</span>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-700 mb-4 line-clamp-2">Design intuitive and beautiful user experiences for
+                            our suite of digital products.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-purple-50 text-purple-700 text-sm px-3 py-1 rounded">Figma</span>
+                            <span class="bg-purple-50 text-purple-700 text-sm px-3 py-1 rounded">User Research</span>
+                            <span class="bg-purple-50 text-purple-700 text-sm px-3 py-1 rounded">Prototyping</span>
+                        </div>
+
+                        <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+                            <div>
+                                <span class="text-gray-800 font-bold">₹8L - ₹12L</span>
+                                <span class="text-gray-600 text-sm ml-2">/ year</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button
+                                    class="border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition duration-300 view-job-btn">
+                                    View Details
+                                </button>
+                                <button
+                                    class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 apply-job-btn">
+                                    Apply Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Card 4 -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 job-card-hover fade-in"
+                        data-job-id="4" data-applied="true" data-expiring="true">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center mr-4">
+                                    <span class="text-white font-bold">D</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800">Data Scientist</h3>
+                                    <p class="text-gray-600">DataInsights Inc.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span
+                                        class="applied-badge text-white text-xs font-medium px-3 py-1 rounded-full">Applied</span>
+                                    <span
+                                        class="bg-yellow-100 text-yellow-800 text-xs font-medium px-3 py-1 rounded-full">Expiring
+                                        tomorrow</span>
+                                    <button class="saved-icon">
+                                        <i class="fas fa-bookmark text-lg"></i>
+                                    </button>
+                                </div>
+                                <span class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i>Saved 2
+                                    weeks ago</span>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-700 mb-4 line-clamp-2">Work with large datasets to extract insights and
+                            build predictive models for business optimization.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-yellow-50 text-yellow-700 text-sm px-3 py-1 rounded">Python</span>
+                            <span class="bg-yellow-50 text-yellow-700 text-sm px-3 py-1 rounded">Machine Learning</span>
+                            <span class="bg-yellow-50 text-yellow-700 text-sm px-3 py-1 rounded">SQL</span>
+                        </div>
+
+                        <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+                            <div>
+                                <span class="text-gray-800 font-bold">₹15L - ₹22L</span>
+                                <span class="text-gray-600 text-sm ml-2">/ year</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button
+                                    class="border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition duration-300 view-job-btn">
+                                    View Details
+                                </button>
+                                <button
+                                    class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300"
+                                    disabled>
+                                    <i class="fas fa-check mr-1"></i>Applied
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Card 5 -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 job-card-hover fade-in"
+                        data-job-id="5" data-applied="false" data-expiring="false">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-r from-red-500 to-pink-500 rounded-lg flex items-center justify-center mr-4">
+                                    <span class="text-white font-bold">C</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800">Content Strategist</h3>
+                                    <p class="text-gray-600">ContentWorks Agency</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span
+                                        class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">Remote</span>
+                                    <button class="saved-icon">
+                                        <i class="fas fa-bookmark text-lg"></i>
+                                    </button>
+                                </div>
+                                <span class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i>Saved 5 days
+                                    ago</span>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-700 mb-4 line-clamp-2">Develop and execute content strategies for leading
+                            brands across multiple digital platforms.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-red-50 text-red-700 text-sm px-3 py-1 rounded">Content Strategy</span>
+                            <span class="bg-red-50 text-red-700 text-sm px-3 py-1 rounded">SEO Writing</span>
+                            <span class="bg-red-50 text-red-700 text-sm px-3 py-1 rounded">Social Media</span>
+                        </div>
+
+                        <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+                            <div>
+                                <span class="text-gray-800 font-bold">₹6L - ₹9L</span>
+                                <span class="text-gray-600 text-sm ml-2">/ year</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button
+                                    class="border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition duration-300 view-job-btn">
+                                    View Details
+                                </button>
+                                <button
+                                    class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 apply-job-btn">
+                                    Apply Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Card 6 -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 job-card-hover fade-in"
+                        data-job-id="6" data-applied="true" data-expiring="false">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center mr-4">
+                                    <span class="text-white font-bold">P</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800">Product Manager</h3>
+                                    <p class="text-gray-600">ProductLabs</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span
+                                        class="applied-badge text-white text-xs font-medium px-3 py-1 rounded-full">Applied</span>
+                                    <button class="saved-icon">
+                                        <i class="fas fa-bookmark text-lg"></i>
+                                    </button>
+                                </div>
+                                <span class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i>Saved 3
+                                    weeks ago</span>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-700 mb-4 line-clamp-2">Lead product development from conception to launch,
+                            working with engineering and design teams.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-indigo-50 text-indigo-700 text-sm px-3 py-1 rounded">Product Strategy</span>
+                            <span class="bg-indigo-50 text-indigo-700 text-sm px-3 py-1 rounded">Agile</span>
+                            <span class="bg-indigo-50 text-indigo-700 text-sm px-3 py-1 rounded">User Research</span>
+                        </div>
+
+                        <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+                            <div>
+                                <span class="text-gray-800 font-bold">₹18L - ₹25L</span>
+                                <span class="text-gray-600 text-sm ml-2">/ year</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button
+                                    class="border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition duration-300 view-job-btn">
+                                    View Details
+                                </button>
+                                <button
+                                    class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300"
+                                    disabled>
+                                    <i class="fas fa-check mr-1"></i>Applied
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Load More -->
+                <div class="text-center">
+                    <button
+                        class="border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white font-medium py-3 px-8 rounded-lg transition duration-300"
+                        id="load-more-btn">
+                        <i class="fas fa-plus-circle mr-2"></i>Load More Saved Jobs
+                    </button>
+                </div>
+            </div>
+
+            <!-- Applied Jobs Section (hidden by default) -->
+            <div id="applied-jobs-section" class="hidden">
+                <!-- Applied jobs will be filtered and shown here -->
+            </div>
+
+            <!-- Expiring Soon Section (hidden by default) -->
+            <div id="expiring-section" class="hidden">
+                <!-- Expiring jobs will be filtered and shown here -->
+            </div>
+
+            <!-- Archived Section (hidden by default) -->
+            <div id="archived-section" class="hidden">
+                <!-- Archived jobs will be shown here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-gray-50 py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Need Help With Your Applications?</h2>
+                <p class="text-lg text-gray-600 mb-8">Our career experts can review your resume and provide personalized
+                    advice to improve your chances.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#"
+                        class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-8 rounded-lg transition duration-300">
+                        <i class="fas fa-user-tie mr-2"></i>Career Coaching
+                    </a>
+                    <a href="#"
+                        class="border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white font-medium py-3 px-8 rounded-lg transition duration-300">
+                        <i class="fas fa-file-alt mr-2"></i>Resume Review
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="hero-gradient w-10 h-10 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">क</span>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold">Kaam Yeta Hai</h2>
+                            <p class="text-xs text-gray-400 -mt-1">Career. Connected.</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6 text-sm">India's fastest growing job portal connecting top talent with
+                        leading companies.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white text-sm">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white text-sm">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white text-sm">Contact</a></li>
+                        <li><a href="all-jobs.html" class="text-gray-400 hover:text-white text-sm">All Jobs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Saved Jobs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Resources</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Career Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Resume Tips</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Interview Guide</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Salary Insights</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Help Center</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Contact Info</h3>
+                    <ul class="space-y-3">
+                        <li class="text-gray-400 text-sm">contact@kaamyetahai.com</li>
+                        <li class="text-gray-400 text-sm">1800-123-4567</li>
+                        <li class="text-gray-400 text-sm">Mumbai, India</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-400 text-sm">&copy; 2023 Kaam Yeta Hai. All rights reserved.</p>
+                <div class="flex justify-center space-x-6 mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize counters
+        let savedCount = 8;
+        let appliedCount = 3;
+        let expiringCount = 2;
+
+        // Update counter display
+        function updateCounters() {
+            document.getElementById('saved-count').textContent = savedCount;
+            document.getElementById('applied-count').textContent = appliedCount;
+            document.getElementById('expiring-count').textContent = expiringCount;
+        }
+
+        // Job Card Hover Effects
+        document.querySelectorAll('.job-card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '';
+            });
+        });
+
+        // Remove saved job
+        document.querySelectorAll('.saved-icon').forEach(icon => {
+            icon.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const jobCard = this.closest('.job-card-hover');
+                const jobId = jobCard.getAttribute('data-job-id');
+                const isApplied = jobCard.getAttribute('data-applied') === 'true';
+                const isExpiring = jobCard.getAttribute('data-expiring') === 'true';
+
+                // Confirm removal
+                if (confirm('Remove this job from your saved list?')) {
+                    // Remove job card with animation
+                    jobCard.style.opacity = '0';
+                    jobCard.style.transform = 'translateX(100px)';
+
+                    setTimeout(() => {
+                        jobCard.remove();
+                        savedCount--;
+
+                        // Update counts
+                        if (isApplied) appliedCount--;
+                        if (isExpiring) expiringCount--;
+
+                        updateCounters();
+
+                        // Show empty state if no saved jobs
+                        if (savedCount === 0) {
+                            document.getElementById('saved-jobs-container').classList.add('hidden');
+                            document.getElementById('empty-state').classList.remove('hidden');
+                        }
+                    }, 300);
+                }
+            });
+        });
+
+        // Apply to job
+        document.querySelectorAll('.apply-job-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const jobCard = this.closest('.job-card-hover');
+                const jobId = jobCard.getAttribute('data-job-id');
+                const jobTitle = jobCard.querySelector('h3').textContent;
+
+                // Change button to "Applied"
+                this.innerHTML = '<i class="fas fa-check mr-1"></i>Applied';
+                this.classList.remove('bg-purple-600', 'hover:bg-purple-700');
+                this.classList.add('bg-green-600', 'hover:bg-green-700');
+                this.disabled = true;
+
+                // Update job card data attribute
+                jobCard.setAttribute('data-applied', 'true');
+
+                // Add applied badge
+                const badgeContainer = jobCard.querySelector('.flex.items-center.space-x-2.mb-2');
+                const appliedBadge = document.createElement('span');
+                appliedBadge.className = 'applied-badge text-white text-xs font-medium px-3 py-1 rounded-full';
+                appliedBadge.textContent = 'Applied';
+                badgeContainer.insertBefore(appliedBadge, badgeContainer.firstChild);
+
+                // Update counters
+                appliedCount++;
+                updateCounters();
+
+                // Show success message
+                const successMsg = document.createElement('div');
+                successMsg.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg shadow-lg z-50 fade-in';
+                successMsg.innerHTML = `
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span>Successfully applied to "${jobTitle}"</span>
+                    </div>
+                `;
+                document.body.appendChild(successMsg);
+
+                setTimeout(() => {
+                    successMsg.remove();
+                }, 3000);
+            });
+        });
+
+        // View job details
+        document.querySelectorAll('.view-job-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const jobCard = this.closest('.job-card-hover');
+                const jobId = jobCard.getAttribute('data-job-id');
+                const jobTitle = jobCard.querySelector('h3').textContent;
+                alert(`Viewing details for: ${jobTitle}\nJob ID: ${jobId}\n\nIn a real application, this would redirect to the job detail page.`);
+            });
+        });
+
+        // Tab switching functionality
+        const tabs = document.querySelectorAll('.sticky-tabs button');
+        const sections = {
+            'saved-jobs-section': document.getElementById('saved-jobs-section'),
+            'applied-jobs-section': document.getElementById('applied-jobs-section'),
+            'expiring-section': document.getElementById('expiring-section'),
+            'archived-section': document.getElementById('archived-section')
+        };
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function () {
+                // Update active tab
+                tabs.forEach(t => {
+                    t.classList.remove('tab-active');
+                    t.classList.add('text-gray-700', 'hover:bg-gray-100');
+                });
+
+                this.classList.remove('text-gray-700', 'hover:bg-gray-100');
+                this.classList.add('tab-active');
+
+                // Show appropriate section
+                Object.values(sections).forEach(section => {
+                    section.classList.add('hidden');
+                });
+
+                if (this.id === 'applied-tab') {
+                    filterAppliedJobs();
+                } else if (this.id === 'expiring-tab') {
+                    filterExpiringJobs();
+                } else if (this.id === 'archived-tab') {
+                    showArchivedJobs();
+                } else {
+                    sections['saved-jobs-section'].classList.remove('hidden');
+                }
+            });
+        });
+
+        // Filter and show applied jobs
+        function filterAppliedJobs() {
+            const appliedSection = document.getElementById('applied-jobs-section');
+            const appliedJobs = document.querySelectorAll('.job-card-hover[data-applied="true"]');
+
+            if (appliedJobs.length === 0) {
+                appliedSection.innerHTML = `
+                    <div class="empty-state rounded-2xl p-12 text-center">
+                        <div class="w-24 h-24 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-paper-plane text-gray-400 text-4xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">No Applied Jobs</h3>
+                        <p class="text-gray-600 max-w-md mx-auto mb-8">You haven't applied to any saved jobs yet. Start applying to turn your saved opportunities into real applications.</p>
+                        <button class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-8 rounded-lg transition duration-300" id="browse-to-apply">
+                            Browse Jobs to Apply
+                        </button>
+                    </div>
+                `;
+            } else {
+                let appliedHTML = `
+                    <div class="mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Applied Jobs</h2>
+                        <p class="text-gray-600">Jobs you've already applied to</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                `;
+
+                appliedJobs.forEach(job => {
+                    appliedHTML += job.outerHTML;
+                });
+
+                appliedHTML += '</div>';
+                appliedSection.innerHTML = appliedHTML;
+            }
+
+            appliedSection.classList.remove('hidden');
+        }
+
+        // Filter and show expiring jobs
+        function filterExpiringJobs() {
+            const expiringSection = document.getElementById('expiring-section');
+            const expiringJobs = document.querySelectorAll('.job-card-hover[data-expiring="true"]');
+
+            if (expiringJobs.length === 0) {
+                expiringSection.innerHTML = `
+                    <div class="empty-state rounded-2xl p-12 text-center">
+                        <div class="w-24 h-24 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-clock text-gray-400 text-4xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">No Jobs Expiring Soon</h3>
+                        <p class="text-gray-600 max-w-md mx-auto mb-8">Great! None of your saved jobs are expiring soon. Keep an eye on application deadlines.</p>
+                        <button class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-8 rounded-lg transition duration-300" id="view-all-saved">
+                            View All Saved Jobs
+                        </button>
+                    </div>
+                `;
+            } else {
+                let expiringHTML = `
+                    <div class="mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Jobs Expiring Soon</h2>
+                        <p class="text-gray-600">Apply before these opportunities expire</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                `;
+
+                expiringJobs.forEach(job => {
+                    expiringHTML += job.outerHTML;
+                });
+
+                expiringHTML += '</div>';
+                expiringSection.innerHTML = expiringHTML;
+            }
+
+            expiringSection.classList.remove('hidden');
+        }
+
+        // Show archived jobs
+        function showArchivedJobs() {
+            const archivedSection = document.getElementById('archived-section');
+            archivedSection.innerHTML = `
+                <div class="empty-state rounded-2xl p-12 text-center">
+                    <div class="w-24 h-24 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-archive text-gray-400 text-4xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">No Archived Jobs</h3>
+                    <p class="text-gray-600 max-w-md mx-auto mb-8">You haven't archived any jobs yet. Archive jobs you're no longer interested in to keep your saved list organized.</p>
+                    <button class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-8 rounded-lg transition duration-300" id="view-saved-jobs">
+                        View Saved Jobs
+                    </button>
+                </div>
+            `;
+            archivedSection.classList.remove('hidden');
+        }
+
+        // Apply to all jobs
+        document.getElementById('apply-all-btn').addEventListener('click', function () {
+            const notAppliedJobs = document.querySelectorAll('.apply-job-btn:not(:disabled)');
+
+            if (notAppliedJobs.length === 0) {
+                alert('You have already applied to all saved jobs!');
+                return;
+            }
+
+            if (confirm(`Apply to ${notAppliedJobs.length} saved jobs?`)) {
+                notAppliedJobs.forEach(button => {
+                    button.click();
+                });
+
+                // Update button text temporarily
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check mr-2"></i>Applied to All';
+                this.disabled = true;
+
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }, 3000);
+            }
+        });
+
+        // Share jobs list
+        document.getElementById('share-jobs-btn').addEventListener('click', function () {
+            const shareUrl = window.location.href;
+            const shareText = `Check out my saved jobs on Kaam Yeta Hai! I have ${savedCount} jobs saved, including ${appliedCount} applications.`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Saved Jobs - Kaam Yeta Hai',
+                    text: shareText,
+                    url: shareUrl,
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const tempInput = document.createElement('input');
+                tempInput.value = `${shareText} ${shareUrl}`;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+
+                alert('Job list link copied to clipboard!');
+            }
+        });
+
+        // Load more jobs
+        document.getElementById('load-more-btn').addEventListener('click', function () {
+            // Simulate loading more jobs
+            const loadingText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Loading...';
+            this.disabled = true;
+
+            setTimeout(() => {
+                // In a real app, this would load more jobs from an API
+                alert('In a real application, this would load more saved jobs from the server.');
+                this.innerHTML = loadingText;
+                this.disabled = false;
+            }, 1500);
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCounters();
+
+            // Add animation to job cards
+            document.querySelectorAll('.fade-in').forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+
+</html>

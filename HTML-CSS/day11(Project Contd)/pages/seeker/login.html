@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Kaam Yeta Hai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#8b5cf6',
+                        dark: '#1f2937',
+                        light: '#f8fafc'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+          .stats-gradient {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen flex items-center justify-center p-4">
+
+    <div class="max-w-5xl w-full">
+        <!-- Header -->
+        <div class="text-center mb-10 animate-fade-in">
+            <div class="inline-flex items-center space-x-3 mb-4">
+                <div class="stats-gradient w-12 h-12 rounded-xl flex items-center justify-center shadow-lg">
+                    <span class="text-white font-bold text-2xl">का</span>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-800">Kaam Yeta Hai</h1>
+                    <p class="text-xs text-gray-600 -mt-1">Career. Connected.</p>
+                </div>
+            </div>
+            <p class="text-gray-600">Professional career platform connecting talent with opportunities</p>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Left Panel - Simple & Clean -->
+            <div class="lg:w-2/5">
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <h2 class="text-2xl font-bold text-dark mb-6">Why Join JobConnect?</h2>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-bolt text-primary text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-dark mb-1">Fast Hiring Process</h3>
+                                <p class="text-gray-600 text-sm">Average hire time of 14 days</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-shield-alt text-secondary text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-dark mb-1">Verified Companies</h3>
+                                <p class="text-gray-600 text-sm">All employers are background-checked</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-chart-line text-green-600 text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-dark mb-1">Career Growth</h3>
+                                <p class="text-gray-600 text-sm">Access to learning resources and mentorship</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-gray-600">Active Job Postings</span>
+                            <span class="font-semibold text-dark">12,458</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Companies Hiring</span>
+                            <span class="font-semibold text-dark">3,247</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="mt-6 flex justify-center space-x-6">
+                    <div class="text-center">
+                        <div
+                            class="w-10 h-10 bg-white rounded-full flex items-center justify-center mx-auto mb-2 shadow-sm">
+                            <i class="fas fa-lock text-green-500"></i>
+                        </div>
+                        <p class="text-xs text-gray-600">Secure Login</p>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="w-10 h-10 bg-white rounded-full flex items-center justify-center mx-auto mb-2 shadow-sm">
+                            <i class="fas fa-user-shield text-blue-500"></i>
+                        </div>
+                        <p class="text-xs text-gray-600">Privacy First</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Login Form -->
+            <div class="lg:w-3/5">
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <!-- Login Tabs -->
+                    <div class="flex mb-8">
+                        <button id="seekerTab"
+                            class="flex-1 py-3 px-4 text-center font-medium border-b-2 border-primary text-primary transition-all">
+                            <i class="fas fa-user-tie mr-2"></i>Job Seeker
+                        </button>
+                        <button id="employerTab"
+                            class="flex-1 py-3 px-4 text-center font-medium border-b-2 border-gray-200 text-gray-600 hover:text-dark transition-all">
+                            <i class="fas fa-building mr-2"></i>Employer
+                        </button>
+                    </div>
+
+                    <!-- Job Seeker Form -->
+                    <form id="seekerForm" class="space-y-6 animate-slide-up">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Email Address
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-envelope text-gray-400"></i>
+                                </div>
+                                <input type="email"
+                                    class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                                    placeholder="your.email@example.com" required>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Password
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-lock text-gray-400"></i>
+                                </div>
+                                <input id="seekerPassword" type="password"
+                                    class="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                                    placeholder="Enter your password" required>
+                                <button type="button" id="toggleSeekerPassword"
+                                    class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                    <i class="fas fa-eye text-gray-400 hover:text-gray-600"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input id="remember" type="checkbox"
+                                    class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                <label for="remember" class="ml-2 text-sm text-gray-700">
+                                    Remember me
+                                </label>
+                            </div>
+                            <a href="#" class="text-sm text-primary hover:text-secondary font-medium">
+                                Forgot password?
+                            </a>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-gradient-to-r from-primary to-secondary text-white font-semibold py-3.5 px-4 rounded-lg hover:shadow-lg transition-all duration-300">
+                            <i class="fas fa-sign-in-alt mr-2"></i>Sign In as Job Seeker
+                        </button>
+
+                        <div class="relative my-6">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-gray-300"></div>
+                            </div>
+                            <div class="relative flex justify-center text-sm">
+                                <span class="px-4 bg-white text-gray-500">Or continue with</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <button type="button"
+                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                                <i class="fab fa-google text-red-500 mr-3"></i>
+                                <span>Google</span>
+                            </button>
+                            <button type="button"
+                                class="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                                <i class="fab fa-linkedin text-blue-600 mr-3"></i>
+                                <span>LinkedIn</span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Employer Form (Hidden) -->
+                    <form id="employerForm" class="space-y-6 hidden animate-slide-up">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Company Email
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-building text-gray-400"></i>
+                                </div>
+                                <input type="email"
+                                    class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                                    placeholder="admin@company.com" required>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Password
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-lock text-gray-400"></i>
+                                </div>
+                                <input id="employerPassword" type="password"
+                                    class="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                                    placeholder="Enter your password" required>
+                                <button type="button" id="toggleEmployerPassword"
+                                    class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                    <i class="fas fa-eye text-gray-400 hover:text-gray-600"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input id="rememberEmployer" type="checkbox"
+                                    class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                <label for="rememberEmployer" class="ml-2 text-sm text-gray-700">
+                                    Keep me logged in
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-gradient-to-r from-primary to-secondary text-white font-semibold py-3.5 px-4 rounded-lg hover:shadow-lg transition-all duration-300">
+                            <i class="fas fa-sign-in-alt mr-2"></i>Access Employer Dashboard
+                        </button>
+
+                        <div class="text-center">
+                            <a href="#"
+                                class="text-sm text-primary hover:text-secondary font-medium inline-flex items-center">
+                                <i class="fas fa-question-circle mr-2"></i> Employer support
+                            </a>
+                        </div>
+                    </form>
+
+                    <!-- Sign Up Link -->
+                    <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+                        <p class="text-gray-600">
+                            Don't have an account?
+                            <a href="#" class="text-primary hover:text-secondary font-semibold ml-1">
+                                Sign up now
+                            </a>
+                        </p>
+                        <p class="text-xs text-gray-500 mt-3">
+                            By signing in, you agree to our
+                            <a href="#" class="text-primary">Terms</a> and
+                            <a href="#" class="text-primary">Privacy Policy</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-8 text-center text-sm text-gray-500">
+            <p>© 2024 JobConnect. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching
+        const seekerTab = document.getElementById('seekerTab');
+        const employerTab = document.getElementById('employerTab');
+        const seekerForm = document.getElementById('seekerForm');
+        const employerForm = document.getElementById('employerForm');
+
+        seekerTab.addEventListener('click', () => {
+            seekerTab.classList.add('border-primary', 'text-primary');
+            seekerTab.classList.remove('border-gray-200', 'text-gray-600');
+            employerTab.classList.remove('border-primary', 'text-primary');
+            employerTab.classList.add('border-gray-200', 'text-gray-600');
+            seekerForm.classList.remove('hidden');
+            employerForm.classList.add('hidden');
+        });
+
+        employerTab.addEventListener('click', () => {
+            employerTab.classList.add('border-primary', 'text-primary');
+            employerTab.classList.remove('border-gray-200', 'text-gray-600');
+            seekerTab.classList.remove('border-primary', 'text-primary');
+            seekerTab.classList.add('border-gray-200', 'text-gray-600');
+            employerForm.classList.remove('hidden');
+            seekerForm.classList.add('hidden');
+        });
+
+        // Password visibility toggle
+        const toggleSeekerPassword = document.getElementById('toggleSeekerPassword');
+        const seekerPassword = document.getElementById('seekerPassword');
+        const toggleEmployerPassword = document.getElementById('toggleEmployerPassword');
+        const employerPassword = document.getElementById('employerPassword');
+
+        toggleSeekerPassword.addEventListener('click', () => {
+            const type = seekerPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+            seekerPassword.setAttribute('type', type);
+            toggleSeekerPassword.innerHTML = type === 'password' ?
+                '<i class="fas fa-eye text-gray-400 hover:text-gray-600"></i>' :
+                '<i class="fas fa-eye-slash text-gray-400 hover:text-gray-600"></i>';
+        });
+
+        toggleEmployerPassword.addEventListener('click', () => {
+            const type = employerPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+            employerPassword.setAttribute('type', type);
+            toggleEmployerPassword.innerHTML = type === 'password' ?
+                '<i class="fas fa-eye text-gray-400 hover:text-gray-600"></i>' :
+                '<i class="fas fa-eye-slash text-gray-400 hover:text-gray-600"></i>';
+        });
+
+        // Form submission with loading states
+        seekerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const submitBtn = seekerForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            // Show loading
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Signing in...';
+            submitBtn.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                // Success
+                submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Success! Redirecting...';
+                submitBtn.classList.add('bg-green-500', 'from-green-500', 'to-green-600');
+
+                // In real app, redirect here
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('bg-green-500', 'from-green-500', 'to-green-600');
+                }, 2000);
+            }, 1500);
+        });
+
+        employerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const submitBtn = employerForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            // Show loading
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Accessing...';
+            submitBtn.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                // Success
+                submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Access granted!';
+                submitBtn.classList.add('bg-green-500', 'from-green-500', 'to-green-600');
+
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('bg-green-500', 'from-green-500', 'to-green-600');
+                }, 2000);
+            }, 1500);
+        });
+
+        // Simple validation on blur
+        document.querySelectorAll('input[type="email"]').forEach(input => {
+            input.addEventListener('blur', (e) => {
+                const email = e.target.value;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (email && !emailRegex.test(email)) {
+                    e.target.classList.add('border-red-500');
+                    e.target.classList.remove('border-gray-300');
+                } else {
+                    e.target.classList.remove('border-red-500');
+                    e.target.classList.add('border-gray-300');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

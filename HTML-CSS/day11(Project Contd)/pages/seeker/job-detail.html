@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Frontend Developer - TechCorp Inc. | Kaam Yeta Hai</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .section-spacing {
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        .job-sidebar {
+            position: sticky;
+            top: 100px;
+        }
+
+        .apply-btn-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+            }
+        }
+
+        .tab-active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .company-gradient {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .skill-tag {
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        @media (max-width: 768px) {
+            .section-spacing {
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+
+            .job-sidebar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Breadcrumb -->
+    <div class="bg-white border-b border-gray-200 py-3">
+        <div class="container mx-auto px-4">
+            <nav class="flex text-sm" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="index.html" class="inline-flex items-center text-gray-600 hover:text-purple-600">
+                            <i class="fas fa-home mr-2"></i> Home
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                            <a href="all-jobs.html" class="ml-1 text-gray-600 hover:text-purple-600 md:ml-2">All
+                                Jobs</a>
+                        </div>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                            <span class="ml-1 text-gray-500 md:ml-2">Job Details</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Job Hero Section -->
+    <section class="hero-gradient text-white py-8 md:py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center">
+                <div class="lg:w-2/3 mb-6 lg:mb-0">
+                    <!-- Job Title & Company -->
+                    <div class="flex items-start mb-4">
+                        <div class="w-16 h-16 bg-white rounded-xl flex items-center justify-center mr-4 shadow-lg">
+                            <span class="text-purple-600 font-bold text-2xl">T</span>
+                        </div>
+                        <div>
+                            <h1 class="text-3xl md:text-4xl font-bold mb-2">Senior Frontend Developer</h1>
+                            <div class="flex flex-wrap items-center gap-3">
+                                <p class="text-lg opacity-90">TechCorp Inc.</p>
+                                <span class="bg-white bg-opacity-20 rounded-full px-3 py-1 text-sm">Verified
+                                    Company</span>
+                                <span
+                                    class="bg-green-300 bg-opacity-20 text-green-300 rounded-full px-3 py-1 text-sm">4.2
+                                    ★ Rating</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Details -->
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2 opacity-80"></i>
+                            <span>Remote / Mumbai, India</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-briefcase mr-2 opacity-80"></i>
+                            <span>Full-time</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-clock mr-2 opacity-80"></i>
+                            <span>Posted 2 days ago</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-calendar-alt mr-2 opacity-80"></i>
+                            <span>Apply before: Dec 30, 2023</span>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="flex flex-wrap gap-3">
+                        <button
+                            class="bg-white text-purple-600 hover:bg-gray-100 font-medium py-2 px-5 rounded-lg transition duration-300"
+                            id="save-job-btn">
+                            <i class="far fa-bookmark mr-2"></i> Save Job
+                        </button>
+                        <button
+                            class="bg-transparent border-2 border-white hover:bg-white hover:bg-opacity-10 font-medium py-2 px-5 rounded-lg transition duration-300"
+                            id="share-job-btn">
+                            <i class="fas fa-share-alt mr-2"></i> Share
+                        </button>
+                        <button
+                            class="bg-transparent border-2 border-white hover:bg-white hover:bg-opacity-10 font-medium py-2 px-5 rounded-lg transition duration-300">
+                            <i class="fas fa-flag mr-2"></i> Report
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Salary & Quick Apply -->
+                <div class="lg:w-1/3 bg-white rounded-xl p-6 shadow-lg text-gray-800 fade-in">
+                    <div class="text-center mb-6">
+                        <div class="text-3xl font-bold text-purple-600 mb-1">₹12L - ₹18L</div>
+                        <p class="text-gray-600">Annual Salary</p>
+                        <p class="text-sm text-gray-500 mt-1">+ Stock Options + Benefits</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Experience Required</span>
+                            <span class="font-medium">3-5 years</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Job Type</span>
+                            <span class="font-medium">Full-time</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Location</span>
+                            <span class="font-medium">Remote</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Vacancies</span>
+                            <span class="font-medium">2 Openings</span>
+                        </div>
+                    </div>
+
+                    <button
+                        class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium py-3 px-6 rounded-lg mt-6 transition duration-300 apply-btn-pulse"
+                        id="quick-apply-btn">
+                        <i class="fas fa-paper-plane mr-2"></i> Quick Apply Now
+                    </button>
+
+                    <p class="text-xs text-gray-500 text-center mt-3">285 people have applied to this job</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="section-spacing">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Left Column: Job Details -->
+                <div class="lg:w-2/3">
+                    <!-- Tabs Navigation -->
+                    <div class="flex border-b border-gray-200 mb-8 overflow-x-auto">
+                        <button class="tab-active px-6 py-3 font-medium transition-all duration-300 whitespace-nowrap"
+                            data-tab="description">
+                            Job Description
+                        </button>
+                        <button
+                            class="px-6 py-3 text-gray-700 hover:text-purple-600 font-medium transition-all duration-300 whitespace-nowrap"
+                            data-tab="requirements">
+                            Requirements
+                        </button>
+                        <button
+                            class="px-6 py-3 text-gray-700 hover:text-purple-600 font-medium transition-all duration-300 whitespace-nowrap"
+                            data-tab="benefits">
+                            Benefits
+                        </button>
+                        <button
+                            class="px-6 py-3 text-gray-700 hover:text-purple-600 font-medium transition-all duration-300 whitespace-nowrap"
+                            data-tab="company">
+                            Company
+                        </button>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div id="tab-content">
+                        <!-- Job Description Tab -->
+                        <div class="tab-pane fade-in" id="description-tab">
+                            <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-6">
+                                <h2 class="text-2xl font-bold text-gray-800 mb-4">Job Description</h2>
+                                <p class="text-gray-700 mb-4">We're looking for a passionate Senior Frontend Developer
+                                    to join our product team at TechCorp. You'll be responsible for building the next
+                                    generation of our web applications, working closely with designers and backend
+                                    engineers to create exceptional user experiences.</p>
+
+                                <h3 class="text-xl font-bold text-gray-800 mb-3 mt-6">Responsibilities</h3>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                        <span class="text-gray-700">Develop and maintain responsive web applications
+                                            using React.js</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                        <span class="text-gray-700">Collaborate with UI/UX designers to implement
+                                            pixel-perfect designs</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                        <span class="text-gray-700">Write clean, maintainable, and efficient code
+                                            following best practices</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                        <span class="text-gray-700">Optimize applications for maximum speed and
+                                            scalability</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt=1 mr-3"></i>
+                                        <span class="text-gray-700">Mentor junior developers and conduct code
+                                            reviews</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mt=1 mr-3"></i>
+                                        <span class="text-gray-700">Stay up-to-date with emerging frontend technologies
+                                            and trends</span>
+                                    </li>
+                                </ul>
+
+                                <h3 class="text-xl font-bold text-gray-800 mb-3">Technologies You'll Work With</h3>
+                                <div class="flex flex-wrap gap-3 mb-6">
+                                    <span
+                                        class="skill-tag bg-blue-50 text-blue-700 font-medium px-4 py-2 rounded-lg">React.js</span>
+                                    <span
+                                        class="skill-tag bg-blue-50 text-blue-700 font-medium px-4 py-2 rounded-lg">TypeScript</span>
+                                    <span
+                                        class="skill-tag bg-blue-50 text-blue-700 font-medium px-4 py-2 rounded-lg">Next.js</span>
+                                    <span
+                                        class="skill-tag bg-blue-50 text-blue-700 font-medium px-4 py-2 rounded-lg">Tailwind
+                                        CSS</span>
+                                    <span
+                                        class="skill-tag bg-blue-50 text-blue-700 font-medium px-4 py-2 rounded-lg">GraphQL</span>
+                                    <span
+                                        class="skill-tag bg-blue-50 text-blue-700 font-medium px-4 py-2 rounded-lg">Jest/Testing
+                                        Library</span>
+                                    <span
+                                        class="skill-tag bg-blue-50 text-blue-700 font-medium px-4 py-2 rounded-lg">Webpack</span>
+                                    <span
+                                        class="skill-tag bg-blue-50 text-blue-700 font-medium px-4 py-2 rounded-lg">Git/GitHub</span>
+                                </div>
+
+                                <h3 class="text-xl font-bold text-gray-800 mb-3">What You'll Build</h3>
+                                <p class="text-gray-700 mb-4">You'll be working on our flagship product used by over
+                                    50,000 businesses worldwide. The platform helps companies streamline their
+                                    operations through intelligent automation and real-time analytics.</p>
+                            </div>
+                        </div>
+
+                        <!-- Requirements Tab (hidden by default) -->
+                        <div class="tab-pane hidden fade-in" id="requirements-tab">
+                            <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-6">
+                                <h2 class="text-2xl font-bold text-gray-800 mb-4">Requirements</h2>
+
+                                <h3 class="text-xl font-bold text-gray-800 mb-3">Must Have</h3>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                        <span class="text-gray-700">3+ years of professional experience with React.js
+                                            and modern JavaScript</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                        <span class="text-gray-700">Strong proficiency in TypeScript and modern ES6+
+                                            features</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                        <span class="text-gray-700">Experience with state management libraries (Redux,
+                                            Zustand, or Context API)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                        <span class="text-gray-700">Solid understanding of responsive design and
+                                            cross-browser compatibility</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                        <span class="text-gray-700">Experience with testing frameworks (Jest, React
+                                            Testing Library, Cypress)</span>
+                                    </li>
+                                </ul>
+
+                                <h3 class="text-xl font-bold text-gray-800 mb-3">Nice to Have</h3>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-plus-circle text-purple-500 mt-1 mr-3"></i>
+                                        <span class="text-gray-700">Experience with Next.js or other SSR
+                                            frameworks</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-plus-circle text-purple-500 mt=1 mr-3"></i>
+                                        <span class="text-gray-700">Knowledge of GraphQL and Apollo Client</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-plus-circle text-purple-500 mt=1 mr-3"></i>
+                                        <span class="text-gray-700">Familiarity with CI/CD pipelines and DevOps
+                                            practices</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-plus-circle text-purple-500 mt=1 mr-3"></i>
+                                        <span class="text-gray-700">Contributions to open-source projects</span>
+                                    </li>
+                                </ul>
+
+                                <h3 class="text-xl font-bold text-gray-800 mb-3">Soft Skills</h3>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-users text-blue-500 mt=1 mr-3"></i>
+                                        <span class="text-gray-700">Excellent communication and collaboration
+                                            skills</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-lightbulb text-yellow-500 mt=1 mr-3"></i>
+                                        <span class="text-gray-700">Problem-solving mindset and attention to
+                                            detail</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-rocket text-red-500 mt=1 mr-3"></i>
+                                        <span class="text-gray-700">Ability to work in a fast-paced agile
+                                            environment</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Benefits Tab (hidden by default) -->
+                        <div class="tab-pane hidden fade-in" id="benefits-tab">
+                            <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-6">
+                                <h2 class="text-2xl font-bold text-gray-800 mb-4">Benefits & Perks</h2>
+
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-5 rounded-xl">
+                                        <div
+                                            class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                                            <i class="fas fa-money-bill-wave text-blue-600 text-xl"></i>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-gray-800 mb-2">Competitive Salary</h3>
+                                        <p class="text-gray-600">Market-competitive salary with annual reviews and
+                                            performance bonuses.</p>
+                                    </div>
+
+                                    <div class="bg-gradient-to-br from-green-50 to-teal-50 p-5 rounded-xl">
+                                        <div
+                                            class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                                            <i class="fas fa-home text-green-600 text-xl"></i>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-gray-800 mb-2">Remote Work</h3>
+                                        <p class="text-gray-600">Flexible remote work options with co-working space
+                                            allowances.</p>
+                                    </div>
+
+                                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-5 rounded-xl">
+                                        <div
+                                            class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                                            <i class="fas fa-heart text-purple-600 text-xl"></i>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-gray-800 mb-2">Health & Wellness</h3>
+                                        <p class="text-gray-600">Comprehensive health insurance for you and your family.
+                                        </p>
+                                    </div>
+
+                                    <div class="bg-gradient-to-br from-yellow-50 to-orange-50 p-5 rounded-xl">
+                                        <div
+                                            class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                                            <i class="fas fa-graduation-cap text-yellow-600 text-xl"></i>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-gray-800 mb-2">Learning Budget</h3>
+                                        <p class="text-gray-600">Annual budget for courses, conferences, and
+                                            professional development.</p>
+                                    </div>
+
+                                    <div class="bg-gradient-to-br from-red-50 to-pink-50 p-5 rounded-xl">
+                                        <div
+                                            class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                                            <i class="fas fa-utensils text-red-600 text-xl"></i>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-gray-800 mb-2">Food & Snacks</h3>
+                                        <p class="text-gray-600">Free lunches, snacks, and beverages when working from
+                                            the office.</p>
+                                    </div>
+
+                                    <div class="bg-gradient-to-br from-indigo-50 to-purple-50 p-5 rounded-xl">
+                                        <div
+                                            class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                                            <i class="fas fa-plane text-indigo-600 text-xl"></i>
+                                        </div>
+                                        <h3 class="text-lg font-bold text-gray-800 mb-2">Paid Time Off</h3>
+                                        <p class="text-gray-600">Generous PTO policy including vacation, sick leave, and
+                                            holidays.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Company Tab (hidden by default) -->
+                        <div class="tab-pane hidden fade-in" id="company-tab">
+                            <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-6">
+                                <div class="flex flex-col md:flex-row items-start md:items-center mb-6">
+                                    <div
+                                        class="w-20 h-20 company-gradient rounded-xl flex items-center justify-center mr-6 mb-4 md:mb-0">
+                                        <span class="text-white font-bold text-3xl">T</span>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-2xl font-bold text-gray-800 mb-2">TechCorp Inc.</h2>
+                                        <div class="flex flex-wrap items-center gap-3">
+                                            <span
+                                                class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">SaaS</span>
+                                            <span
+                                                class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">201-500
+                                                employees</span>
+                                            <span
+                                                class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Founded
+                                                in 2015</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="text-gray-700 mb-6">TechCorp is a leading SaaS company that provides
+                                    innovative solutions for businesses to streamline their operations. Our platform is
+                                    used by over 50,000 companies worldwide to automate workflows, improve
+                                    collaboration, and drive growth.</p>
+
+                                <h3 class="text-xl font-bold text-gray-800 mb-4">Company Culture</h3>
+                                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                    <div class="bg-gray-50 p-4 rounded-lg">
+                                        <h4 class="font-bold text-gray-800 mb-2">🏆 Our Mission</h4>
+                                        <p class="text-gray-600 text-sm">To empower businesses with technology that
+                                            simplifies complexity and drives innovation.</p>
+                                    </div>
+                                    <div class="bg-gray-50 p-4 rounded-lg">
+                                        <h4 class="font-bold text-gray-800 mb-2">🌟 Our Values</h4>
+                                        <p class="text-gray-600 text-sm">Customer-centric, Innovative, Collaborative,
+                                            Transparent, and Impact-driven.</p>
+                                    </div>
+                                </div>
+
+                                <h3 class="text-xl font-bold text-gray-800 mb-4">Recent Recognition</h3>
+                                <div class="flex flex-wrap gap-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-award text-yellow-500 mr-2"></i>
+                                        <span class="text-gray-700">"Best Workplace 2023" - Great Place to Work</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-trophy text-blue-500 mr-2"></i>
+                                        <span class="text-gray-700">"Fastest Growing SaaS Company" - Tech Awards</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Application Process -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-8">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Application Process</h2>
+
+                        <div class="space-y-8">
+                            <!-- Step 1 -->
+                            <div class="flex items-start">
+                                <div
+                                    class="w-10 h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">
+                                    1</div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800 mb-2">Submit Application</h3>
+                                    <p class="text-gray-600 mb-3">Apply through this portal with your resume and
+                                        portfolio. Make sure to highlight relevant experience.</p>
+                                    <div class="text-sm text-gray-500">Estimated time: 10 minutes</div>
+                                </div>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="flex items-start">
+                                <div
+                                    class="w-10 h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">
+                                    2</div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800 mb-2">Screening Call</h3>
+                                    <p class="text-gray-600 mb-3">30-minute video call with our HR team to discuss your
+                                        background and career goals.</p>
+                                    <div class="text-sm text-gray-500">Within 1 week of application</div>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="flex items-start">
+                                <div
+                                    class="w-10 h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">
+                                    3</div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800 mb-2">Technical Assessment</h3>
+                                    <p class="text-gray-600 mb-3">Take-home coding assignment to evaluate your technical
+                                        skills (4-6 hours).</p>
+                                    <div class="text-sm text-gray-500">Within 2 weeks of screening</div>
+                                </div>
+                            </div>
+
+                            <!-- Step 4 -->
+                            <div class="flex items-start">
+                                <div
+                                    class="w-10 h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">
+                                    4</div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800 mb-2">Technical Interview</h3>
+                                    <p class="text-gray-600 mb-3">90-minute video interview with senior engineers
+                                        discussing your assessment and technical concepts.</p>
+                                    <div class="text-sm text-gray-500">Within 3 weeks of assessment</div>
+                                </div>
+                            </div>
+
+                            <!-- Step 5 -->
+                            <div class="flex items-start">
+                                <div
+                                    class="w-10 h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">
+                                    5</div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800 mb-2">Final Interview & Offer</h3>
+                                    <p class="text-gray-600 mb-3">Meet with the hiring manager and discuss final
+                                        details. Offer extended within 48 hours.</p>
+                                    <div class="text-sm text-gray-500">Within 4 weeks of technical interview</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-gray-200">
+                            <h3 class="text-lg font-bold text-gray-800 mb-4">Your Application Progress</h3>
+                            <div class="mb-2">
+                                <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                    <span>Application Status</span>
+                                    <span>Not Applied</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Sidebar -->
+                <div class="lg:w-1/3">
+                    <div class="job-sidebar space-y-6">
+                        <!-- Apply Card -->
+                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">Ready to Apply?</h3>
+                            <button
+                                class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium py-3 px-6 rounded-lg mb-4 transition duration-300 apply-btn-pulse"
+                                id="main-apply-btn">
+                                <i class="fas fa-paper-plane mr-2"></i> Apply Now
+                            </button>
+                            <p class="text-sm text-gray-600 text-center mb-4">or apply with</p>
+                            <div class="grid grid-cols-2 gap-3 mb-6">
+                                <button
+                                    class="border border-gray-300 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition duration-300">
+                                    <i class="fab fa-linkedin mr-2 text-blue-600"></i> LinkedIn
+                                </button>
+                                <button
+                                    class="border border-gray-300 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition duration-300">
+                                    <i class="fas fa-file-pdf mr-2 text-red-600"></i> Resume
+                                </button>
+                            </div>
+                            <div class="text-center">
+                                <a href="#" class="text-purple-600 hover:text-purple-800 font-medium text-sm">
+                                    <i class="fas fa-question-circle mr-1"></i> Need help with application?
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Similar Jobs -->
+                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">Similar Jobs</h3>
+                            <div class="space-y-4">
+                                <!-- Similar Job 1 -->
+                                <div class="flex items-start p-3 hover:bg-gray-50 rounded-lg transition duration-300">
+                                    <div
+                                        class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                                        <span class="text-white font-bold">F</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">Frontend Engineer</h4>
+                                        <p class="text-sm text-gray-600 mb-1">FastGrowth Tech</p>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <i class="fas fa-map-marker-alt mr-1 text-xs"></i>
+                                            <span>Remote • ₹10L-₹15L</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Similar Job 2 -->
+                                <div class="flex items-start p-3 hover:bg-gray-50 rounded-lg transition duration-300">
+                                    <div
+                                        class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                                        <span class="text-white font-bold">R</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">React Developer</h4>
+                                        <p class="text-sm text-gray-600 mb-1">ReactWorks</p>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <i class="fas fa-map-marker-alt mr-1 text-xs"></i>
+                                            <span>Bangalore • ₹8L-₹12L</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Similar Job 3 -->
+                                <div class="flex items-start p-3 hover:bg-gray-50 rounded-lg transition duration-300">
+                                    <div
+                                        class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                                        <span class="text-white font-bold">W</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">Web Developer</h4>
+                                        <p class="text-sm text-gray-600 mb-1">WebCraft Studios</p>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <i class="fas fa-map-marker-alt mr-1 text-xs"></i>
+                                            <span>Remote • ₹6L-₹10L</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="all-jobs.html"
+                                class="block text-center text-purple-600 hover:text-purple-800 font-medium mt-4">
+                                View More Similar Jobs <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Application Modal (hidden by default) -->
+    <div id="application-modal"
+        class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-gray-800">Apply for this Job</h3>
+                    <button id="close-modal" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <form id="application-form">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Full Name</label>
+                            <input type="text"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500"
+                                value="Ankit Sharma" readonly>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Email Address</label>
+                            <input type="email"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500"
+                                value="ankit.sharma@example.com" readonly>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Phone Number</label>
+                            <input type="tel"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500"
+                                placeholder="Enter your phone number">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Cover Letter</label>
+                            <textarea
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500"
+                                rows="4" placeholder="Tell us why you're interested in this position..."></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Resume</label>
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                                <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-3"></i>
+                                <p class="text-gray-600 mb-2">Drop your resume here or click to upload</p>
+                                <p class="text-sm text-gray-500">PDF, DOC, DOCX up to 5MB</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex space-x-3">
+                        <button type="button" id="cancel-apply"
+                            class="flex-1 border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-3 px-6 rounded-lg transition duration-300">
+                            Cancel
+                        </button>
+                        <button type="submit"
+                            class="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium py-3 px-6 rounded-lg transition duration-300">
+                            Submit Application
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab Switching
+        const tabButtons = document.querySelectorAll('[data-tab]');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const tabId = this.getAttribute('data-tab');
+
+                // Update active tab button
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('tab-active');
+                    btn.classList.add('text-gray-700', 'hover:text-purple-600');
+                });
+
+                this.classList.remove('text-gray-700', 'hover:text-purple-600');
+                this.classList.add('tab-active');
+
+                // Show active tab pane
+                tabPanes.forEach(pane => {
+                    pane.classList.add('hidden');
+                    pane.classList.remove('fade-in');
+                });
+
+                const activePane = document.getElementById(`${tabId}-tab`);
+                activePane.classList.remove('hidden');
+                setTimeout(() => {
+                    activePane.classList.add('fade-in');
+                }, 10);
+            });
+        });
+
+        // Save Job Functionality
+        const saveJobBtn = document.getElementById('save-job-btn');
+        let isSaved = false;
+
+        saveJobBtn.addEventListener('click', function () {
+            isSaved = !isSaved;
+
+            if (isSaved) {
+                this.innerHTML = '<i class="fas fa-bookmark mr-2"></i> Saved';
+                this.classList.add('bg-green-100', 'text-green-700');
+                this.classList.remove('bg-white', 'text-purple-600');
+
+                // Show success message
+                showNotification('Job saved to your list!', 'success');
+            } else {
+                this.innerHTML = '<i class="far fa-bookmark mr-2"></i> Save Job';
+                this.classList.remove('bg-green-100', 'text-green-700');
+                this.classList.add('bg-white', 'text-purple-600');
+
+                showNotification('Job removed from saved list.', 'info');
+            }
+        });
+
+        // Share Job Functionality
+        document.getElementById('share-job-btn').addEventListener('click', function () {
+            const jobTitle = 'Senior Frontend Developer at TechCorp';
+            const jobUrl = window.location.href;
+            const shareText = `Check out this job opportunity: ${jobTitle}`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: jobTitle,
+                    text: shareText,
+                    url: jobUrl,
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const tempInput = document.createElement('input');
+                tempInput.value = `${shareText} ${jobUrl}`;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+
+                showNotification('Job link copied to clipboard!', 'success');
+            }
+        });
+
+        // Apply Job Functionality
+        const applyButtons = document.getElementById('quick-apply-btn') || document.getElementById('main-apply-btn');
+
+        function showApplicationModal() {
+            document.getElementById('application-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideApplicationModal() {
+            document.getElementById('application-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Quick Apply
+        document.getElementById('quick-apply-btn')?.addEventListener('click', function () {
+            showApplicationModal();
+        });
+
+        // Main Apply
+        document.getElementById('main-apply-btn')?.addEventListener('click', function () {
+            showApplicationModal();
+        });
+
+        // Close Modal
+        document.getElementById('close-modal').addEventListener('click', hideApplicationModal);
+        document.getElementById('cancel-apply').addEventListener('click', hideApplicationModal);
+
+        // Application Form Submission
+        document.getElementById('application-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Update progress bar
+            const progressFill = document.querySelector('.progress-fill');
+            progressFill.style.width = '100%';
+
+            // Show success message
+            showNotification('Application submitted successfully! You\'ll hear back within 5-7 business days.', 'success');
+
+            // Update apply button
+            const applyBtn = document.getElementById('main-apply-btn');
+            if (applyBtn) {
+                applyBtn.innerHTML = '<i class="fas fa-check mr-2"></i> Applied';
+                applyBtn.classList.remove('apply-btn-pulse', 'from-purple-600', 'to-indigo-600', 'hover:from-purple-700', 'hover:to-indigo-700');
+                applyBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+                applyBtn.disabled = true;
+            }
+
+            // Close modal
+            hideApplicationModal();
+        });
+
+        // Skill tag hover effects
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+            });
+
+            tag.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        // Notification function
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 fade-in ${type === 'success' ? 'bg-green-100 border border-green-400 text-green-700' : 'bg-blue-100 border border-blue-400 text-blue-700'}`;
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-info-circle'} mr-2"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add animation delays to skill tags
+            document.querySelectorAll('.skill-tag').forEach((tag, index) => {
+                tag.style.animationDelay = `${index * 0.05}s`;
+            });
+        });
+    </script>
+</body>
+
+</html>

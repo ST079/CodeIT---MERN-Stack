@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  margin: 2.5rem;
+  padding: 2.5rem;
+  background-color: #f5f5f5;
+  border: 1px solid #adadad;
+  border-radius: 10px;
+}
+
+select,
+textarea,
+input {
+  width: 100%;
+  margin: 0.25rem 0 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #dadada;
+}
+
+label {
+  font-family: sans-serif;
+  color: #4c4d4f;
+  margin-left: 0.15rem;
+}
+
+input[type="radio"] {
+  width: auto;
+}
+
+input[type="checkbox"] {
+  width: auto;
+}
+
+.submit-button {
+  width: auto;
+  background-color: #36705f;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #24624f;
+}

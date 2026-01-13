@@ -3,8 +3,6 @@
  Note :<em> Navigate to individual Day folder for descriptive content. </em>
 </pre>
 
-# Day 1 Of MERN JOURNEY
-
 What we gonna make : https://mern-20250622-frontend-app.vercel.app/
 <br>
 
@@ -31,73 +29,3 @@ What we gonna make : https://mern-20250622-frontend-app.vercel.app/
 6. Git : https://git-scm.com/install/windows
 <hr>
 
-# Day 2 Of MERN JOURNEY
- 
-<h1>Text Formating </h1>
-
-1. Heading Tag (h1 to h6)
-2. Paragraph Tag (p)
-3. strong (bolds the text)
-4. em (something like itallic)
-5. sup
-6. sub
-7. pre (Displays without formating)
-8. br (Breaks into new line)
-9. hr (Creates a horizontal line like a divider)
-
-<h1>Comments</h1>
-<p>Comments are those which are not displayed on the webpage. To Create a comment in HTML, <br> we do :<pre> < !-- your comment --> </pre></p>
-
-<h1>Media and links</h1>
-
-1. Anchor Tag - Creates Hyperlinks.
-2. Image Tag - insert image in the webpage.
-3. Video Tag - insert Video in the webpage
-4. iframe - to embbed another html document
-
-<h1>List</h1>
-
-1. Ordered List
-2. Unordered List
-<hr>
-
-# Day 3 Of MERN JOURNEY
-<pre>task alert!!!!!</pre>
-1. Table Tag
-2. Block/Inline elements
-3. Form Elements
-<h2>Semantics</h2>
-<pre>
-    Semantics in HTML refers to the practice of using HTML elements to convey the 
-    meaning and purpose of the content they enclose
-</pre>
-
-# Day 4 Of MERN JOURNEY
-
-CSS -> Cascading Style Sheet
--> It is the stylesheet that is used to style the HTML document.
-<pre> 
-    Web page styling like color, fonts, positioning, spacing
-
-    Syntax :
-    < selector > {
-    property: value;
-    ....
-    }
-</pre>
-<h2>Learning</h2>
-
-1. Selector
-2. CSS Usage Methods
-3. CSS Properties
-4. box-model: margin, padding, border
-
-# Day 5 Of MERN JOURNEY
-<pre>task alert!!!!!</pre>
-1. display
-2. flex
-3. list
-4. pseudo-class
-5. units
-6. overflow
-7. table

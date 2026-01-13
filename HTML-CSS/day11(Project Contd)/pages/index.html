@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaam Yeta Hai - Your Gateway to Career Success</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        }
+
+        .card-gradient {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .stats-gradient {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .category-gradient {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .floating-animation {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .job-card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .job-card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #667eea;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: #667eea;
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(102, 126, 234, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+            }
+        }
+
+        .scroll-hidden {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .scroll-hidden::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Header/Navigation -->
+    <header class="sticky top-0 z-50 glass-effect shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="stats-gradient w-12 h-12 rounded-xl flex items-center justify-center shadow-lg">
+                        <span class="text-white font-bold text-2xl">का</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">Kaam Yeta Hai</h1>
+                        <p class="text-xs text-gray-600 -mt-1">Career. Connected.</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex space-x-1">
+                    <a href="#"
+                        class="px-5 py-2 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-600 font-medium transition-all duration-300"><i
+                            class="fas fa-home mr-2"></i>Home</a>
+                    <a href="#"
+                        class="px-5 py-2 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-600 font-medium transition-all duration-300"><i
+                            class="fas fa-search mr-2"></i>Find Jobs</a>
+                    <a href="#"
+                        class="px-5 py-2 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-600 font-medium transition-all duration-300"><i
+                            class="fas fa-building mr-2"></i>About Us</a>
+                    <a href="#"
+                        class="px-5 py-2 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-600 font-medium transition-all duration-300"><i
+                            class="fas fa-blog mr-2"></i>Contact</a>
+                    <a href="#"
+                        class="px-5 py-2 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-600 font-medium transition-all duration-300"><i
+                            class="fas fa-graduation-cap mr-2"></i>Saved Jobs</a>
+                </nav>
+
+                <!-- Auth Buttons -->
+                <div class="flex items-center space-x-4">
+                    <a href="#"
+                        class="hidden md:inline-flex items-center text-gray-700 hover:text-purple-600 font-medium">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+                    </a>
+                    <a href="#"
+                        class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        <i class="fas fa-plus-circle mr-2"></i>Post a Job
+                    </a>
+                    <button id="mobile-menu-btn" class="lg:hidden text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation (hidden by default) -->
+            <div id="mobile-menu" class="hidden lg:hidden mt-4 pb-2">
+                <div class="flex flex-col space-y-2">
+                    <a href="#"
+                        class="px-4 py-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-600 font-medium"><i
+                            class="fas fa-home mr-3"></i>Home</a>
+                    <a href="#"
+                        class="px-4 py-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-600 font-medium"><i
+                            class="fas fa-search mr-3"></i>Find Jobs</a>
+                    <a href="#"
+                        class="px-4 py-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-600 font-medium"><i
+                            class="fas fa-building mr-3"></i>Companies</a>
+                    <a href="#"
+                        class="px-4 py-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-600 font-medium"><i
+                            class="fas fa-graduation-cap mr-3"></i>Career Guide</a>
+                    <a href="#"
+                        class="px-4 py-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-600 font-medium"><i
+                            class="fas fa-blog mr-3"></i>Blog</a>
+                    <a href="#"
+                        class="px-4 py-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-600 font-medium"><i
+                            class="fas fa-sign-in-alt mr-3"></i>Sign In</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden relative">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <div class="inline-flex items-center bg-white bg-opacity-20 rounded-full px-4 py-2 mb-6">
+                        <span class="text-sm font-medium"><i class="fas fa-bolt mr-2 text-yellow-300"></i>10,000+ New
+                            Jobs Added This Week</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        Find Your <span class="typewriter text-yellow-300">Dream Job</span> Faster
+                    </h1>
+                    <p class="text-xl mb-8 opacity-90 max-w-2xl">Join thousands who've accelerated their career with our
+                        AI-powered job matching platform. Get personalized opportunities delivered daily.</p>
+
+                    <!-- Advanced Search Box -->
+                    <div class="bg-white rounded-2xl p-2 shadow-2xl flex flex-col md:flex-row mb-8">
+                        <div class="flex-1 p-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-search text-gray-400 ml-3 mr-2"></i>
+                                <input type="text" placeholder="Job title, skills, or keywords"
+                                    class="w-full p-3 text-gray-800 focus:outline-none">
+                            </div>
+                        </div>
+                        <div class="flex-1 p-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-gray-400 ml-3 mr-2"></i>
+                                <input type="text" placeholder="City, state, or remote"
+                                    class="w-full p-3 text-gray-800 focus:outline-none">
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <button
+                                class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-xl w-full md:w-auto transition-all duration-300 shadow-lg hover:shadow-xl">
+                                <i class="fas fa-bolt mr-2"></i>Search Jobs
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3">
+                        <span class="text-sm opacity-80">Trending Searches:</span>
+                        <a href="#"
+                            class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full px-4 py-2 text-sm transition-all">Remote
+                            Developer</a>
+                        <a href="#"
+                            class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full px-4 py-2 text-sm transition-all">Product
+                            Manager</a>
+                        <a href="#"
+                            class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full px-4 py-2 text-sm transition-all">Data
+                            Scientist</a>
+                        <a href="#"
+                            class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full px-4 py-2 text-sm transition-all">UX
+                            Designer</a>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2 flex justify-center relative">
+                    <!-- Floating Elements -->
+                    <div class="relative w-full max-w-lg">
+                        <div class="floating-animation">
+                            <div
+                                class="w-80 h-80 bg-white bg-opacity-10 rounded-3xl flex items-center justify-center mx-auto">
+                                <div
+                                    class="w-64 h-64 bg-white bg-opacity-10 rounded-3xl flex items-center justify-center">
+                                    <div
+                                        class="w-48 h-48 bg-white bg-opacity-10 rounded-3xl flex items-center justify-center">
+                                        <i class="fas fa-rocket text-7xl text-yellow-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Cards -->
+                        <div class="absolute -top-4 -left-4 bg-white rounded-2xl p-4 shadow-2xl floating-animation"
+                            style="animation-delay: 0.5s;">
+                            <div class="flex items-center">
+                                <div class="stats-gradient w-12 h-12 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-briefcase text-white"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <div class="text-gray-800 font-bold text-lg">50K+</div>
+                                    <div class="text-gray-600 text-sm">Live Jobs</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="absolute -bottom-4 -right-4 bg-white rounded-2xl p-4 shadow-2xl floating-animation"
+                            style="animation-delay: 1s;">
+                            <div class="flex items-center">
+                                <div class="card-gradient w-12 h-12 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-building text-white"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <div class="text-gray-800 font-bold text-lg">3K+</div>
+                                    <div class="text-gray-600 text-sm">Companies</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="absolute top-1/2 -right-10 bg-white rounded-2xl p-4 shadow-2xl floating-animation"
+                            style="animation-delay: 1.5s;">
+                            <div class="flex items-center">
+                                <div class="category-gradient w-12 h-12 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-user-check text-white"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <div class="text-gray-800 font-bold text-lg">85%</div>
+                                    <div class="text-gray-600 text-sm">Success Rate</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Wave Divider -->
+        <div class="absolute bottom-0 left-0 right-0 lg:bottom-[-150px]">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#f9fafb" fill-opacity="1"
+                    d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,133.3C672,117,768,139,864,165.3C960,192,1056,224,1152,213.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+                </path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Job Categories -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Explore by <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">Category</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Discover opportunities in high-demand fields that
+                    match your skills and career aspirations</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                <!-- Category 1 -->
+                <div
+                    class="category-card-hover bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100 cursor-pointer transform transition-all duration-300 hover:scale-105 shadow-md hover:shadow-xl">
+                    <div class="flex items-start justify-between mb-4">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-code text-white text-2xl"></i>
+                        </div>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">245 Jobs</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Technology</h3>
+                    <p class="text-gray-600 mb-4">Software development, IT, cybersecurity and more</p>
+                    <a href="#" class="text-blue-600 font-medium inline-flex items-center">Explore <i
+                            class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+
+                <!-- Category 2 -->
+                <div
+                    class="category-card-hover bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-6 border border-green-100 cursor-pointer transform transition-all duration-300 hover:scale-105 shadow-md hover:shadow-xl">
+                    <div class="flex items-start justify-between mb-4">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-chart-line text-white text-2xl"></i>
+                        </div>
+                        <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">189
+                            Jobs</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Business</h3>
+                    <p class="text-gray-600 mb-4">Marketing, finance, management and consulting</p>
+                    <a href="#" class="text-green-600 font-medium inline-flex items-center">Explore <i
+                            class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+
+                <!-- Category 3 -->
+                <div
+                    class="category-card-hover bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 border border-yellow-100 cursor-pointer transform transition-all duration-300 hover:scale-105 shadow-md hover:shadow-xl">
+                    <div class="flex items-start justify-between mb-4">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-paint-brush text-white text-2xl"></i>
+                        </div>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full">132
+                            Jobs</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Design</h3>
+                    <p class="text-gray-600 mb-4">UI/UX, graphic design, product design</p>
+                    <a href="#" class="text-orange-600 font-medium inline-flex items-center">Explore <i
+                            class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+
+                <!-- Category 4 -->
+                <div
+                    class="category-card-hover bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-100 cursor-pointer transform transition-all duration-300 hover:scale-105 shadow-md hover:shadow-xl">
+                    <div class="flex items-start justify-between mb-4">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-heartbeat text-white text-2xl"></i>
+                        </div>
+                        <span class="bg-purple-100 text-purple-800 text-xs font-bold px-3 py-1 rounded-full">278
+                            Jobs</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Healthcare</h3>
+                    <p class="text-gray-600 mb-4">Medical, nursing, pharmaceutical jobs</p>
+                    <a href="#" class="text-purple-600 font-medium inline-flex items-center">Explore <i
+                            class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="#"
+                    class="inline-flex items-center border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white font-medium py-3 px-8 rounded-xl transition-all duration-300">
+                    <i class="fas fa-layer-group mr-2"></i> View All 20+ Categories
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Jobs -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-12">
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-800 mb-2">Featured <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">Opportunities</span>
+                    </h2>
+                    <p class="text-gray-600">Hand-picked opportunities from top companies</p>
+                </div>
+                <div class="mt-4 lg:mt-0">
+                    <div class="flex space-x-2">
+                        <button
+                            class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition-all">Remote</button>
+                        <button
+                            class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition-all">Full-time</button>
+                        <button
+                            class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium py-2 px-4 rounded-lg transition-all">All
+                            Jobs</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jobs  Container -->
+            <div class="relative">
+                <div class="flex flex-col overflow-x-auto pb-6 scroll-hidden scroll-smooth gap-4">
+                    <!-- Job Card 1 -->
+                    <div
+                        class="job-card-hover flex-shrink-0 md:w-full bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="flex items-center">
+                                <div
+                                    class="w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-md">
+                                    <span class="text-white font-bold text-xl">T</span>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="font-bold text-gray-800 text-lg">Senior Frontend Developer</h3>
+                                    <p class="text-gray-600">TechCorp Inc.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end">
+                                <span
+                                    class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full mb-2">Remote</span>
+                                <span class="text-xs text-gray-500"><i class="fas fa-clock mr-1"></i>2 days ago</span>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-700 mb-6">We're looking for an experienced frontend developer to join our
+                            team working on cutting-edge web applications.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-blue-50 text-blue-700 text-sm font-medium px-3 py-1 rounded-lg">React</span>
+                            <span
+                                class="bg-blue-50 text-blue-700 text-sm font-medium px-3 py-1 rounded-lg">TypeScript</span>
+                            <span
+                                class="bg-blue-50 text-blue-700 text-sm font-medium px-3 py-1 rounded-lg">Tailwind</span>
+                            <span
+                                class="bg-blue-50 text-blue-700 text-sm font-medium px-3 py-1 rounded-lg">GraphQL</span>
+                        </div>
+
+                        <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+                            <div>
+                                <span class="text-gray-800 font-bold text-lg">$85,000 - $110,000</span>
+                                <span class="text-gray-600 text-sm ml-2">/ year</span>
+                            </div>
+                            <button
+                                class="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-medium py-2 px-5 rounded-lg transition-all duration-300 pulse-animation">
+                                Apply Now <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Job Card 2 -->
+                    <div
+                        class="job-card-hover flex-shrink-0 w-full md:w-full bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="flex items-center">
+                                <div
+                                    class="w-14 h-14 bg-gradient-to-r from-green-500 to-teal-500 rounded-xl flex items-center justify-center shadow-md">
+                                    <span class="text-white font-bold text-xl">M</span>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="font-bold text-gray-800 text-lg">Marketing Manager</h3>
+                                    <p class="text-gray-600">MarketGrow Solutions</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end">
+                                <span
+                                    class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full mb-2">Hybrid</span>
+                                <span class="text-xs text-gray-500"><i class="fas fa-clock mr-1"></i>1 day ago</span>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-700 mb-6">Lead our marketing team to develop and execute strategies that
+                            drive growth and brand awareness.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-green-50 text-green-700 text-sm font-medium px-3 py-1 rounded-lg">Digital
+                                Marketing</span>
+                            <span
+                                class="bg-green-50 text-green-700 text-sm font-medium px-3 py-1 rounded-lg">SEO/SEM</span>
+                            <span class="bg-green-50 text-green-700 text-sm font-medium px-3 py-1 rounded-lg">Team
+                                Management</span>
+                            <span
+                                class="bg-green-50 text-green-700 text-sm font-medium px-3 py-1 rounded-lg">Analytics</span>
+                        </div>
+
+                        <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+                            <div>
+                                <span class="text-gray-800 font-bold text-lg">$70,000 - $95,000</span>
+                                <span class="text-gray-600 text-sm ml-2">/ year</span>
+                            </div>
+                            <button
+                                class="bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white font-medium py-2 px-5 rounded-lg transition-all duration-300">
+                                Apply Now <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Job Card 3 -->
+                    <div
+                        class="job-card-hover flex-shrink-0 w-full md:w-full bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="flex items-center">
+                                <div
+                                    class="w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-md">
+                                    <span class="text-white font-bold text-xl">D</span>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="font-bold text-gray-800 text-lg">UI/UX Designer</h3>
+                                    <p class="text-gray-600">CreativeStudio</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end">
+                                <span
+                                    class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full mb-2">Remote</span>
+                                <span class="text-xs text-gray-500"><i class="fas fa-clock mr-1"></i>3 days ago</span>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-700 mb-6">Design intuitive and beautiful user experiences for our suite of
+                            digital products.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span
+                                class="bg-purple-50 text-purple-700 text-sm font-medium px-3 py-1 rounded-lg">Figma</span>
+                            <span class="bg-purple-50 text-purple-700 text-sm font-medium px-3 py-1 rounded-lg">User
+                                Research</span>
+                            <span
+                                class="bg-purple-50 text-purple-700 text-sm font-medium px-3 py-1 rounded-lg">Prototyping</span>
+                            <span class="bg-purple-50 text-purple-700 text-sm font-medium px-3 py-1 rounded-lg">Design
+                                Systems</span>
+                        </div>
+
+                        <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+                            <div>
+                                <span class="text-gray-800 font-bold text-lg">$65,000 - $90,000</span>
+                                <span class="text-gray-600 text-sm ml-2">/ year</span>
+                            </div>
+                            <button
+                                class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-medium py-2 px-5 rounded-lg transition-all duration-300">
+                                Apply Now <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#"
+                    class="inline-flex items-center bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <i class="fas fa-eye mr-2"></i> View All 5,000+ Jobs
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">How <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">Kaam Yeta
+                        Hai</span> Works</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Your journey to the perfect job in three simple steps
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Step 1 -->
+                <div class="text-center">
+                    <div class="relative inline-block mb-6">
+                        <div
+                            class="w-24 h-24 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-xl mx-auto">
+                            <i class="fas fa-user-plus text-white text-3xl"></i>
+                        </div>
+                        <div
+                            class="absolute -top-2 -right-2 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg">
+                            <span class="text-blue-600 font-bold text-lg">1</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Create Your Profile</h3>
+                    <p class="text-gray-600">Sign up and build your professional profile with skills, experience, and
+                        career preferences.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="text-center">
+                    <div class="relative inline-block mb-6">
+                        <div
+                            class="w-24 h-24 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-xl mx-auto">
+                            <i class="fas fa-bullseye text-white text-3xl"></i>
+                        </div>
+                        <div
+                            class="absolute -top-2 -right-2 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg">
+                            <span class="text-purple-600 font-bold text-lg">2</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Get Matched</h3>
+                    <p class="text-gray-600">Our AI algorithm matches you with perfect job opportunities based on your
+                        profile and preferences.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="text-center">
+                    <div class="relative inline-block mb-6">
+                        <div
+                            class="w-24 h-24 bg-gradient-to-r from-green-500 to-teal-500 rounded-2xl flex items-center justify-center shadow-xl mx-auto">
+                            <i class="fas fa-briefcase text-white text-3xl"></i>
+                        </div>
+                        <div
+                            class="absolute -top-2 -right-2 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg">
+                            <span class="text-green-600 font-bold text-lg">3</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Apply & Get Hired</h3>
+                    <p class="text-gray-600">Apply to matched jobs, track your applications, and land your dream role
+                        faster than ever.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+                <!-- Logo and Description -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="stats-gradient w-12 h-12 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-2xl">क</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Kaam Yeta Hai</h2>
+                            <p class="text-sm text-gray-400">Career. Connected.</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-8 max-w-md">Nepal's fastest growing job portal connecting top talent with
+                        leading companies. Your dream job is just a search away.</p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-gray-700 w-12 h-12 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-gray-700 w-12 h-12 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-gray-700 w-12 h-12 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-gray-700 w-12 h-12 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Partner Companies -->
+                <div class="lg:col-span-2">
+                    <h3 class="text-xl font-bold mb-6">Trusted by <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Leading
+                            Companies</span></h3>
+                    <p class="text-gray-400 mb-6">Join top companies that trust Kaam Yeta Hai for their hiring
+                        needs</p>
+
+                    <div class="flex gap-3 sm:grid-cols-4">
+                        <img src="../assets/images/footer/esewa.png"
+                            class="rounded-xl h-12 transition-all duration-300 hover:transform hover:scale-105" alt="">
+                        <img src="../assets/images/footer/khalti.png"
+                            class="rounded-xl h-12 transition-all duration-300 hover:transform hover:scale-105" alt="">
+                        <img src="../assets/images/footer/vrittech.png"
+                            class="rounded-xl h-12 transition-all duration-300 hover:transform hover:scale-105" alt="">
+                        <img src="../assets/images/footer/itonics.png"
+                            class="rounded-xl h-12 transition-all duration-300 hover:transform hover:scale-105" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <p class="text-gray-400 text-sm">&copy; 2023 Kaam Yeta Hai. All rights reserved.</p>
+                        <p class="text-gray-500 text-xs mt-1">Made with <i class="fas fa-heart text-red-500 mx-1"></i>
+                            for
+                            job seekers worldwide</p>
+                    </div>
+                    <div class="flex flex-wrap justify-center md:justify-end space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-all">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-all">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-all">Cookie Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-all">Security</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-all">Sitemap</a>
+                    </div>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="mt-8 flex flex-wrap justify-center items-center space-x-6 space-y-4 md:space-y-0">
+                    <div class="flex items-center text-gray-400 text-sm">
+                        <i class="fas fa-shield-alt text-green-500 mr-2"></i> 100% Secure Platform
+                    </div>
+                    <div class="flex items-center text-gray-400 text-sm">
+                        <i class="fas fa-check-circle text-blue-500 mr-2"></i> Verified Companies
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Add animation to job cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeIn');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all job cards
+        document.querySelectorAll('.job-card-hover').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Typewriter effect
+        const typewriterElement = document.querySelector('.typewriter');
+        if (typewriterElement) {
+            const texts = ['Dream Job', 'Perfect Role', 'Career Growth', 'New Opportunity'];
+            let currentIndex = 0;
+
+            function changeText() {
+                typewriterElement.textContent = texts[currentIndex];
+                typewriterElement.style.animation = 'none';
+                setTimeout(() => {
+                    typewriterElement.style.animation = 'typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite';
+                }, 10);
+
+                currentIndex = (currentIndex + 1) % texts.length;
+            }
+
+            // Change text every 4 seconds
+            setInterval(changeText, 4000);
+        }
+
+        // Add CSS for fadeIn animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fadeIn {
+                animation: fadeIn 0.6s ease-out forwards;
+            }
+        `;
+        document.head.appendChild(style);
+
+
+        // Add hover effects to partner company cards
+        document.querySelectorAll('.bg-gray-800.hover\\:bg-gray-700.rounded-xl').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'scale(1.05)';
+                this.style.transition = 'all 0.3s ease';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Newsletter subscription
+        const newsletterInput = document.querySelector('input[type="email"]');
+        const newsletterButton = document.querySelector('button.bg-gradient-to-r');
+
+        if (newsletterButton && newsletterInput) {
+            newsletterButton.addEventListener('click', function () {
+                if (newsletterInput.value && newsletterInput.value.includes('@')) {
+                    // Show success message
+                    const originalHtml = newsletterButton.innerHTML;
+                    newsletterButton.innerHTML = '<i class="fas fa-check"></i> Subscribed!';
+                    newsletterButton.classList.remove('bg-gradient-to-r', 'from-purple-600', 'to-indigo-600');
+                    newsletterButton.classList.add('bg-green-600');
+
+                    // Reset after 3 seconds
+                    setTimeout(() => {
+                        newsletterButton.innerHTML = originalHtml;
+                        newsletterButton.classList.add('bg-gradient-to-r', 'from-purple-600', 'to-indigo-600');
+                        newsletterButton.classList.remove('bg-green-600');
+                        newsletterInput.value = '';
+                    }, 3000);
+                } else {
+                    // Show error
+                    newsletterInput.style.border = '2px solid #f87171';
+                    setTimeout(() => {
+                        newsletterInput.style.border = '';
+                    }, 2000);
+                }
+            });
+
+            // Allow Enter key to submit
+            newsletterInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    newsletterButton.click();
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Kaam Yeta Hai</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .section-spacing {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .section-spacing {
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+        }
+
+        .form-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .success-message {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Contact Info Section -->
+    <section id="contact-info" class="section-spacing bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">How Can We Help You?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Choose the most convenient way to reach out to our team.
+                    We're here to assist you with your career journey.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <!-- Contact Card 1 -->
+                <div class="bg-gray-50 p-8 rounded-xl text-center card-hover">
+                    <div class="contact-icon bg-blue-100 text-blue-600 mx-auto">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Email Us</h3>
+                    <p class="text-gray-600 mb-4">For general inquiries and support</p>
+                    <a href="mailto:contact@kaamyetahai.com"
+                        class="text-blue-600 hover:text-blue-800 font-medium text-lg">contact@kaamyetahai.com</a>
+                    <p class="text-gray-500 text-sm mt-2">Response within 24 hours</p>
+                </div>
+
+                <!-- Contact Card 2 -->
+                <div class="bg-gray-50 p-8 rounded-xl text-center card-hover">
+                    <div class="contact-icon bg-green-100 text-green-600 mx-auto">
+                        <i class="fas fa-phone-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Call Us</h3>
+                    <p class="text-gray-600 mb-4">For urgent inquiries and support</p>
+                    <a href="tel:+9118001234567"
+                        class="text-green-600 hover:text-green-800 font-medium text-lg">1800-123-4567</a>
+                    <p class="text-gray-500 text-sm mt-2">Mon-Fri, 9AM-6PM IST</p>
+                </div>
+
+                <!-- Contact Card 3 -->
+                <div class="bg-gray-50 p-8 rounded-xl text-center card-hover">
+                    <div class="contact-icon bg-purple-100 text-purple-600 mx-auto">
+                        <i class="fas fa-map-marker-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Visit Us</h3>
+                    <p class="text-gray-600 mb-4">Our headquarters in Bhaktapur</p>
+                    <p class="text-gray-700">Sallaghari Complex<br>Bhaktapur, Sallaghari</p>
+                </div>
+            </div>
+
+            <!-- Office Hours -->
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gray-50 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Office Hours & Support</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-800 mb-4">General Support</h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-center">
+                                    <i class="fas fa-clock text-purple-600 mr-3"></i>
+                                    <span class="text-gray-700">Monday - Friday: 9AM - 6PM</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-clock text-purple-600 mr-3"></i>
+                                    <span class="text-gray-700">Saturday: 10AM - 4PM</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-clock text-purple-600 mr-3"></i>
+                                    <span class="text-gray-700">Sunday: Closed</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-800 mb-4">Emergency Support</h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-center">
+                                    <i class="fas fa-phone text-purple-600 mr-3"></i>
+                                    <span class="text-gray-700">Technical Issues: +91 98765 43210</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-shield-alt text-purple-600 mr-3"></i>
+                                    <span class="text-gray-700">Security Concerns: security@kaamyetahai.com</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-user-shield text-purple-600 mr-3"></i>
+                                    <span class="text-gray-700">Privacy Inquiries: privacy@kaamyetahai.com</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact-form" class="section-spacing bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Form -->
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Send Us a Message</h2>
+                    <p class="text-gray-600 mb-8">Fill out the form below and we'll get back to you as soon as possible.
+                    </p>
+
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Full Name *</label>
+                                <input type="text" id="name" name="name" required
+                                    class="w-full p-4 border border-gray-300 rounded-lg form-input focus:outline-none"
+                                    placeholder="Enter your full name">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email Address *</label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full p-4 border border-gray-300 rounded-lg form-input focus:outline-none"
+                                    placeholder="Enter your email address">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">Phone Number</label>
+                            <input type="tel" id="phone" name="phone"
+                                class="w-full p-4 border border-gray-300 rounded-lg form-input focus:outline-none"
+                                placeholder="Enter your phone number">
+                        </div>
+
+                        <div>
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject *</label>
+                            <select id="subject" name="subject" required
+                                class="w-full p-4 border border-gray-300 rounded-lg form-input focus:outline-none">
+                                <option value="" disabled selected>Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="feedback">Feedback & Suggestions</option>
+                                <option value="careers">Careers at Kaam Yeta Hai</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Your Message *</label>
+                            <textarea id="message" name="message" rows="5" required
+                                class="w-full p-4 border border-gray-300 rounded-lg form-input focus:outline-none"
+                                placeholder="Tell us how we can help you..."></textarea>
+                        </div>
+                        <button type="submit"
+                            class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-4 px-8 rounded-lg transition duration-300 w-full md:w-auto">
+                            <i class="fas fa-paper-plane mr-2"></i> Send Message
+                        </button>
+
+                        <p class="text-gray-500 text-sm">By submitting this form, you agree to our <a href="#"
+                                class="text-purple-600 hover:underline">Privacy Policy</a>.</p>
+                    </form>
+                </div>
+
+                <!-- Map & FAQ -->
+                <div class="space-y-8">
+                    <!-- Map -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Location</h3>
+                        <div class="map-container">
+                            <div
+                                class="bg-gradient-to-br from-blue-100 to-indigo-100 h-64 md:h-80 flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-map-marker-alt text-blue-600 text-5xl mb-4"></i>
+                                    <p class="text-gray-700 font-medium">Sallaghari Complex</p>
+                                    <p class="text-gray-600">Bhaktapur, Sallaghari</p>
+                                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium mt-2 inline-block">
+                                        Get Directions <i class="fas fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h3>
+                        <div class="space-y-4">
+                            <!-- FAQ Item 1 -->
+                            <div class="bg-white p-5 rounded-lg border border-gray-200">
+                                <button class="faq-question flex justify-between items-center w-full text-left">
+                                    <h4 class="font-medium text-gray-800">How long does it take to get a response?</h4>
+                                    <i class="fas fa-chevron-down text-purple-600"></i>
+                                </button>
+                                <div class="faq-answer mt-3 hidden">
+                                    <p class="text-gray-600 text-sm">We typically respond to inquiries within 24 hours
+                                        during business days. For urgent matters, please call our support number for
+                                        immediate assistance.</p>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 2 -->
+                            <div class="bg-white p-5 rounded-lg border border-gray-200">
+                                <button class="faq-question flex justify-between items-center w-full text-left">
+                                    <h4 class="font-medium text-gray-800">Can I visit your office without an
+                                        appointment?</h4>
+                                    <i class="fas fa-chevron-down text-purple-600"></i>
+                                </button>
+                                <div class="faq-answer mt-3 hidden">
+                                    <p class="text-gray-600 text-sm">We recommend scheduling an appointment before
+                                        visiting our office to ensure someone is available to assist you. You can
+                                        schedule through our website or by calling our office.</p>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 3 -->
+                            <div class="bg-white p-5 rounded-lg border border-gray-200">
+                                <button class="faq-question flex justify-between items-center w-full text-left">
+                                    <h4 class="font-medium text-gray-800">How do I report a technical issue?</h4>
+                                    <i class="fas fa-chevron-down text-purple-600"></i>
+                                </button>
+                                <div class="faq-answer mt-3 hidden">
+                                    <p class="text-gray-600 text-sm">For technical issues, please email
+                                        support@kaamyetahai.com or call our technical support line at +91 98765 43210.
+                                        Include screenshots and details about the issue for faster resolution.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="#" class="text-purple-600 hover:text-purple-800 font-medium mt-4 inline-block">
+                            View all FAQs <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', function () {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('i');
+
+                // Toggle answer visibility
+                answer.classList.toggle('hidden');
+
+                // Rotate icon
+                if (icon.classList.contains('fa-chevron-down')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+
+                // Close other FAQs
+                document.querySelectorAll('.faq-question').forEach(otherButton => {
+                    if (otherButton !== this) {
+                        const otherAnswer = otherButton.nextElementSibling;
+                        const otherIcon = otherButton.querySelector('i');
+
+                        if (!otherAnswer.classList.contains('hidden')) {
+                            otherAnswer.classList.add('hidden');
+                            otherIcon.classList.remove('fa-chevron-up');
+                            otherIcon.classList.add('fa-chevron-down');
+                        }
+                    }
+                });
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId !== '#') {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Card hover effects
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '';
+            });
+        });
+    </script>
+</body>
+
+</html>

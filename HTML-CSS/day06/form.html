@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="form.css" />
+  </head>
+  <body>
+    <form action="">
+      <div>
+        <label for="name">Name</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          required
+          placeholder="Your full name"
+        />
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" />
+      </div>
+
+      <div>
+        <label for="age">Age</label>
+        <input type="number" name="age" id="age" />
+      </div>
+
+      <div>
+        <label for="phone">Phone number</label>
+        <input type="tel" name="phone" id="phone" value="+977" />
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+      </div>
+
+      <div>
+        <label for="date">Date</label>
+        <input type="date" id="date" />
+      </div>
+
+      <div>
+        <label for="time">Time</label>
+        <input type="time" id="time" />
+      </div>
+
+      <div>
+        <label for="datetime">Date & Time</label>
+        <input type="datetime-local" id="datetime" />
+      </div>
+
+      <div>
+        <label for="file">File</label>
+        <input type="file" id="file" />
+      </div>
+
+      <div>
+        <label for="range">Range</label>
+        <input type="range" id="range" />
+      </div>
+
+      <div>
+        <label for="">Gender: </label>
+        <input type="radio" name="gender" value="male" checked id="male" />
+        <label for="male">Male</label>
+        <input type="radio" name="gender" value="female" id="female" />
+        <label for="female">Female</label>
+        <input type="radio" name="gender" value="other" id="other" />
+        <label for="other">Other</label>
+      </div>
+
+      <div>
+        <label for="">Hobby: </label>
+        <input
+          type="checkbox"
+          name="hobby"
+          value="Traveling"
+          checked
+          id="traveling"
+        />
+        <label for="traveling">Traveling</label>
+        <input type="checkbox" name="hobby" value="Hiking" id="hiking" />
+        <label for="hiking">Hiking</label>
+        <input type="checkbox" name="hobby" value="Swimming" id="swimming" />
+        <label for="swimming">Swimming</label>
+      </div>
+
+      <div>
+        <label for="select">Select</label>
+        <select name="class" id="select">
+          <option value="1">Class 1</option>
+          <option value="2">Class 2</option>
+          <option value="3">Class 3</option>
+          <option value="4">Class 4</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="message">Message</label>
+        <textarea name="message" id="message" rows="5"></textarea>
+      </div>
+
+      <input type="submit" class="submit-button" value="Send message" />
+    </form>
+  </body>
+</html>

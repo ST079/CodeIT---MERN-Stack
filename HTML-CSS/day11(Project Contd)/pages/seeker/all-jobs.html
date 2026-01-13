@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Jobs - Kaam Yeta Hai</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .section-spacing {
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        .job-card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .job-card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-card {
+            transition: all 0.2s ease;
+        }
+
+        .filter-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .pagination-active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .checkbox-custom:checked {
+            background-color: #667eea;
+            border-color: #667eea;
+        }
+
+        .checkbox-custom:checked::after {
+            content: '✓';
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .sticky-sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        @media (max-width: 768px) {
+            .section-spacing {
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+
+            .sticky-sidebar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-12 md:py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4">Find Your Perfect Job</h1>
+                <p class="text-lg opacity-90 mb-8">Browse through 50,000+ job opportunities from top companies across
+                    India</p>
+
+                <!-- Search Bar -->
+                <div class="bg-white rounded-xl p-2 shadow-xl flex flex-col md:flex-row mb-6">
+                    <div class="flex-1 p-2">
+                        <div class="flex items-center">
+                            <i class="fas fa-search text-gray-400 ml-3 mr-2"></i>
+                            <input type="text" placeholder="Job title, skills, or keywords"
+                                class="w-full p-3 text-gray-800 focus:outline-none" id="job-search">
+                        </div>
+                    </div>
+                    <div class="flex-1 p-2">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-gray-400 ml-3 mr-2"></i>
+                            <input type="text" placeholder="City, state, or remote"
+                                class="w-full p-3 text-gray-800 focus:outline-none" id="location-search">
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <button
+                            class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-6 rounded-lg w-full md:w-auto transition duration-300"
+                            id="search-button">
+                            <i class="fas fa-search mr-2"></i>Search Jobs
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Filters -->
+                <div class="flex flex-wrap justify-center gap-3">
+                    <a href="#"
+                        class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full px-4 py-2 text-sm transition-all">Remote
+                        Jobs</a>
+                    <a href="#"
+                        class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full px-4 py-2 text-sm transition-all">Software
+                        Development</a>
+                    <a href="#"
+                        class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full px-4 py-2 text-sm transition-all">Marketing</a>
+                    <a href="#"
+                        class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full px-4 py-2 text-sm transition-all">Design</a>
+                    <a href="#"
+                        class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full px-4 py-2 text-sm transition-all">Data
+                        Science</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="section-spacing">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Sidebar Filters -->
+                <div class="lg:w-1/4">
+                    <div class="sticky-sidebar">
+                        <!-- Filter Card -->
+                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 filter-card mb-6">
+                            <h3 class="text-lg font-bold text-gray-800 mb-4">Filters</h3>
+
+                            <!-- Job Type -->
+                            <div class="mb-6">
+                                <h4 class="font-medium text-gray-700 mb-3">Job Type</h4>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox"
+                                            class="checkbox-custom w-4 h-4 border border-gray-300 rounded mr-3 relative">
+                                        <span class="text-gray-600">Full-time</span>
+                                        <span class="ml-auto text-gray-400 text-sm">(2,450)</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox"
+                                            class="checkbox-custom w-4 h-4 border border-gray-300 rounded mr-3 relative">
+                                        <span class="text-gray-600">Part-time</span>
+                                        <span class="ml-auto text-gray-400 text-sm">(560)</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox"
+                                            class="checkbox-custom w-4 h-4 border border-gray-300 rounded mr-3 relative">
+                                        <span class="text-gray-600">Contract</span>
+                                        <span class="ml-auto text-gray-400 text-sm">(890)</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox"
+                                            class="checkbox-custom w-4 h-4 border border-gray-300 rounded mr-3 relative">
+                                        <span class="text-gray-600">Remote</span>
+                                        <span class="ml-auto text-gray-400 text-sm">(1,240)</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox"
+                                            class="checkbox-custom w-4 h-4 border border-gray-300 rounded mr-3 relative">
+                                        <span class="text-gray-600">Internship</span>
+                                        <span class="ml-auto text-gray-400 text-sm">(320)</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Experience Level -->
+                            <div class="mb-6">
+                                <h4 class="font-medium text-gray-700 mb-3">Experience Level</h4>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox"
+                                            class="checkbox-custom w-4 h-4 border border-gray-300 rounded mr-3 relative">
+                                        <span class="text-gray-600">Entry Level</span>
+                                        <span class="ml-auto text-gray-400 text-sm">(1,230)</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox"
+                                            class="checkbox-custom w-4 h-4 border border-gray-300 rounded mr-3 relative">
+                                        <span class="text-gray-600">Mid Level</span>
+                                        <span class="ml-auto text-gray-400 text-sm">(2,140)</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox"
+                                            class="checkbox-custom w-4 h-4 border border-gray-300 rounded mr-3 relative">
+                                        <span class="text-gray-600">Senior Level</span>
+                                        <span class="ml-auto text-gray-400 text-sm">(890)</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Salary Range -->
+                            <div class="mb-6">
+                                <h4 class="font-medium text-gray-700 mb-3">Salary Range</h4>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox"
+                                            class="checkbox-custom w-4 h-4 border border-gray-300 rounded mr-3 relative">
+                                        <span class="text-gray-600">₹3L - ₹6L</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox"
+                                            class="checkbox-custom w-4 h-4 border border-gray-300 rounded mr-3 relative">
+                                        <span class="text-gray-600">₹6L - ₹10L</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox"
+                                            class="checkbox-custom w-4 h-4 border border-gray-300 rounded mr-3 relative">
+                                        <span class="text-gray-600">₹10L - ₹15L</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox"
+                                            class="checkbox-custom w-4 h-4 border border-gray-300 rounded mr-3 relative">
+                                        <span class="text-gray-600">₹15L+</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Clear & Apply Buttons -->
+                            <div class="flex space-x-3">
+                                <button
+                                    class="flex-1 border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition duration-300"
+                                    id="clear-filters">
+                                    Clear All
+                                </button>
+                                <button
+                                    class="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300"
+                                    id="apply-filters">
+                                    Apply Filters
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Save Search -->
+                        <div
+                            class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100 filter-card">
+                            <h3 class="text-lg font-bold text-gray-800 mb-3">Save Your Search</h3>
+                            <p class="text-gray-600 text-sm mb-4">Get notified when new jobs match your criteria</p>
+                            <button
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
+                                <i class="fas fa-bell mr-2"></i>Create Job Alert
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Listings -->
+                <div class="lg:w-3/4">
+                    <!-- Results Header -->
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-6">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-800 mb-2">50,245 Job Opportunities</h2>
+                                <p class="text-gray-600">Showing 1-12 of 50,245 jobs</p>
+                            </div>
+                            <div class="mt-4 md:mt-0">
+                                <div class="flex items-center">
+                                    <span class="text-gray-700 mr-3">Sort by:</span>
+                                    <select
+                                        class="border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-purple-500">
+                                        <option>Most Relevant</option>
+                                        <option>Newest</option>
+                                        <option>Salary: High to Low</option>
+                                        <option>Salary: Low to High</option>
+                                        <option>Application Deadline</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Listings Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <!-- Job Card 1 -->
+                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 job-card-hover">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold">T</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-800">Senior Frontend Developer</h3>
+                                        <p class="text-gray-600">TechCorp Inc.</p>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span
+                                        class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full mb-2">Remote</span>
+                                    <span class="text-xs text-gray-500"><i class="fas fa-clock mr-1"></i>2 days
+                                        ago</span>
+                                </div>
+                                <button class="saved-icon">
+                                    <i class="fas fa-bookmark text-lg"></i>
+                                </button>
+                            </div>
+
+                            <p class="text-gray-700 mb-4 line-clamp-2">Looking for an experienced frontend developer to
+                                join our team working on cutting-edge web applications.</p>
+
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="bg-blue-50 text-blue-700 text-sm px-3 py-1 rounded">React</span>
+                                <span class="bg-blue-50 text-blue-700 text-sm px-3 py-1 rounded">TypeScript</span>
+                                <span class="bg-blue-50 text-blue-700 text-sm px-3 py-1 rounded">Tailwind</span>
+                            </div>
+
+                            <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+                                <div>
+                                    <span class="text-gray-800 font-bold">₹12L - ₹18L</span>
+                                    <span class="text-gray-600 text-sm ml-2">/ year</span>
+                                </div>
+                                <button
+                                    class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 view-job-btn"
+                                    data-job-id="1">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Job Card 2 -->
+                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 job-card-hover">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-lg flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold">M</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-800">Marketing Manager</h3>
+                                        <p class="text-gray-600">MarketGrow Solutions</p>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span
+                                        class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full mb-2">Hybrid</span>
+                                    <span class="text-xs text-gray-500"><i class="fas fa-clock mr-1"></i>1 day
+                                        ago</span>
+                                </div>
+                            </div>
+
+                            <p class="text-gray-700 mb-4 line-clamp-2">Lead our marketing team to develop and execute
+                                strategies that drive growth and brand awareness.</p>
+
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="bg-green-50 text-green-700 text-sm px-3 py-1 rounded">Digital
+                                    Marketing</span>
+                                <span class="bg-green-50 text-green-700 text-sm px-3 py-1 rounded">SEO/SEM</span>
+                                <span class="bg-green-50 text-green-700 text-sm px-3 py-1 rounded">Team
+                                    Management</span>
+                            </div>
+
+                            <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+                                <div>
+                                    <span class="text-gray-800 font-bold">₹10L - ₹15L</span>
+                                    <span class="text-gray-600 text-sm ml-2">/ year</span>
+                                </div>
+                                <button
+                                    class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 view-job-btn"
+                                    data-job-id="2">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Job Card 3 -->
+                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 job-card-hover">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold">D</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-800">UI/UX Designer</h3>
+                                        <p class="text-gray-600">CreativeStudio</p>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span
+                                        class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full mb-2">Remote</span>
+                                    <span class="text-xs text-gray-500"><i class="fas fa-clock mr-1"></i>3 days
+                                        ago</span>
+                                </div>
+                            </div>
+
+                            <p class="text-gray-700 mb-4 line-clamp-2">Design intuitive and beautiful user experiences
+                                for our suite of digital products.</p>
+
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="bg-purple-50 text-purple-700 text-sm px-3 py-1 rounded">Figma</span>
+                                <span class="bg-purple-50 text-purple-700 text-sm px-3 py-1 rounded">User
+                                    Research</span>
+                                <span class="bg-purple-50 text-purple-700 text-sm px-3 py-1 rounded">Prototyping</span>
+                            </div>
+
+                            <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+                                <div>
+                                    <span class="text-gray-800 font-bold">₹8L - ₹12L</span>
+                                    <span class="text-gray-600 text-sm ml-2">/ year</span>
+                                </div>
+                                <button
+                                    class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 view-job-btn"
+                                    data-job-id="3">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Job Card 4 -->
+                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 job-card-hover">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold">D</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-800">Data Scientist</h3>
+                                        <p class="text-gray-600">DataInsights Inc.</p>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span
+                                        class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full mb-2">On-site</span>
+                                    <span class="text-xs text-gray-500"><i class="fas fa-clock mr-1"></i>5 days
+                                        ago</span>
+                                </div>
+                            </div>
+
+                            <p class="text-gray-700 mb-4 line-clamp-2">Work with large datasets to extract insights and
+                                build predictive models for business optimization.</p>
+
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="bg-yellow-50 text-yellow-700 text-sm px-3 py-1 rounded">Python</span>
+                                <span class="bg-yellow-50 text-yellow-700 text-sm px-3 py-1 rounded">Machine
+                                    Learning</span>
+                                <span class="bg-yellow-50 text-yellow-700 text-sm px-3 py-1 rounded">SQL</span>
+                            </div>
+
+                            <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+                                <div>
+                                    <span class="text-gray-800 font-bold">₹15L - ₹22L</span>
+                                    <span class="text-gray-600 text-sm ml-2">/ year</span>
+                                </div>
+                                <button
+                                    class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 view-job-btn"
+                                    data-job-id="4">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Job Card 5 -->
+                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 job-card-hover">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-12 h-12 bg-gradient-to-r from-red-500 to-pink-500 rounded-lg flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold">C</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-800">Content Strategist</h3>
+                                        <p class="text-gray-600">ContentWorks Agency</p>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span
+                                        class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full mb-2">Remote</span>
+                                    <span class="text-xs text-gray-500"><i class="fas fa-clock mr-1"></i>1 week
+                                        ago</span>
+                                </div>
+                            </div>
+
+                            <p class="text-gray-700 mb-4 line-clamp-2">Develop and execute content strategies for
+                                leading brands across multiple digital platforms.</p>
+
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="bg-red-50 text-red-700 text-sm px-3 py-1 rounded">Content Strategy</span>
+                                <span class="bg-red-50 text-red-700 text-sm px-3 py-1 rounded">SEO Writing</span>
+                                <span class="bg-red-50 text-red-700 text-sm px-3 py-1 rounded">Social Media</span>
+                            </div>
+
+                            <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+                                <div>
+                                    <span class="text-gray-800 font-bold">₹6L - ₹9L</span>
+                                    <span class="text-gray-600 text-sm ml-2">/ year</span>
+                                </div>
+                                <button
+                                    class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 view-job-btn"
+                                    data-job-id="5">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Job Card 6 -->
+                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 job-card-hover">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold">P</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-800">Product Manager</h3>
+                                        <p class="text-gray-600">ProductLabs</p>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span
+                                        class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full mb-2">Hybrid</span>
+                                    <span class="text-xs text-gray-500"><i class="fas fa-clock mr-1"></i>4 days
+                                        ago</span>
+                                </div>
+                            </div>
+
+                            <p class="text-gray-700 mb-4 line-clamp-2">Lead product development from conception to
+                                launch, working with engineering and design teams.</p>
+
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="bg-indigo-50 text-indigo-700 text-sm px-3 py-1 rounded">Product
+                                    Strategy</span>
+                                <span class="bg-indigo-50 text-indigo-700 text-sm px-3 py-1 rounded">Agile</span>
+                                <span class="bg-indigo-50 text-indigo-700 text-sm px-3 py-1 rounded">User
+                                    Research</span>
+                            </div>
+
+                            <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+                                <div>
+                                    <span class="text-gray-800 font-bold">₹18L - ₹25L</span>
+                                    <span class="text-gray-600 text-sm ml-2">/ year</span>
+                                </div>
+                                <button
+                                    class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 view-job-btn"
+                                    data-job-id="6">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Job Card 7 -->
+                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 job-card-hover">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold">B</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-800">Backend Developer</h3>
+                                        <p class="text-gray-600">BackendTech</p>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span
+                                        class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full mb-2">Remote</span>
+                                    <span class="text-xs text-gray-500"><i class="fas fa-clock mr-1"></i>6 days
+                                        ago</span>
+                                </div>
+                            </div>
+
+                            <p class="text-gray-700 mb-4 line-clamp-2">Build scalable backend systems and APIs for
+                                high-traffic applications.</p>
+
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="bg-blue-50 text-blue-700 text-sm px-3 py-1 rounded">Node.js</span>
+                                <span class="bg-blue-50 text-blue-700 text-sm px-3 py-1 rounded">MongoDB</span>
+                                <span class="bg-blue-50 text-blue-700 text-sm px-3 py-1 rounded">AWS</span>
+                            </div>
+
+                            <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+                                <div>
+                                    <span class="text-gray-800 font-bold">₹10L - ₹16L</span>
+                                    <span class="text-gray-600 text-sm ml-2">/ year</span>
+                                </div>
+                                <button
+                                    class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 view-job-btn"
+                                    data-job-id="7">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Job Card 8 -->
+                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 job-card-hover">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-lg flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold">F</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-800">Financial Analyst</h3>
+                                        <p class="text-gray-600">FinancePro</p>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span
+                                        class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full mb-2">On-site</span>
+                                    <span class="text-xs text-gray-500"><i class="fas fa-clock mr-1"></i>2 weeks
+                                        ago</span>
+                                </div>
+                            </div>
+
+                            <p class="text-gray-700 mb-4 line-clamp-2">Analyze financial data and prepare reports to
+                                support business decision-making.</p>
+
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="bg-green-50 text-green-700 text-sm px-3 py-1 rounded">Financial
+                                    Modeling</span>
+                                <span class="bg-green-50 text-green-700 text-sm px-3 py-1 rounded">Excel</span>
+                                <span class="bg-green-50 text-green-700 text-sm px-3 py-1 rounded">Data Analysis</span>
+                            </div>
+
+                            <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+                                <div>
+                                    <span class="text-gray-800 font-bold">₹7L - ₹11L</span>
+                                    <span class="text-gray-600 text-sm ml-2">/ year</span>
+                                </div>
+                                <button
+                                    class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 view-job-btn"
+                                    data-job-id="8">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="flex justify-center">
+                        <div class="flex items-center space-x-2">
+                            <button
+                                class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button
+                                class="w-10 h-10 flex items-center justify-center rounded-lg pagination-active">1</button>
+                            <button
+                                class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">2</button>
+                            <button
+                                class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">3</button>
+                            <button
+                                class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">4</button>
+                            <span class="text-gray-500">...</span>
+                            <button
+                                class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">25</button>
+                            <button
+                                class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Job Card Hover Effects
+        document.querySelectorAll('.job-card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '';
+            });
+        });
+
+        // Filter Card Hover Effects
+        document.querySelectorAll('.filter-card').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.08)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.boxShadow = '';
+            });
+        });
+
+        // Custom Checkbox Styling
+        document.querySelectorAll('.checkbox-custom').forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                if (this.checked) {
+                    this.style.backgroundColor = '#667eea';
+                    this.style.borderColor = '#667eea';
+                } else {
+                    this.style.backgroundColor = '';
+                    this.style.borderColor = '';
+                }
+            });
+        });
+
+        // Clear Filters
+        document.getElementById('clear-filters').addEventListener('click', function () {
+            document.querySelectorAll('.checkbox-custom').forEach(checkbox => {
+                checkbox.checked = false;
+                checkbox.style.backgroundColor = '';
+                checkbox.style.borderColor = '';
+            });
+        });
+
+        // Apply Filters
+        document.getElementById('apply-filters').addEventListener('click', function () {
+            const selectedFilters = [];
+            document.querySelectorAll('.checkbox-custom:checked').forEach(checkbox => {
+                selectedFilters.push(checkbox.nextElementSibling.textContent);
+            });
+
+            if (selectedFilters.length > 0) {
+                alert(`Applied filters: ${selectedFilters.join(', ')}`);
+            } else {
+                alert('No filters selected. Showing all jobs.');
+            }
+        });
+
+        // Job Search
+        document.getElementById('search-button').addEventListener('click', function () {
+            const jobSearch = document.getElementById('job-search').value;
+            const locationSearch = document.getElementById('location-search').value;
+
+            if (jobSearch || locationSearch) {
+                alert(`Searching for "${jobSearch}" in "${locationSearch}"`);
+            } else {
+                alert('Please enter search criteria');
+            }
+        });
+
+        // View Job Details
+        document.querySelectorAll('.view-job-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const jobId = this.getAttribute('data-job-id');
+                const jobTitle = this.closest('.job-card-hover').querySelector('h3').textContent;
+                alert(`Viewing details for: ${jobTitle}\nJob ID: ${jobId}\n\nIn a real application, this would redirect to the job detail page.`);
+            });
+        });
+
+        // Pagination
+        document.querySelectorAll('.pagination-active').forEach(button => {
+            button.addEventListener('click', function () {
+                document.querySelectorAll('.pagination-active').forEach(btn => {
+                    btn.classList.remove('pagination-active');
+                    btn.classList.add('border', 'border-gray-300', 'text-gray-700', 'hover:bg-gray-50');
+                });
+                this.classList.add('pagination-active');
+                this.classList.remove('border', 'border-gray-300', 'text-gray-700', 'hover:bg-gray-50');
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId !== '#') {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

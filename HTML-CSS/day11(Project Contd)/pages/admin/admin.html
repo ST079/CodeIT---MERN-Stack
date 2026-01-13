@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal | Kaam Yeta Hai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#8b5cf6',
+                        dark: '#1f2937',
+                        light: '#f8fafc',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444',
+                        info: '#0ea5e9',
+                        admin: '#8b5cf6'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                        'slide-in-right': 'slideInRight 0.3s ease-out',
+                        'pulse-subtle': 'pulse 2s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        slideInRight: {
+                            '0%': { transform: 'translateX(20px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .stats-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .admin-gradient {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+        }
+
+        .sidebar-gradient {
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        .form-input:focus {
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+            border-color: #8b5cf6;
+        }
+
+        .sidebar-link.active {
+            background: rgba(139, 92, 246, 0.15);
+            border-left: 4px solid #8b5cf6;
+        }
+
+        .sidebar-link:hover {
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        /* Custom scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
+        }
+
+        /* Status badges */
+        .status-badge {
+            font-size: 0.7rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-pending {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-suspended {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status-verified {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Main Container -->
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="sidebar-gradient w-64 min-h-screen text-white hidden lg:block fixed">
+            <div class="p-6">
+                <!-- Logo -->
+                <div class="flex items-center mb-8">
+                    <div class="w-10 h-10 admin-gradient rounded-lg flex items-center justify-center mr-3">
+                        <span class="text-white font-bold text-xl">का</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">Kaam Yeta Hai</h1>
+                        <p class="text-xs text-gray-400 -mt-1">Admin Portal</p>
+                    </div>
+                </div>
+
+                <!-- Admin Info -->
+                <div class="mb-8 p-4 bg-white/10 rounded-lg">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-admin/30 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-user-shield text-admin"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium">Admin User</h3>
+                            <p class="text-xs text-gray-400">Super Administrator</p>
+                        </div>
+                    </div>
+                    <div class="text-sm">
+                        <div class="flex items-center mb-1">
+                            <i class="fas fa-shield-alt text-green-400 mr-2"></i>
+                            <span>Full Access</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-clock text-blue-400 mr-2"></i>
+                            <span>Last login: 2 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="space-y-1">
+                    <a href="#" class="sidebar-link active flex items-center px-4 py-3 text-white">
+                        <i class="fas fa-chart-line mr-3"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#users" class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-users mr-3"></i>
+                        <span>Users</span>
+                        <span class="ml-auto bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded-full">1,245</span>
+                    </a>
+                    <a href="#employers"
+                        class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-building mr-3"></i>
+                        <span>Employers</span>
+                        <span class="ml-auto bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded-full">342</span>
+                    </a>
+                    <a href="#jobs" class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-briefcase mr-3"></i>
+                        <span>Jobs</span>
+                        <span
+                            class="ml-auto bg-yellow-500/20 text-yellow-400 text-xs px-2 py-1 rounded-full">2,548</span>
+                    </a>
+                    <a href="#applications"
+                        class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-file-alt mr-3"></i>
+                        <span>Applications</span>
+                        <span
+                            class="ml-auto bg-purple-500/20 text-purple-400 text-xs px-2 py-1 rounded-full">12,458</span>
+                    </a>
+                    <a href="#reports" class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-chart-bar mr-3"></i>
+                        <span>Reports</span>
+                    </a>
+                    <a href="#verification"
+                        class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-check-circle mr-3"></i>
+                        <span>Verification</span>
+                        <span class="ml-auto bg-red-500/20 text-red-400 text-xs px-2 py-1 rounded-full">23</span>
+                    </a>
+                    <a href="#settings" class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-cog mr-3"></i>
+                        <span>Settings</span>
+                    </a>
+                    <a href="#system" class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-server mr-3"></i>
+                        <span>System</span>
+                    </a>
+                </nav>
+
+                <!-- System Status -->
+                <div class="mt-8 p-4 bg-green-900/20 border border-green-800/30 rounded-lg">
+                    <h4 class="font-medium mb-2 text-green-300">System Status</h4>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">API Status</span>
+                            <span class="text-green-400 flex items-center">
+                                <i class="fas fa-circle text-xs mr-1"></i> Online
+                            </span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Database</span>
+                            <span class="text-green-400 flex items-center">
+                                <i class="fas fa-circle text-xs mr-1"></i> Healthy
+                            </span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Uptime</span>
+                            <span class="text-gray-300">99.8%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Mobile Header -->
+        <header class="lg:hidden bg-white shadow-sm fixed w-full z-10">
+            <div class="flex justify-between items-center p-4">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 admin-gradient rounded-lg flex items-center justify-center mr-3">
+                        <span class="text-white font-bold text-xl">का</span>
+                    </div>
+                    <div>
+                        <h1 class="font-bold">Admin Portal</h1>
+                        <p class="text-xs text-gray-600">Kaam Yeta Hai</p>
+                    </div>
+                </div>
+                <button id="mobileMenuButton" class="text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="lg:ml-64 w-full pt-16 lg:pt-0">
+            <!-- Top Bar -->
+            <div class="bg-white shadow-sm border-b">
+                <div class="flex justify-between items-center px-6 py-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-dark">Admin Dashboard</h2>
+                        <p class="text-gray-600">Complete platform overview and management</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <!-- Search -->
+                        <div class="relative">
+                            <input type="text" placeholder="Search..."
+                                class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-admin focus:border-transparent">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+
+                        <!-- Notifications -->
+                        <div class="relative">
+                            <button class="text-gray-600 hover:text-gray-900 relative">
+                                <i class="fas fa-bell text-xl"></i>
+                                <span
+                                    class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse-subtle"></span>
+                            </button>
+                            <!-- Notification dropdown would go here -->
+                        </div>
+
+                        <!-- Admin Menu -->
+                        <div class="relative group">
+                            <button class="flex items-center space-x-2">
+                                <div class="w-10 h-10 admin-gradient rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user-shield text-white"></i>
+                                </div>
+                            </button>
+                            <div
+                                class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 hidden group-hover:block z-50">
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                    <i class="fas fa-user mr-2"></i>Profile
+                                </a>
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                    <i class="fas fa-history mr-2"></i>Activity Log
+                                </a>
+                                <div class="border-t my-2"></div>
+                                <a href="#" class="block px-4 py-2 text-red-600 hover:bg-gray-100">
+                                    <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="px-6 pb-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-blue-50 p-3 rounded-lg">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-sm text-gray-600">Total Users</p>
+                                <h3 class="text-xl font-bold text-dark">1,245</h3>
+                            </div>
+                            <i class="fas fa-users text-blue-500 text-lg"></i>
+                        </div>
+                        <p class="text-xs text-green-600 mt-1">
+                            <i class="fas fa-arrow-up mr-1"></i> 12% increase
+                        </p>
+                    </div>
+
+                    <div class="bg-purple-50 p-3 rounded-lg">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-sm text-gray-600">Active Jobs</p>
+                                <h3 class="text-xl font-bold text-dark">2,548</h3>
+                            </div>
+                            <i class="fas fa-briefcase text-purple-500 text-lg"></i>
+                        </div>
+                        <p class="text-xs text-green-600 mt-1">
+                            <i class="fas fa-arrow-up mr-1"></i> 8% increase
+                        </p>
+                    </div>
+
+                    <div class="bg-green-50 p-3 rounded-lg">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-sm text-gray-600">Applications</p>
+                                <h3 class="text-xl font-bold text-dark">12,458</h3>
+                            </div>
+                            <i class="fas fa-file-alt text-green-500 text-lg"></i>
+                        </div>
+                        <p class="text-xs text-green-600 mt-1">
+                            <i class="fas fa-arrow-up mr-1"></i> 23% increase
+                        </p>
+                    </div>
+
+                    <div class="bg-yellow-50 p-3 rounded-lg">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-sm text-gray-600">Pending Actions</p>
+                                <h3 class="text-xl font-bold text-dark">23</h3>
+                            </div>
+                            <i class="fas fa-exclamation-triangle text-yellow-500 text-lg"></i>
+                        </div>
+                        <p class="text-xs text-red-600 mt-1">
+                            <i class="fas fa-clock mr-1"></i> Requires attention
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div class="p-6">
+                <!-- Charts Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    <!-- Platform Growth -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 animate-fade-in">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-bold text-dark">Platform Growth</h3>
+                            <select class="text-sm border border-gray-300 rounded-lg px-3 py-2">
+                                <option>Last 7 days</option>
+                                <option selected>Last 30 days</option>
+                                <option>Last 90 days</option>
+                            </select>
+                        </div>
+                        <div class="h-80">
+                            <canvas id="growthChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- User Distribution -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 animate-fade-in">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-bold text-dark">User Distribution</h3>
+                            <button class="text-sm text-admin hover:text-purple-700 font-medium">
+                                <i class="fas fa-download mr-2"></i>Export
+                            </button>
+                        </div>
+                        <div class="h-80">
+                            <canvas id="userDistributionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity & Quick Actions -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                    <!-- Recent Activity -->
+                    <div class="lg:col-span-2">
+                        <div class="bg-white rounded-xl shadow-lg p-6 animate-slide-up">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-xl font-bold text-dark">Recent Activity</h3>
+                                <a href="#" class="text-admin hover:text-purple-700 font-medium">
+                                    View All <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+
+                            <div class="space-y-4 custom-scrollbar max-h-[400px] overflow-y-auto pr-2">
+                                <!-- Activity Item -->
+                                <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                    <div
+                                        class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                        <i class="fas fa-user-plus text-blue-600"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex justify-between">
+                                            <h4 class="font-medium text-dark">New User Registration</h4>
+                                            <span class="text-xs text-gray-500">2 min ago</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mt-1">John Doe registered as a job seeker</p>
+                                        <div class="flex items-center mt-2">
+                                            <span class="status-badge status-pending">Pending Verification</span>
+                                            <button class="ml-auto text-xs text-admin hover:text-purple-700">
+                                                <i class="fas fa-eye mr-1"></i>Review
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Activity Item -->
+                                <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                    <div
+                                        class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                        <i class="fas fa-briefcase text-green-600"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex justify-between">
+                                            <h4 class="font-medium text-dark">Job Posted</h4>
+                                            <span class="text-xs text-gray-500">1 hour ago</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mt-1">TechCorp posted "Senior Frontend
+                                            Developer"</p>
+                                        <div class="flex items-center mt-2">
+                                            <span class="status-badge status-active">Active</span>
+                                            <button class="ml-auto text-xs text-admin hover:text-purple-700">
+                                                <i class="fas fa-eye mr-1"></i>View
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Activity Item -->
+                                <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                    <div
+                                        class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                        <i class="fas fa-flag text-red-600"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex justify-between">
+                                            <h4 class="font-medium text-dark">Content Flagged</h4>
+                                            <span class="text-xs text-gray-500">3 hours ago</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mt-1">User reported inappropriate job post</p>
+                                        <div class="flex items-center mt-2">
+                                            <span class="status-badge status-pending">Under Review</span>
+                                            <button class="ml-auto text-xs text-admin hover:text-purple-700">
+                                                <i class="fas fa-gavel mr-1"></i>Take Action
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Activity Item -->
+                                <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                    <div
+                                        class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                        <i class="fas fa-building text-yellow-600"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex justify-between">
+                                            <h4 class="font-medium text-dark">Employer Verified</h4>
+                                            <span class="text-xs text-gray-500">5 hours ago</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mt-1">StartupXYZ verification completed</p>
+                                        <div class="flex items-center mt-2">
+                                            <span class="status-badge status-verified">Verified</span>
+                                            <button class="ml-auto text-xs text-admin hover:text-purple-700">
+                                                <i class="fas fa-eye mr-1"></i>View
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="space-y-6">
+                        <!-- System Actions -->
+                        <div class="bg-white rounded-xl shadow-lg p-6 animate-slide-in-right">
+                            <h3 class="text-xl font-bold text-dark mb-6">Quick Actions</h3>
+                            <div class="grid grid-cols-2 gap-3">
+                                <button class="p-4 bg-blue-50 rounded-lg text-center hover:bg-blue-100 transition">
+                                    <div
+                                        class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                        <i class="fas fa-user-plus text-blue-600"></i>
+                                    </div>
+                                    <p class="text-sm font-medium">Add User</p>
+                                </button>
+                                <button class="p-4 bg-purple-50 rounded-lg text-center hover:bg-purple-100 transition">
+                                    <div
+                                        class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                        <i class="fas fa-check-circle text-purple-600"></i>
+                                    </div>
+                                    <p class="text-sm font-medium">Verify</p>
+                                </button>
+                                <button class="p-4 bg-green-50 rounded-lg text-center hover:bg-green-100 transition">
+                                    <div
+                                        class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                        <i class="fas fa-ban text-green-600"></i>
+                                    </div>
+                                    <p class="text-sm font-medium">Suspend</p>
+                                </button>
+                                <button class="p-4 bg-red-50 rounded-lg text-center hover:bg-red-100 transition">
+                                    <div
+                                        class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                        <i class="fas fa-trash text-red-600"></i>
+                                    </div>
+                                    <p class="text-sm font-medium">Delete</p>
+                                </button>
+                                <button class="p-4 bg-yellow-50 rounded-lg text-center hover:bg-yellow-100 transition">
+                                    <div
+                                        class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                        <i class="fas fa-envelope text-yellow-600"></i>
+                                    </div>
+                                    <p class="text-sm font-medium">Message</p>
+                                </button>
+                                <button class="p-4 bg-indigo-50 rounded-lg text-center hover:bg-indigo-100 transition">
+                                    <div
+                                        class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                        <i class="fas fa-cog text-indigo-600"></i>
+                                    </div>
+                                    <p class="text-sm font-medium">Settings</p>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- System Status -->
+                        <div
+                            class="bg-gradient-to-r from-admin to-purple-700 rounded-xl shadow-lg p-6 text-white animate-slide-in-right">
+                            <h3 class="text-xl font-bold mb-6">System Status</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm">CPU Usage</span>
+                                        <span class="text-sm font-bold">42%</span>
+                                    </div>
+                                    <div class="h-2 bg-white/20 rounded-full overflow-hidden">
+                                        <div class="h-full bg-green-400 rounded-full" style="width: 42%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm">Memory</span>
+                                        <span class="text-sm font-bold">68%</span>
+                                    </div>
+                                    <div class="h-2 bg-white/20 rounded-full overflow-hidden">
+                                        <div class="h-full bg-yellow-400 rounded-full" style="width: 68%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm">Storage</span>
+                                        <span class="text-sm font-bold">35%</span>
+                                    </div>
+                                    <div class="h-2 bg-white/20 rounded-full overflow-hidden">
+                                        <div class="h-full bg-blue-400 rounded-full" style="width: 35%"></div>
+                                    </div>
+                                </div>
+                                <div class="pt-4 border-t border-white/20">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-sm">Active Sessions</p>
+                                            <p class="text-2xl font-bold">1,248</p>
+                                        </div>
+                                        <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                                            <i class="fas fa-users text-xl"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Users Management -->
+                <div id="users" class="bg-white rounded-xl shadow-lg p-6 mb-8 animate-slide-up">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-dark">User Management</h3>
+                        <div class="flex space-x-3">
+                            <input type="text" placeholder="Search users..."
+                                class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-admin focus:border-transparent">
+                            <button class="px-4 py-2 bg-admin text-white rounded-lg hover:bg-purple-700 transition">
+                                <i class="fas fa-plus mr-2"></i>Add User
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b border-gray-200">
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">
+                                        <input type="checkbox" class="rounded border-gray-300">
+                                    </th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">User</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Type</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Status</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Joined</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-gray-600">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- User 1 -->
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-4 px-4">
+                                        <input type="checkbox" class="rounded border-gray-300">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center">
+                                            <div
+                                                class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                                <span class="font-bold text-blue-800">JD</span>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-medium text-dark">John Doe</h4>
+                                                <p class="text-sm text-gray-600">john.doe@example.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
+                                            Job Seeker
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="status-badge status-active">Active</span>
+                                    </td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">2024-01-15</td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex space-x-2">
+                                            <button class="text-blue-600 hover:text-blue-800" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-green-600 hover:text-green-800" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-800" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- User 2 -->
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-4 px-4">
+                                        <input type="checkbox" class="rounded border-gray-300">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center">
+                                            <div
+                                                class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                                                <i class="fas fa-building text-purple-600"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-medium text-dark">TechCorp Inc.</h4>
+                                                <p class="text-sm text-gray-600">admin@techcorp.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">
+                                            Employer
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="status-badge status-verified">Verified</span>
+                                    </td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">2024-01-10</td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex space-x-2">
+                                            <button class="text-blue-600 hover:text-blue-800">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-green-600 hover:text-green-800">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-800">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- User 3 -->
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-4 px-4">
+                                        <input type="checkbox" class="rounded border-gray-300">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center">
+                                            <div
+                                                class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                                                <span class="font-bold text-yellow-800">SP</span>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-medium text-dark">Sarah Patel</h4>
+                                                <p class="text-sm text-gray-600">sarah@example.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
+                                            Job Seeker
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="status-badge status-pending">Pending</span>
+                                    </td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">2024-01-20</td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex space-x-2">
+                                            <button class="text-blue-600 hover:text-blue-800">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-green-600 hover:text-green-800">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-800">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- User 4 -->
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-4 px-4">
+                                        <input type="checkbox" class="rounded border-gray-300">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center">
+                                            <div
+                                                class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                                                <span class="font-bold text-red-800">RM</span>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-medium text-dark">Robert Miller</h4>
+                                                <p class="text-sm text-gray-600">robert@example.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">
+                                            Employer
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="status-badge status-suspended">Suspended</span>
+                                    </td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">2024-01-05</td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex space-x-2">
+                                            <button class="text-blue-600 hover:text-blue-800">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-green-600 hover:text-green-800">
+                                                <i class="fas fa-undo"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-800">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="flex justify-between items-center mt-6 pt-6 border-t border-gray-200">
+                        <div class="text-sm text-gray-600">
+                            Showing 4 of 1,245 users
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="px-3 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <span class="px-3 py-2 text-sm">1 of 125</span>
+                            <button class="px-3 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Management -->
+                <div id="jobs" class="bg-white rounded-xl shadow-lg p-6 mb-8 animate-slide-up">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-dark">Job Management</h3>
+                        <div class="flex space-x-3">
+                            <select class="px-4 py-2 border border-gray-300 rounded-lg">
+                                <option>All Status</option>
+                                <option>Active</option>
+                                <option>Pending</option>
+                                <option>Expired</option>
+                            </select>
+                            <button class="px-4 py-2 bg-admin text-white rounded-lg hover:bg-purple-700 transition">
+                                <i class="fas fa-filter mr-2"></i>Filter
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Job Card 1 -->
+                        <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <h4 class="font-bold text-dark">Senior Frontend Developer</h4>
+                                    <p class="text-sm text-gray-600">TechCorp Inc.</p>
+                                </div>
+                                <span class="status-badge status-active">Active</span>
+                            </div>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-map-marker-alt mr-2 text-gray-400"></i>
+                                    <span>Remote</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-briefcase mr-2 text-gray-400"></i>
+                                    <span>Full-time</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-dollar-sign mr-2 text-gray-400"></i>
+                                    <span>$90,000 - $120,000</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center pt-3 border-t border-gray-100">
+                                <div class="text-sm text-gray-600">
+                                    <i class="fas fa-calendar mr-1"></i>
+                                    Posted: 5 days ago
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="text-blue-600 hover:text-blue-800">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="text-red-600 hover:text-red-800">
+                                        <i class="fas fa-ban"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Job Card 2 -->
+                        <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <h4 class="font-bold text-dark">Product Manager</h4>
+                                    <p class="text-sm text-gray-600">StartupXYZ</p>
+                                </div>
+                                <span class="status-badge status-pending">Pending</span>
+                            </div>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-map-marker-alt mr-2 text-gray-400"></i>
+                                    <span>On-site</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-briefcase mr-2 text-gray-400"></i>
+                                    <span>Full-time</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-dollar-sign mr-2 text-gray-400"></i>
+                                    <span>$110,000 - $140,000</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center pt-3 border-t border-gray-100">
+                                <div class="text-sm text-gray-600">
+                                    <i class="fas fa-calendar mr-1"></i>
+                                    Posted: 2 hours ago
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="text-green-600 hover:text-green-800">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                    <button class="text-red-600 hover:text-red-800">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Job Card 3 -->
+                        <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <h4 class="font-bold text-dark">UX Designer</h4>
+                                    <p class="text-sm text-gray-600">DesignStudio</p>
+                                </div>
+                                <span class="status-badge status-suspended">Flagged</span>
+                            </div>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-map-marker-alt mr-2 text-gray-400"></i>
+                                    <span>Hybrid</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-briefcase mr-2 text-gray-400"></i>
+                                    <span>Contract</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-600">
+                                    <i class="fas fa-dollar-sign mr-2 text-gray-400"></i>
+                                    <span>$70,000 - $90,000</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center pt-3 border-t border-gray-100">
+                                <div class="text-sm text-gray-600">
+                                    <i class="fas fa-calendar mr-1"></i>
+                                    Posted: 1 week ago
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="text-blue-600 hover:text-blue-800">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="text-red-600 hover:text-red-800">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Settings Preview -->
+                <div id="settings" class="bg-white rounded-xl shadow-lg p-6 animate-slide-up">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-dark">System Settings</h3>
+                        <button class="px-4 py-2 bg-admin text-white rounded-lg hover:bg-purple-700 transition">
+                            <i class="fas fa-save mr-2"></i>Save Changes
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- General Settings -->
+                        <div class="space-y-4">
+                            <h4 class="font-medium text-dark border-b pb-2">General</h4>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Site Name</label>
+                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                                    value="Kaam Yeta Hai">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Site Description</label>
+                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                                    value="Career. Connected.">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Maintenance Mode</label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-gray-300">
+                                    <span class="ml-2 text-sm text-gray-700">Enable maintenance mode</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Email Settings -->
+                        <div class="space-y-4">
+                            <h4 class="font-medium text-dark border-b pb-2">Email</h4>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">SMTP Host</label>
+                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                                    value="smtp.example.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email Notifications</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-gray-300" checked>
+                                        <span class="ml-2 text-sm text-gray-700">New user registrations</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-gray-300" checked>
+                                        <span class="ml-2 text-sm text-gray-700">New job postings</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-gray-300">
+                                        <span class="ml-2 text-sm text-gray-700">System alerts</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Security Settings -->
+                        <div class="space-y-4">
+                            <h4 class="font-medium text-dark border-b pb-2">Security</h4>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Session Timeout</label>
+                                <select class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                                    <option>15 minutes</option>
+                                    <option selected>30 minutes</option>
+                                    <option>1 hour</option>
+                                    <option>2 hours</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Password Policy</label>
+                                <select class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                                    <option>Low</option>
+                                    <option selected>Medium</option>
+                                    <option>High</option>
+                                    <option>Very High</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Two-Factor Auth</label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-gray-300" checked>
+                                    <span class="ml-2 text-sm text-gray-700">Enable for admin users</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div id="mobileSidebar" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden">
+        <div class="absolute right-0 top-0 h-full w-64 sidebar-gradient text-white animate-slide-in-right">
+            <div class="p-6">
+                <!-- Close Button -->
+                <div class="flex justify-end mb-6">
+                    <button id="closeMobileMenu" class="text-white">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Navigation -->
+                <nav class="space-y-1">
+                    <a href="#" class="sidebar-link active flex items-center px-4 py-3 text-white">
+                        <i class="fas fa-chart-line mr-3"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#users" class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-users mr-3"></i>
+                        <span>Users</span>
+                    </a>
+                    <a href="#employers"
+                        class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-building mr-3"></i>
+                        <span>Employers</span>
+                    </a>
+                    <a href="#jobs" class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-briefcase mr-3"></i>
+                        <span>Jobs</span>
+                    </a>
+                    <a href="#settings" class="sidebar-link flex items-center px-4 py-3 text-gray-300 hover:text-white">
+                        <i class="fas fa-cog mr-3"></i>
+                        <span>Settings</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Charts
+        const growthCtx = document.getElementById('growthChart').getContext('2d');
+        const growthChart = new Chart(growthCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                datasets: [
+                    {
+                        label: 'Users',
+                        data: [450, 520, 610, 720, 850, 980, 1245],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Jobs',
+                        data: [1200, 1350, 1520, 1780, 2100, 2350, 2548],
+                        borderColor: '#8b5cf6',
+                        backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Applications',
+                        data: [4500, 5200, 6100, 7500, 8900, 10500, 12458],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            display: true,
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        const userDistributionCtx = document.getElementById('userDistributionChart').getContext('2d');
+        const userDistributionChart = new Chart(userDistributionCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Job Seekers', 'Employers', 'Admins', 'Suspended'],
+                datasets: [{
+                    data: [985, 342, 5, 23],
+                    backgroundColor: [
+                        '#3b82f6',
+                        '#8b5cf6',
+                        '#10b981',
+                        '#ef4444'
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    }
+                },
+                cutout: '65%'
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileSidebar = document.getElementById('mobileSidebar');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileSidebar.classList.remove('hidden');
+        });
+
+        closeMobileMenu.addEventListener('click', () => {
+            mobileSidebar.classList.add('hidden');
+        });
+
+        mobileSidebar.addEventListener('click', (e) => {
+            if (e.target === mobileSidebar) {
+                mobileSidebar.classList.add('hidden');
+            }
+        });
+
+        // Sidebar navigation smooth scroll
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // User table row actions
+        document.querySelectorAll('#users table button').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const row = this.closest('tr');
+                const userName = row.querySelector('h4').textContent;
+                const action = this.querySelector('i').className;
+
+                if (action.includes('fa-eye')) {
+                    alert(`View details for ${userName}`);
+                } else if (action.includes('fa-edit') || action.includes('fa-check')) {
+                    alert(`Edit/verify ${userName}`);
+                } else if (action.includes('fa-trash')) {
+                    if (confirm(`Are you sure you want to delete ${userName}?`)) {
+                        row.remove();
+                    }
+                } else if (action.includes('fa-ban')) {
+                    const statusCell = row.querySelector('.status-badge');
+                    statusCell.textContent = 'Suspended';
+                    statusCell.className = 'status-badge status-suspended';
+                } else if (action.includes('fa-undo')) {
+                    const statusCell = row.querySelector('.status-badge');
+                    statusCell.textContent = 'Active';
+                    statusCell.className = 'status-badge status-active';
+                }
+            });
+        });
+
+        // Job card actions
+        document.querySelectorAll('#jobs .border button').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const card = this.closest('.border');
+                const jobTitle = card.querySelector('h4').textContent;
+                const action = this.querySelector('i').className;
+
+                if (action.includes('fa-eye')) {
+                    alert(`View job: ${jobTitle}`);
+                } else if (action.includes('fa-check')) {
+                    const statusBadge = card.querySelector('.status-badge');
+                    statusBadge.textContent = 'Active';
+                    statusBadge.className = 'status-badge status-active';
+                    alert(`Approved job: ${jobTitle}`);
+                } else if (action.includes('fa-times') || action.includes('fa-ban')) {
+                    const statusBadge = card.querySelector('.status-badge');
+                    statusBadge.textContent = 'Suspended';
+                    statusBadge.className = 'status-badge status-suspended';
+                    alert(`Suspended job: ${jobTitle}`);
+                } else if (action.includes('fa-trash')) {
+                    if (confirm(`Delete job: ${jobTitle}?`)) {
+                        card.remove();
+                    }
+                }
+            });
+        });
+
+        // Quick action buttons
+        document.querySelectorAll('.grid.grid-cols-2 button').forEach(button => {
+            button.addEventListener('click', function () {
+                const action = this.querySelector('p').textContent;
+
+                switch (action) {
+                    case 'Add User':
+                        alert('Opening add user form...');
+                        break;
+                    case 'Verify':
+                        alert('Opening verification panel...');
+                        break;
+                    case 'Suspend':
+                        alert('Opening suspension panel...');
+                        break;
+                    case 'Delete':
+                        alert('Opening deletion panel...');
+                        break;
+                    case 'Message':
+                        alert('Opening message composer...');
+                        break;
+                    case 'Settings':
+                        document.querySelector('#settings').scrollIntoView({ behavior: 'smooth' });
+                        break;
+                }
+            });
+        });
+
+        // Simulate system status updates
+        setInterval(() => {
+            const cpuElement = document.querySelector('.bg-green-400');
+            const memoryElement = document.querySelector('.bg-yellow-400');
+            const storageElement = document.querySelector('.bg-blue-400');
+            const activeSessions = document.querySelector('.text-2xl.font-bold:nth-child(2)');
+
+            // Random updates for demo
+            const cpu = Math.min(100, Math.max(30, parseInt(cpuElement.style.width) + (Math.random() * 10 - 5)));
+            const memory = Math.min(100, Math.max(40, parseInt(memoryElement.style.width) + (Math.random() * 10 - 5)));
+            const storage = Math.min(100, Math.max(25, parseInt(storageElement.style.width) + (Math.random() * 5 - 2.5)));
+            const sessions = parseInt(activeSessions.textContent) + (Math.random() > 0.5 ? 1 : -1);
+
+            cpuElement.style.width = `${cpu}%`;
+            cpuElement.parentElement.nextElementSibling.textContent = `${Math.round(cpu)}%`;
+
+            memoryElement.style.width = `${memory}%`;
+            memoryElement.parentElement.nextElementSibling.textContent = `${Math.round(memory)}%`;
+
+            storageElement.style.width = `${storage}%`;
+            storageElement.parentElement.nextElementSibling.textContent = `${Math.round(storage)}%`;
+
+            activeSessions.textContent = Math.max(1000, Math.min(1500, sessions));
+        }, 5000);
+    </script>
+</body>
+
+</html>

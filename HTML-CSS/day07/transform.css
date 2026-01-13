@@ -1,0 +1,41 @@
+.box {
+  height: 200px;
+  width: 200px;
+  background-color: dodgerblue;
+  /* translate, rotate, scale, skew */
+  transform: translate(200px, 200px) rotate(30deg) scale(1.8) skew(-15deg);
+}
+
+h1 {
+  transform: skew(-15deg) translate(100px) rotate(15deg);
+}
+
+.card {
+  height: 200px;
+  width: 200px;
+  background-color: sandybrown;
+  animation: my_animation 5s ease-out 2s infinite; /* animation_name duration timing-function delay iteration-count */
+}
+
+@keyframes my_animation {
+  0% {
+    transform: translate(300px) rotate(0);
+  }
+
+  25% {
+    transform: translate(500px);
+  }
+
+  30% {
+    transform: translate(500px) scale(1.5);
+  }
+
+  50% {
+    transform: translate(500px) rotate(90deg);
+    background-color: darkseagreen;
+  }
+
+  100% {
+    transform: translate(300px) rotate(180deg);
+  }
+}
