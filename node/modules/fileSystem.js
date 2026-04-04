@@ -19,3 +19,9 @@ asynchronous - non-blocking operation
 //read file
 const result = fs.readFileSync("data/data.txt","utf-8"); //utf-8 is the encoding format, it is used to read the file in a human-readable format
 console.log(result);
+
+const image = fs.readFileSync("data/logo.png","base64");
+// console.log(image);
+
+//writing file
+fs.writeFileSync("data/image.txt", image); //it will create a new file named image.txt and write the base64 string of the image in it
