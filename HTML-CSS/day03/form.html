@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+</head>
+
+<body>
+    <form action="">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" required placeholder="Your full name" />
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" />
+        </div>
+
+        <div>
+            <label for="age">Age</label>
+            <input type="number" name="age" id="age" />
+        </div>
+
+        <div>
+            <label for="phone">Phone number</label>
+            <input type="tel" name="phone" id="phone" value="+977" />
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" />
+        </div>
+
+        <br />
+        Date: <input type="date" /> <br>
+        Time: <input type="time" /> <br>
+        DateTime:
+        <input type="datetime-local" />
+        <br />
+        File: <input type="file" name="file" accept=".jpg,.png,.jpeg" /><br>
+        Color: <input type="color" /><br>
+        Range:<input type="range" min="0" max="10" name="range" step="0.5" />
+        <br />
+
+        <div>
+            <input type="radio" name="gender" value="male" checked /> Male
+            <input type="radio" name="gender" value="female" /> Female
+            <input type="radio" name="gender" value="other" /> Other
+        </div>
+
+        <div>
+            <input type="checkbox" name="hobby" value="Traveling" checked /> Traveling
+            <input type="checkbox" name="hobby" value="Hiking" checked /> Hiking
+            <input type="checkbox" name="hobby" value="Swimming" /> Swimming
+        </div>
+
+        Select:
+        <select name="class">
+            <option value="1">Class 1</option>
+            <option value="2">Class 2</option>
+            <option value="3">Class 3</option>
+            <option value="4">Class 4</option>
+        </select>
+        <br>
+        <textarea name="message"></textarea>
+        <br />
+        <input type="submit" value="Send message" />
+    </form>
+</body>
+
+</html>

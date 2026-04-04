@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table in HTML</title>
+
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Address</th>
+                <th colspan="2">Phone</th>
+                <th>Province</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Sujan</td>
+                <td>20</td>
+                <td>Bhaktapur</td>
+                <td>7984120861</td>
+                <td>8976416361</td>
+                <td>Bagmati</td>
+            </tr>
+
+            <tr>
+                <td>Kusum</td>
+                <td>21</td>
+                <td>Aargakhachi</td>
+                <td>987654120</td>
+                <td>4861368135</td>
+                <td rowspan="2">Koshi</td>
+            </tr>
+
+            <tr>
+                <td>Sita</td>
+                <td>13</td>
+                <td>Dharan</td>
+                <td>87654163123</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
