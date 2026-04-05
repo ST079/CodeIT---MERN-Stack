@@ -38,8 +38,12 @@ fs.rmSync("test/testFolder", { recursive: true });
 
 */
 
-//Asynchronous method
-//read file
+// Asynchronous method
+// yesle chai euta callback function lincha, jasma error ra data parameter huncha, 
+// callback chai operation complete bhayepachi call huncha,
+// error parameter ma error aayeko cha ki chaina bhanne kura check garna sakincha, 
+// data parameter ma file ko content aayeko huncha
+// read file
 const result = fs.readFile("data/data.txt", "utf-8", (error, data) => {
   if (error) throw error;
   console.log(data);
