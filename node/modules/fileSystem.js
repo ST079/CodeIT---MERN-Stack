@@ -15,6 +15,7 @@ synchronous - blocking operation
 asynchronous - non-blocking operation
 */
 
+/*
 //synchronous method
 //read file
 const result = fs.readFileSync("data/data.txt","utf-8"); //utf-8 is the encoding format, it is used to read the file in a human-readable format
@@ -25,3 +26,27 @@ const image = fs.readFileSync("data/logo.png","base64");
 
 //writing file
 fs.writeFileSync("data/image.txt", image); //it will create a new file named image.txt and write the base64 string of the image in it
+
+//append file
+fs.appendFileSync("data/data.txt", "\nThis is an appended text."); //it will append the text to the existing file data.txt
+
+//delete file
+fs.unlinkSync("data/image.txt"); //remove only file
+fs.rmSync("data/image.txt"); //remove file or folder.
+//  if you want to delete a folder inside folder {recursive: true} option is used
+fs.rmSync("test/testFolder", { recursive: true });
+
+*/
+
+//Asynchronous method
+//read file
+const result = fs.readFile("data/data.txt", "utf-8", (error, data) => {
+  if (error) throw error;
+  console.log(data);
+});
+
+fs.appendFile("data/data.txt", "\nThis is an appended text.", ()=>{});
+
+//console.log(result);
+//undefined because it is an asynchronous operation,
+// it will not wait for the operation to complete and move to the next line of code
