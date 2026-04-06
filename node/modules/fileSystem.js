@@ -1,5 +1,5 @@
 import fs from "fs";
-
+//day 18
 /*
 Using the ecma script module syntax.
 File ko sabai crud operation haru garna sakincha.

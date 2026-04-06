@@ -1,3 +1,4 @@
+//day 18
 //os ko details haru thapauna sakxa
 import os from 'os';
 
