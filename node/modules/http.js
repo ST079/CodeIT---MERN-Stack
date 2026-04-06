@@ -35,8 +35,6 @@ const server = http.createServer((req, res) => {
 //       break;
 //   }
 
-
-
 //yo ta ekdum messy code ho, so express come to light.
 switch(req.method){
     case "GET":
