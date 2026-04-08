@@ -4,6 +4,21 @@ import config from './config/index.js';
 // server banaune, route haru define garne, middleware haru use garne, etc.
 
 const app = express();
+app.get('/', (req, res) => {
+    res.send({
+        name: config.name,
+        version: config.version,
+        featureAdminEnabled: config.feature.admin.enabled,
+    });
+});
+
+app.get("/admin", (req, res) => {
+    if(config.feature.admin.enabled){
+        res.send("Welcome to the admin panel!");
+    } else {
+        res.status(403).send("Admin panel is disabled.");
+    }
+});
 
 app.listen(config.port, () => {
     console.log(`Server is running on port ${config.port}....`);
