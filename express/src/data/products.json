@@ -1,0 +1,121 @@
+[
+  {
+    "id": 1,
+    "name": "Jagadamba Rod 16 mm 1 Bundle",
+    "brand": "Jagadamba",
+    "category": "Hardwares",
+    "price": 33000,
+    "stock": 10
+  },
+  {
+    "id": 2,
+    "name": "UPVC 5 Layered 1000 Liters water tank",
+    "brand": "Nepatop",
+    "category": "Hardwares",
+    "price": 15000,
+    "stock": 15
+  },
+  {
+    "id": 3,
+    "name": "Iphone 16 pro max",
+    "brand": "Apple",
+    "category": "Smartphones",
+    "price": 200000,
+    "stock": 15
+  },
+  {
+    "id": 4,
+    "name": "Samsung Galaxy S25 Ultra",
+    "brand": "Samsung",
+    "category": "Smartphones",
+    "price": 185000,
+    "stock": 26
+  },
+  {
+    "id": 5,
+    "name": "Google Pixel 10 Pro XL",
+    "brand": "Google",
+    "category": "Smartphones",
+    "price": 210000,
+    "stock": 5
+  },
+  {
+    "id": 6,
+    "name": "Mechanical Keyboard Full-sized Backlight RGB",
+    "brand": "Fantech",
+    "category": "Electronics",
+    "price": 5000,
+    "stock": 50
+  },
+  {
+    "id": 7,
+    "name": "Samsung M14 6GB/256GB Black ",
+    "brand": "Samsung",
+    "category": "Smartphones",
+    "price": 15000,
+    "stock": 19
+  },
+  {
+    "id": 8,
+    "name": "Samsung A18 4GB/128GB Sky Blue Triple camera",
+    "brand": "Samsung",
+    "category": "Smartphones",
+    "price": 18000,
+    "stock": 30
+  },
+  {
+    "id": 9,
+    "name": "Dell XPS 13 Plus 9320 Touch Screen",
+    "brand": "Dell",
+    "category": "Laptops",
+    "price": 180000,
+    "stock": 8
+  },
+  {
+    "name": "Samsung Galaxy Book",
+    "brand": "Samsung",
+    "category": "Laptops",
+    "price": 85000,
+    "stock": 63
+  },
+  {
+    "name": "MacBook Air M4 16GB 256GB",
+    "brand": "Apple",
+    "category": "Laptops",
+    "price": 150000,
+    "stock": 23
+  },
+  {
+    "name": "Macbook Pro M4",
+    "brand": "Apple",
+    "category": "Laptops",
+    "price": 2600000,
+    "stock": 12
+  },
+  {
+    "name": "MacBook Pro M4 Pro 24GB 512 GB 14\"",
+    "brand": "Apple",
+    "category": "Laptops",
+    "price": 300000,
+    "stock": 8
+  },
+  {
+    "name": "Premier Steel Pipes",
+    "brand": "Premier",
+    "category": "Hardwares",
+    "price": 1500,
+    "stock": 100
+  },
+  {
+    "name": "Cadbury Dairy Milk Roasted Almond",
+    "brand": "Dairy Milk",
+    "category": "Chocolate",
+    "price": 300
+  },
+  {
+    "name": "Toblerone Milk bar",
+    "brand": "Toblerone",
+    "category": "Chocolate",
+    "price": 1500
+  }
+]

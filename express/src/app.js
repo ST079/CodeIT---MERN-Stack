@@ -1,5 +1,7 @@
-import express from 'express';
-import config from './config/index.js';
+import dotenv from "dotenv";
+dotenv.config();
+import express from "express";
+import config from "./config/index.js";
 import productRoutes from "./routes/product.route.js";
 //aaba yo aap le sabai kaam garnu milxa express ma,
 // server banaune, route haru define garne, middleware haru use garne, etc.
@@ -20,9 +22,8 @@ const app = express();
 //     }
 // });
 
-
-app.use("/products", productRoutes);
+app.use(process.env.VERSION + "/products", productRoutes);
 
 app.listen(config.port, () => {
-    console.log(`Server is running on port ${config.port}....`);
+  console.log(`Server is running on port ${config.port}....`);
 });
