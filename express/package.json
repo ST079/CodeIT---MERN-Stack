@@ -16,6 +16,7 @@
     "express": "^5.2.1"
   },
   "devDependencies": {
+    "body-parser": "^2.2.2",
     "nodemon": "^3.1.14"
   }
 }

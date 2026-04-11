@@ -117,5 +117,11 @@
     "brand": "Toblerone",
     "category": "Chocolate",
     "price": 1500
+  },
+  {
+    "name": "Kitkat",
+    "brand": "Stolen",
+    "category": "Chocolate",
+    "price": 50
   }
 ]
