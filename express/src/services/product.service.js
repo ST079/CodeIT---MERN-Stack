@@ -1,10 +1,8 @@
-import fs from "fs";
+import productModel from "../models/Product.js";
 
-const products = fs.readFileSync("src/data/products.json", "utf-8");
-const productData = JSON.parse(products);
-
-const getAllProducts = (playload) => {
+const getAllProducts = async (playload) => {
   const query = playload;
+  const productData = await productModel.find();
   if (query) {
     const filteredData = productData.filter((product) => {
       return query.brand
@@ -16,16 +14,12 @@ const getAllProducts = (playload) => {
   return productData;
 };
 
-const getProductById = (id) => {
-  return productData.find((product) => product.id === id);
+const getProductById = async (id) => {
+  return await productModel.findById(id);
 };
 
-const createProduct = (data) => {
-  productData.push(data);
-  fs.writeFileSync(
-    "src/data/products.json",
-    JSON.stringify(productData, null, 2),
-  );
+const createProduct = async (data) => {
+  return await productModel.create(data);
 };
 
 export default {

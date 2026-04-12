@@ -1,9 +1,10 @@
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
-import config from "./config/index.js";
+import config from "./config/config.js";
 import productRoutes from "./routes/product.route.js";
 import bodyParser from "body-parser";
+import connectDB from "./config/database.js";
 //aaba yo aap le sabai kaam garnu milxa express ma,
 // server banaune, route haru define garne, middleware haru use garne, etc.
 const app = express();
@@ -22,7 +23,8 @@ const app = express();
 //         res.status(403).send("Admin panel is disabled.");
 //     }
 // });
-app.use(bodyParser.json())
+connectDB();
+app.use(bodyParser.json());
 
 app.use(process.env.VERSION + "/products", productRoutes);
 
