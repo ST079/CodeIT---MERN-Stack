@@ -15,15 +15,34 @@ const getAllProducts = async (playload) => {
 };
 
 const getProductById = async (id) => {
-  return await productModel.findById(id);
+  const data = await productModel.findById(id);
+  if (!data)
+    throw {
+      status: 404,
+      message: "Product Not Found! ",
+    };
+  return {data: data, status: 200 ,message: "Product Found"};
 };
 
 const createProduct = async (data) => {
   return await productModel.create(data);
 };
 
+const updateProduct = async (id, data) => {
+  await getProductById(id);
+  //{new:true}-> gives the latest updated data
+  return await productModel.findByIdAndUpdate(id, data, { new: true });
+};
+
+const deleteProduct = async(id) => {
+  await getProductById(id);
+  await productModel.findByIdAndDelete(id);
+}
+
 export default {
   getAllProducts,
   getProductById,
   createProduct,
+  updateProduct,
+  deleteProduct,
 };

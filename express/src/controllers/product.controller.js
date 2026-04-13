@@ -13,10 +13,11 @@ const getAllProducts = async (req, res) => {
 const getProductById = async (req, res) => {
   try {
     const data = await productService.getProductById(req.params.id);
-    if (!data) res.status(404).json({ message: "Product not found" });
-    res.json(data);
+    res
+      .status(data.status)
+      .json({ message: data.message, productDetails: data.data });
   } catch (err) {
-    res.status(400).send({ message: err?.message });
+    res.status(err.status || 400).send({ message: err?.message });
   }
 };
 
@@ -29,8 +30,31 @@ const createProduct = async (req, res) => {
   }
 };
 
+const updateProduct = async (req, res) => {
+  try {
+    const updatedProduct = await productService.updateProduct(
+      req.params.id,
+      req.body,
+    );
+    res.status(200).json(updatedProduct);
+  } catch (err) {
+    res.status(err.status || 400).send({ message: err?.message });
+  }
+};
+
+const deleteProduct = async (req, res) => {
+  try {
+    await productService.deleteProduct(req.params.id);
+    res.json({ message: "Product Deleted Successfully", id: req.params.id });
+  } catch (err) {
+    res.status(err.status || 400).send({ message: err?.message });
+  }
+};
+
 export default {
   getAllProducts,
   getProductById,
   createProduct,
+  updateProduct,
+  deleteProduct,
 };

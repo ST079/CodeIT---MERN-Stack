@@ -13,7 +13,7 @@ const productSchema = new mongoose.Schema({
     required: [true, "Product Price is Required!!!!!!"],
     min: [, "Price must be grater than 1."],
   },
-  stock: { type: Number, min: 0, default: 1 },
+  stock: { type: Number, default: 1 },
   imageUrls: [String],
   createdAt: { type: Date, default: Date.now() },
 });
