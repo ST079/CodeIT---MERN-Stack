@@ -46,7 +46,7 @@ const userSchema = new mongoose.Schema({
     street: String,
   },
 
-  Phone: {
+  phone: {
     type: String,
     required: [true, "Phone Number is required!!!"],
     validate: {
