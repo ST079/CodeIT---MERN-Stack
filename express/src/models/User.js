@@ -47,23 +47,24 @@ const userSchema = new mongoose.Schema({
   },
 
   Phone: {
-    type: Number,
+    type: String,
     required: [true, "Phone Number is required!!!"],
     validate: {
       validator: (value) => {
         const phoneRegex = /^\d{10}$/; // Simple regex for 10 digit phone numbers
         return phoneRegex.test(value);
       },
+      messsage: "Invalid Email Format."
     },
   },
-  createdAt: { type: Date, default: Date.now(), immuatable: true },
+  createdAt: { type: Date, default: Date.now(), immutable: true },
   roles: {
     type: [String],
     default: ["USER"],
     enum: ["USER", "ADMIN", "MERCHANT"],
   },
   profileImageUrl: String,
-  isActve: { type: Boolean, default: true },
+  isActive: { type: Boolean, default: true },
 });
 
 const userModel = mongoose.model("User", userSchema);
