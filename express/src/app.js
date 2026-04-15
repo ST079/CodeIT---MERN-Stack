@@ -7,6 +7,8 @@ import userRoutes from "./routes/user.route.js"
 import authRoutes from "./routes/auth.route.js";
 import bodyParser from "body-parser";
 import connectDB from "./config/database.js";
+import logger from "./middlewares/logger.js";
+import errorMiddleware from "./middlewares/errorMiddleware.js";
 //aaba yo aap le sabai kaam garnu milxa express ma,
 // server banaune, route haru define garne, middleware haru use garne, etc.
 const app = express();
@@ -27,11 +29,13 @@ const app = express();
 // });
 connectDB();
 app.use(bodyParser.json());
+app.use(logger);
 
 app.use(process.env.VERSION + "/products", productRoutes);
 app.use(process.env.VERSION + "/users", userRoutes);
 app.use(process.env.VERSION + "/auth", authRoutes);
 
+app.use(errorMiddleware);
 app.listen(config.port, () => {
   console.log(`Server is running on port ${config.port}....`);
 });

@@ -1,27 +1,28 @@
 import productService from "../services/product.service.js";
 
-const getAllProducts = async (req, res) => {
+const getAllProducts = async (req, res,next) => {
   try {
-    const playload = req.query;
-    const data = await productService.getAllProducts(playload);
+    const payload = req.query;
+    const data = await productService.getAllProducts(payload);
     res.json(data);
   } catch (err) {
-    res.status(400).send({ message: err?.message });
+    // res.status(400).send({ message: err?.message });
+    next(err);
   }
 };
 
-const getProductById = async (req, res) => {
+const getProductById = async (req, res, next) => {
   try {
     const data = await productService.getProductById(req.params.id);
     res
       .status(data.status)
       .json({ message: data.message, productDetails: data.data });
   } catch (err) {
-    res.status(err.status || 400).send({ message: err?.message });
+    next(err);
   }
 };
 
-const createProduct = async (req, res) => {
+const createProduct = async (req, res, next) => {
   try {
     const createdProduct = await productService.createProduct(req.body);
     res.status(201).json(createdProduct);
@@ -30,7 +31,7 @@ const createProduct = async (req, res) => {
   }
 };
 
-const updateProduct = async (req, res) => {
+const updateProduct = async (req, res, next) => {
   try {
     const updatedProduct = await productService.updateProduct(
       req.params.id,
@@ -42,7 +43,7 @@ const updateProduct = async (req, res) => {
   }
 };
 
-const deleteProduct = async (req, res) => {
+const deleteProduct = async (req, res, next) => {
   try {
     await productService.deleteProduct(req.params.id);
     res.json({ message: "Product Deleted Successfully", id: req.params.id });
