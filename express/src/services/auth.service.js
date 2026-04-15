@@ -6,10 +6,21 @@ const login = async (payload) => {
     $or: [{ email: payload?.email }, { phone: payload?.phone }],
   });
   if (!user) throw { status: 400, message: "User Not found" };
-  const isValid = await comparePassword(payload.password, user.password);
-  if (!isValid) throw { status: 400, message: "Invalid Credentials" };
+  const isValidPassword = await comparePassword(
+    payload.password,
+    user.password,
+  );
+  if (!isValidPassword) throw { status: 400, message: "Invalid Credentials" };
 
-  return user;
+  return {
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    address: user.address,
+    roles: user.roles,
+    phone: user.phone,
+    isActive: user.isActive,
+  };
 };
 
 const register = async (payload) => {
@@ -20,7 +31,16 @@ const register = async (payload) => {
 
   payload.password = await hashPassword(payload.password);
 
-  return await userModel.create(payload);
+  const newUser = await userModel.create(payload);
+  return {
+    _id: newUser._id,
+    name: newUser.name,
+    email: newUser.email,
+    address: newUser.address,
+    roles: newUser.roles,
+    phone: newUser.phone,
+    isActive: newUser.isActive,
+  };
 };
 
 export default {
