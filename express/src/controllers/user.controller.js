@@ -1,5 +1,24 @@
 import userService from "../services/user.service.js";
 
+const getAllUser = async (req, res, next) => {
+  try {
+    const users = await userService.getAllUser();
+    res.json(users);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getUserById = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const user = await userService.getUserById(id);
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const createUser = async (req, res) => {
   try {
     const playload = {
@@ -12,8 +31,13 @@ const createUser = async (req, res) => {
   }
 };
 
+const updateUser =()=>{
 
+};
 
 export default {
   createUser,
+  getAllUser,
+  getUserById,
+  updateUser,
 };

@@ -12,6 +12,8 @@ import checkRole from "./middlewares/checkRole.js";
 import errorMiddleware from "./middlewares/errorMiddleware.js";
 import auth from "./middlewares/auth.js";
 import { ROLE_ADMIN } from "./constants/roles.js";
+
+
 //aaba yo aap le sabai kaam garnu milxa express ma,
 // server banaune, route haru define garne, middleware haru use garne, etc.
 const app = express();
@@ -30,6 +32,7 @@ app.get("/", (req, res) => {
 //         res.status(403).send("Admin panel is disabled.");
 //     }
 // });
+
 connectDB();
 app.use(bodyParser.json());
 app.use(logger);

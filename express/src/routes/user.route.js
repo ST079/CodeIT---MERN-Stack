@@ -1,12 +1,27 @@
-import express from 'express';
-import userController from '../controllers/user.controller.js';
+import express from "express";
+import userController from "../controllers/user.controller.js";
 const router = express.Router();
 
 /**
- * Get /api/v1/users/
+ * GET /api/v1/users/
  */
 
-router.get("/", userController.createUser);
+router.get("/", userController.getAllUser);
 
+/**
+ * GET /api/v1/users/:id
+ */
+
+router.get("/:id", userController.getUserById);
+
+/**
+ * Post /api/v1/users/
+ */
+router.post("/", userController.createUser);
+
+/**
+ * Put /api/v1/users/:id
+*/
+router.put("/:id",userController.updateUser);
 
 export default router;
