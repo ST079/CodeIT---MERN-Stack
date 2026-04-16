@@ -19,20 +19,27 @@ const getUserById = async (req, res, next) => {
   }
 };
 
-const createUser = async (req, res) => {
+const createUser = async (req, res, next) => {
   try {
     const playload = {
       data: req.body,
     };
     const newUser = await userService.createUser(playload);
     res.json({ message: "User Created Successfully.", userDetails: newUser });
-  } catch (err) {
-    res.status(400).send({ message: err?.message });
+  } catch (error) {
+    next(error);
   }
 };
 
-const updateUser =()=>{
-
+const updateUser = async (req, res, next) => {
+  try {
+    const payload = req.body;
+    const id = req.params.id;
+    const updatedUser = await userService.updateUser(id, payload);
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    next(error);
+  }
 };
 
 export default {

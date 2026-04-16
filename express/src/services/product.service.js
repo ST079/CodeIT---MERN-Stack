@@ -21,23 +21,23 @@ const getProductById = async (id) => {
       status: 404,
       message: "Product Not Found! ",
     };
-  return {data: data, status: 200 ,message: "Product Found"};
+  return { data: data, status: 200, message: "Product Found" };
 };
 
-const createProduct = async (data) => {
-  return await productModel.create(data);
+const createProduct = async (payload) => {
+  return await productModel.create(payload);
 };
 
-const updateProduct = async (id, data) => {
+const updateProduct = async (id, payload) => {
   await getProductById(id);
-  //{new:true}-> gives the latest updated data
-  return await productModel.findByIdAndUpdate(id, data, { new: true });
+  //{new:true}-> gives the latest updated payload
+  return await productModel.findByIdAndUpdate(id, payload, { new: true });
 };
 
-const deleteProduct = async(id) => {
+const deleteProduct = async (id) => {
   await getProductById(id);
   await productModel.findByIdAndDelete(id);
-}
+};
 
 export default {
   getAllProducts,
