@@ -9,7 +9,8 @@ const auth = async (req, res, next) => {
     return res.status(401).json({ message: "User not authenticated." });
 
   try {
-    req.user = await verifyJwt(token);
+    const data= await verifyJwt(token);
+    req.user = data;
     next();
   } catch (error) {
     res.status(401).json({ message: "Invalid Token." });

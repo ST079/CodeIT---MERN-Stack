@@ -1,6 +1,8 @@
 import express from "express";
 import productControllers from "../controllers/product.controller.js";
 import auth from "../middlewares/auth.js";
+import checkRole from "../middlewares/checkRole.js";
+import { ROLE_ADMIN } from "../constants/roles.js";
 const router = express.Router();
 
 /**
@@ -16,7 +18,7 @@ router.get("/:id", productControllers.getProductById);
 /**
  * Post /api/v1/products/
  */
-router.post("/", auth, productControllers.createProduct);
+router.post("/", auth, checkRole(ROLE_ADMIN), productControllers.createProduct);
 
 /**
  * Put /api/v1/products/:id
