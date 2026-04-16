@@ -7,7 +7,7 @@ const productSchema = new mongoose.Schema({
     minlength: [3, "Invalid!!! Name must be more than 3 characters."],
   },
   brand: String,
-  catagory: String,
+  category: String,
   price: {
     type: Number,
     required: [true, "Product Price is Required!!!!!!"],

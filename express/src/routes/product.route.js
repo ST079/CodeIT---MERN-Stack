@@ -3,6 +3,8 @@ import productControllers from "../controllers/product.controller.js";
 import auth from "../middlewares/auth.js";
 import checkRole from "../middlewares/checkRole.js";
 import { ROLE_ADMIN, ROLE_MERCHANT } from "../constants/roles.js";
+import { validate } from "../middlewares/validate.js";
+import { productSchema } from "../libs/schemas/productSchema.js";
 const router = express.Router();
 
 /**
@@ -22,6 +24,7 @@ router.post(
   "/",
   auth,
   checkRole(ROLE_MERCHANT || ROLE_ADMIN),
+  validate(productSchema),
   productControllers.createProduct,
 );
 
