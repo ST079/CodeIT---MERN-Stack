@@ -6,6 +6,7 @@ const productSchema = new mongoose.Schema({
     required: [true, "Product Name is Required!!!!!"],
     minlength: [3, "Invalid!!! Name must be more than 3 characters."],
   },
+  description: String,
   brand: String,
   category: String,
   price: {
@@ -16,6 +17,11 @@ const productSchema = new mongoose.Schema({
   stock: { type: Number, default: 1 },
   imageUrls: [String],
   createdAt: { type: Date, default: Date.now() },
+  createdBy: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+    required: [true, "Product must have a creator!"],
+  },
 });
 
 const productModel = mongoose.model("Product", productSchema);

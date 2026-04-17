@@ -1,17 +1,19 @@
 import dotenv from "dotenv";
 dotenv.config();
+
 import express from "express";
 import config from "./config/config.js";
-import productRoutes from "./routes/product.route.js";
-import userRoutes from "./routes/user.route.js";
+
+import { ROLE_ADMIN } from "./constants/roles.js";
+import auth from "./middlewares/auth.js";
 import authRoutes from "./routes/auth.route.js";
 import bodyParser from "body-parser";
-import connectDB from "./config/database.js";
-import logger from "./middlewares/logger.js";
 import checkRole from "./middlewares/checkRole.js";
+import connectDB from "./config/database.js";
 import errorMiddleware from "./middlewares/errorMiddleware.js";
-import auth from "./middlewares/auth.js";
-import { ROLE_ADMIN } from "./constants/roles.js";
+import logger from "./middlewares/logger.js";
+import productRoutes from "./routes/product.route.js";
+import userRoutes from "./routes/user.route.js";
 
 
 

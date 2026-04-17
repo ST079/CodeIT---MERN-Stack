@@ -5,7 +5,9 @@ const login = async (payload) => {
   const user = await userModel.findOne({
     $or: [{ email: payload?.email }, { phone: payload?.phone }],
   });
+
   if (!user) throw { status: 400, message: "User Not found" };
+
   const isValidPassword = await comparePassword(
     payload.password,
     user.password,
@@ -27,11 +29,13 @@ const register = async (payload) => {
   const user = await userModel.findOne({
     $or: [{ email: payload?.email }, { phone: payload?.phone }],
   });
+
   if (user) throw { status: 409, message: "User already exists" };
 
   payload.password = await hashPassword(payload.password);
 
   const newUser = await userModel.create(payload);
+  
   return {
     _id: newUser._id,
     name: newUser.name,

@@ -24,7 +24,10 @@ const getProductById = async (req, res, next) => {
 
 const createProduct = async (req, res, next) => {
   try {
-    const createdProduct = await productService.createProduct(req.body);
+    const createdProduct = await productService.createProduct(
+      req.body,
+      req.user._id,
+    );
     res.status(201).json(createdProduct);
   } catch (error) {
     next(error);
@@ -37,6 +40,7 @@ const updateProduct = async (req, res, next) => {
       req.params.id,
       req.body,
     );
+
     res.status(200).json(updatedProduct);
   } catch (error) {
     next(error);
