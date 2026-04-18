@@ -51,11 +51,12 @@ const cancelOrder = async (orderId, user) => {
       message: "Access Denied",
     };
 
-  if (order.status === "Cancelled")
+  if (order.status === ORDER_STATUS_CANCELLED)
     throw {
       status: 400,
       message: "Order is already cancelled",
     };
+
   return await orderModel.findByIdAndUpdate(
     orderId,
     {
@@ -70,6 +71,23 @@ const deleteOrder = async (orderId) => {
   return await orderModel.findByIdAndDelete(orderId);
 };
 
+const updateOrderStatus = async (orderId, status) => {
+  const order = await getOrderById(orderId);
+  if (order.status === ORDER_STATUS_CANCELLED)
+    throw {
+      status: 400,
+      message: "Cannot update status of a cancelled order",
+    };
+
+  return await orderModel.findByIdAndUpdate(
+    orderId,
+    {
+      status: status,
+    },
+    { new: true },
+  );
+};
+
 export default {
   getAllOrders,
   getOrdersByUser,
@@ -77,4 +95,5 @@ export default {
   createOrder,
   deleteOrder,
   cancelOrder,
+  updateOrderStatus,
 };

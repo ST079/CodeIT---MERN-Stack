@@ -54,6 +54,18 @@ const deleteOrder = async (req, res, next) => {
   }
 };
 
+const updateOrderStatus = async (req, res, next) => {
+  try {
+    const order = await orderService.updateOrderStatus(
+      req.params.id,
+      req.body.status,
+    );
+    res.status(200).json(order);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   getAllOrders,
   getOrdersByUser,
@@ -61,4 +73,5 @@ export default {
   createOrder,
   cancelOrder,
   deleteOrder,
+  updateOrderStatus,
 };
