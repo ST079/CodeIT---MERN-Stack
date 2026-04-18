@@ -13,6 +13,10 @@ const config = {
       enabled: parseInt(process.env.FEATURE_ADMIN_ENABLED) || false,
     },
   },
+  khalit:{
+    api_url: process.env.KHALTI_API_URL || "",
+    api_key: process.env.KHALTI_API_KEY || "",
+  }
 };
 
 export default config;
