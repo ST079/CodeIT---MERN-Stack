@@ -5,7 +5,7 @@ import {
   ORDER_STATUS_DELIVERED,
   ORDER_STATUS_PENDING,
   ORDER_STATUS_SHIPPED,
-} from "../constants/orderStatuses";
+} from "../constants/orderStatuses.js";
 
 const orderSchema = new mongoose.Schema({
   user: {
@@ -26,7 +26,7 @@ const orderSchema = new mongoose.Schema({
   },
   orderItems: [
     {
-      products: {
+      product: {
         type: mongoose.Schema.ObjectId,
         ref: "Product",
         required: [true, "Product is required"],
@@ -44,15 +44,15 @@ const orderSchema = new mongoose.Schema({
       required: true,
       default: "Nepal",
     },
-    province: {
+    street: {
       type: String,
-      required: [true, "Shipping address province is reequired"],
+      required: [true, "Shipping address street is reequired"],
     },
     city: {
       type: String,
       required: [true, "Shipping address city is reequired"],
     },
-    street: String,
+    province: String,
   },
   totalPrice: {
     type: Number,
