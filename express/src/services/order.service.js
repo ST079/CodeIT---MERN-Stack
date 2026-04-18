@@ -22,7 +22,7 @@ const getOrdersByUser = async (userId) => {
 const getOrderById = async (orderId) => {
   const order = await orderModel
     .findById(orderId)
-    .populate("user", "name email phone")
+    .populate("user", "name email phone roles")
     .populate("orderItems.product", "name brand category price imageUrls");
 
   if (!order)
@@ -56,9 +56,13 @@ const cancelOrder = async (orderId, user) => {
       status: 400,
       message: "Order is already cancelled",
     };
-  return await orderModel.findByIdAndUpdate(orderId, {
-    status: ORDER_STATUS_CANCELLED,
-  });
+  return await orderModel.findByIdAndUpdate(
+    orderId,
+    {
+      status: ORDER_STATUS_CANCELLED,
+    },
+    { new: true },
+  );
 };
 
 const deleteOrder = async (orderId) => {
@@ -69,6 +73,7 @@ const deleteOrder = async (orderId) => {
 export default {
   getAllOrders,
   getOrdersByUser,
+  getOrderById,
   createOrder,
   deleteOrder,
   cancelOrder,

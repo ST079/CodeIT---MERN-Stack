@@ -18,7 +18,14 @@ const getOrdersByUser = async (req, res, next) => {
   }
 };
 
-const getOrderById = async (req, res, next) => {};
+const getOrderById = async (req, res, next) => {
+  try {
+    const order = await orderService.getOrderById(req.params.id);
+    res.json(order);
+  } catch (error) {
+    next(error);
+  }
+};
 
 const createOrder = async (req, res, next) => {
   try {
@@ -29,14 +36,29 @@ const createOrder = async (req, res, next) => {
   }
 };
 
-const cancelOrder = async (req, res, next) => {};
+const cancelOrder = async (req, res, next) => {
+  try {
+    const order = await orderService.cancelOrder(req.params.id, req.user);
+    res.status(201).json(order);
+  } catch (error) {
+    next(error);
+  }
+};
 
-const deleteOrder = async (req, res, next) => {};
-
+const deleteOrder = async (req, res, next) => {
+  try {
+    const order = await orderService.deleteOrder(req.params.id);
+    res.status(200).json(order);
+  } catch (error) {
+    next(error);
+  }
+};
 
 export default {
   getAllOrders,
   getOrdersByUser,
+  getOrderById,
   createOrder,
-
+  cancelOrder,
+  deleteOrder,
 };
