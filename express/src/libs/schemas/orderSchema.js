@@ -42,7 +42,8 @@ const orderSchema = z.object({
           ? "totalPrice is required."
           : "totalPrice must be a number",
     })
-    .min(0).optional(),
+    .min(0)
+    .optional(),
 });
 
 const orderStatusSchema = z.object({

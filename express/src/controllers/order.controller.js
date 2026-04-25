@@ -1,3 +1,4 @@
+import { error } from "console";
 import orderService from "../services/order.service.js";
 
 const getAllOrders = async (req, res, next) => {
@@ -66,6 +67,38 @@ const updateOrderStatus = async (req, res, next) => {
   }
 };
 
+const orderPaymentViaKhalti = async (req, res, next) => {
+  try {
+    const order = await orderService.orderPaymentViaKhalti(req.params.id);
+    res.status(200).json(order);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const orderPaymentViaCash = async (req, res, next) => {
+  try {
+    const order = await orderService.orderPaymentViaCash(req.params.id);
+    res.status(200).json(order);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const confirmOrderPayment = async (req, res, next) => {
+  if (!req.body?.status)
+    return res.status(400).json({ message: "Payment Status is required." });
+  try {
+    const order = await orderService.confirmOrderPayment(
+      req.params.id,
+      req.body.status,
+    );
+    res.status(200).json(order);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   getAllOrders,
   getOrdersByUser,
@@ -74,4 +107,7 @@ export default {
   cancelOrder,
   deleteOrder,
   updateOrderStatus,
+  orderPaymentViaKhalti,
+  orderPaymentViaCash,
+  confirmOrderPayment,
 };

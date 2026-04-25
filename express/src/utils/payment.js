@@ -8,12 +8,12 @@ const payViaKhalti = async (data) => {
       return_url: "http://localhost:5000/",
       website_url: "http://localhost:5000/",
       amount: data.amount * 100, // Convert to paisa
-      purchase_order_id: data.purchaseOrderId,
-      purchase_order_name: data.purchaseOrderName,
+      purchase_order_id: data.purchase_order_id,
+      purchase_order_name: data.purchase_order_name,
       customer_info: {
-        name: data.customerName,
-        email: data.customerEmail,
-        phone: data.customerPhone,
+        name: data.customer_info.name,
+        email: data.customer_info.email,
+        phone: data.customer_info.phone,
       },
     };
 

@@ -8,8 +8,6 @@ import { ROLE_ADMIN, ROLE_USER } from "../constants/roles.js";
 import { orderSchema, orderStatusSchema } from "../libs/schemas/orderSchema.js";
 import { validate } from "../middlewares/validate.js";
 
-
-
 router.get("/", auth, checkRole(ROLE_ADMIN), orderController.getAllOrders);
 
 router.get(
@@ -33,6 +31,27 @@ router.put(
   checkRole(ROLE_ADMIN),
   validate(orderStatusSchema),
   orderController.updateOrderStatus,
+);
+
+router.post(
+  "/:id/payment/khalti",
+  auth,
+  checkRole(ROLE_USER),
+  orderController.orderPaymentViaKhalti,
+);
+
+router.put(
+  "/:id/confirm-payment",
+  auth,
+  checkRole(ROLE_USER),
+  orderController.confirmOrderPayment,
+);
+
+router.post(
+  "/:id/payment/cash",
+  auth,
+  checkRole(ROLE_USER),
+  orderController.orderPaymentViaCash,
 );
 
 export default router;

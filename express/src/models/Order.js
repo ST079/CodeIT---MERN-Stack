@@ -46,22 +46,22 @@ const orderSchema = new mongoose.Schema({
     },
     street: {
       type: String,
-      required: [true, "Shipping address street is reequired"],
+      required: [true, "Shipping address street is required"],
     },
     city: {
       type: String,
-      required: [true, "Shipping address city is reequired"],
+      required: [true, "Shipping address city is required"],
     },
     province: String,
   },
   totalPrice: {
     type: Number,
-    required: [true, "Total price is reequired"],
+    required: [true, "Total price is required"],
   },
   createdAt: { type: Date, default: Date.now(), immutable: true },
   orderNumber: {
     type: String,
-    required: [true, "Order number is reequired"],
+    required: [true, "Order number is required"],
   },
   payment: {
     type: mongoose.Schema.ObjectId,
