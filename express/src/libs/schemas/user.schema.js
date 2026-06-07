@@ -17,4 +17,8 @@ const userSchema = z.object({
   isActive: z.boolean().default(true).optional(),
 });
 
-export { userSchema };
+const updateRolesSchema = z.object({
+  roles: z.array(z.enum([ROLE_MERCHANT, ROLE_USER])),
+});
+
+export { userSchema, updateRolesSchema };
