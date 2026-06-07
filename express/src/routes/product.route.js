@@ -23,7 +23,7 @@ router.get("/:id", productControllers.getProductById);
 router.post(
   "/",
   auth,
-  checkRole(ROLE_MERCHANT || ROLE_ADMIN),
+  checkRole(ROLE_MERCHANT, ROLE_ADMIN),
   validate(productSchema),
   productControllers.createProduct,
 );
@@ -34,7 +34,7 @@ router.post(
 router.put(
   "/:id",
   auth,
-  checkRole(ROLE_MERCHANT || ROLE_ADMIN),
+  checkRole(ROLE_MERCHANT, ROLE_ADMIN),
   productControllers.updateProduct,
 );
 
@@ -45,7 +45,7 @@ router.put(
 router.delete(
   "/:id",
   auth,
-  checkRole(ROLE_MERCHANT || ROLE_ADMIN),
+  checkRole(ROLE_MERCHANT, ROLE_ADMIN),
   productControllers.deleteProduct,
 );
 

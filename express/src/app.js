@@ -2,6 +2,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
+import multer from "multer";
+import connectCloudinary from "./config/cloudinary.js";
 import config from "./config/config.js";
 
 import { ROLE_ADMIN } from "./constants/roles.js";
@@ -15,10 +17,15 @@ import logger from "./middlewares/logger.js";
 import productRoutes from "./routes/product.route.js";
 import userRoutes from "./routes/user.route.js";
 import orderRoutes from "./routes/order.route.js";
+import uploadFile from "./utils/fileUploader.js";
 
 //aaba yo aap le sabai kaam garnu milxa express ma,
 // server banaune, route haru define garne, middleware haru use garne, etc.
 const app = express();
+// const upload = multer({ dest: "uploads/" });
+const upload = multer({ storage: multer.memoryStorage() }); //temp storage in ram to get buffer.
+
+
 app.get("/", (req, res) => {
   res.send({
     name: config.name,
@@ -27,15 +34,18 @@ app.get("/", (req, res) => {
   });
 });
 
-// app.get("/admin", (req, res) => {
-//     if(config.feature.admin.enabled){
-//         res.send("Welcome to the admin panel!");
-//     } else {
-//         res.status(403).send("Admin panel is disabled.");
-//     }
-// });
-
 connectDB();
+connectCloudinary();
+
+app.post("/upload", upload.single("image"), (req, res) => {
+  const file = req.file;
+  console.log("Received file:", file);
+
+  uploadFile(file);
+
+  res.send({ message: "File received and uploaded successfully." });
+});
+
 app.use(bodyParser.json());
 app.use(logger);
 

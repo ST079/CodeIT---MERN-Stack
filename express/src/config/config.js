@@ -13,10 +13,15 @@ const config = {
       enabled: parseInt(process.env.FEATURE_ADMIN_ENABLED) || false,
     },
   },
-  khalit:{
+  khalit: {
     api_url: process.env.KHALTI_API_URL || "",
     api_key: process.env.KHALTI_API_KEY || "",
-  }
+  },
+  cloudinary: {
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME || "",
+    api_key: process.env.CLOUDINARY_API_KEY || "",
+    api_secret: process.env.CLOUDINARY_API_SECRET || "",
+  },
 };
 
 export default config;
