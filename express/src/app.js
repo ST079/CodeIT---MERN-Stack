@@ -17,14 +17,12 @@ import logger from "./middlewares/logger.js";
 import productRoutes from "./routes/product.route.js";
 import userRoutes from "./routes/user.route.js";
 import orderRoutes from "./routes/order.route.js";
-import uploadFile from "./utils/fileUploader.js";
 
 //aaba yo aap le sabai kaam garnu milxa express ma,
 // server banaune, route haru define garne, middleware haru use garne, etc.
 const app = express();
 // const upload = multer({ dest: "uploads/" });
 const upload = multer({ storage: multer.memoryStorage() }); //temp storage in ram to get buffer.
-
 
 app.get("/", (req, res) => {
   res.send({
@@ -34,32 +32,35 @@ app.get("/", (req, res) => {
   });
 });
 
+// Configs
 connectDB();
 connectCloudinary();
 
-app.post("/upload", upload.single("image"), (req, res) => {
-  const file = req.file;
-  console.log("Received file:", file);
-
-  uploadFile(file);
-
-  res.send({ message: "File received and uploaded successfully." });
-});
-
 app.use(bodyParser.json());
+
 app.use(logger);
 
-app.use(process.env.VERSION + "/products", productRoutes);
+// Routes
+app.use(
+  process.env.VERSION + "/products",
+  upload.array("images"),
+  productRoutes,
+);
+
 app.use(
   process.env.VERSION + "/users",
   auth,
-  checkRole(ROLE_ADMIN),
+  upload.single("image"),
   userRoutes,
 );
+
 app.use(process.env.VERSION + "/auth", authRoutes);
 app.use(process.env.VERSION + "/orders", orderRoutes);
 
+//Middleware for handling errors
 app.use(errorMiddleware);
+
+// Server
 app.listen(config.port, () => {
   console.log(`Server is running on port ${config.port}....`);
 });

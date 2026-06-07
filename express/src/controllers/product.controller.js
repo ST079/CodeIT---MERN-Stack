@@ -26,6 +26,7 @@ const createProduct = async (req, res, next) => {
   try {
     const createdProduct = await productService.createProduct(
       req.body,
+      req.files,
       req.user._id,
     );
     res.status(201).json(createdProduct);
@@ -39,6 +40,7 @@ const updateProduct = async (req, res, next) => {
     const updatedProduct = await productService.updateProduct(
       req.params.id,
       req.body,
+      req.files,
     );
 
     res.status(200).json(updatedProduct);

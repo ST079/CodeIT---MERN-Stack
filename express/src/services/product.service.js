@@ -1,4 +1,5 @@
 import productModel from "../models/Product.js";
+import uploadFiles from "../utils/fileUploader.js";
 
 const getAllProducts = async (payload) => {
   const { category, brand, name, min, max, limit, offset, createdBy } = payload;
@@ -33,14 +34,30 @@ const getProductById = async (id) => {
   return { data: data, status: 200, message: "Product Found" };
 };
 
-const createProduct = async (payload, userId) => {
-  return await productModel.create({ ...payload, createdBy: userId });
+const createProduct = async (payload, files, userId) => {
+  const uploadedFiles = await uploadFiles(files);
+  const imageUrls = uploadedFiles.map((item) => item.url);
+
+  return await productModel.create({
+    ...payload,
+    imageUrls,
+    createdBy: userId,
+  });
 };
 
-const updateProduct = async (id, payload) => {
+const updateProduct = async (id, payload, files) => {
   await getProductById(id);
+
+  const updateData = data;
+
+  if(files && files.length > 0){
+    const uploadedFiles = await uploadFiles(files);
+    const imageUrls = uploadedFiles.map((item) => item.url);
+    updateData.imageUrls = imageUrls;
+  }
+
   //{new:true}-> gives the latest updated payload
-  return await productModel.findByIdAndUpdate(id, payload, { new: true });
+  return await productModel.findByIdAndUpdate(id, updateData, { new: true });
 };
 
 const deleteProduct = async (id) => {

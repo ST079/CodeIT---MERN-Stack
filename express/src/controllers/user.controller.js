@@ -39,7 +39,19 @@ const updateUser = async (req, res, next) => {
     const payload = req.body;
     const id = req.params.id;
     const updatedUser = await userService.updateUser(id, payload);
-    
+
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateUserProfileImage = async (req, res, next) => {
+  try {
+    const id = req.user._id;
+    const file = req.file;
+
+    const updatedUser = await userService.updateUserProfileImage(id, file);
     res.status(200).json(updatedUser);
   } catch (error) {
     next(error);
@@ -51,4 +63,5 @@ export default {
   getAllUser,
   getUserById,
   updateUser,
+  updateUserProfileImage,
 };
