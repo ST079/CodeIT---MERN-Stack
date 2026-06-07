@@ -16,7 +16,7 @@ const productSchema = new mongoose.Schema({
   },
   stock: { type: Number, default: 1 },
   imageUrls: [String],
-  createdAt: { type: Date, default: Date.now() },
+  createdAt: { type: Date, default: Date },
   createdBy: {
     type: mongoose.Schema.ObjectId,
     ref: "User",

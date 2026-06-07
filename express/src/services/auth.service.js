@@ -12,7 +12,7 @@ const login = async (payload) => {
 
   if (!user) throw { status: 400, message: "User Not found" };
 
-  if(!user.isActive) throw { status: 400, message: "User Deactivated!" };
+  if (!user.isActive) throw { status: 400, message: "User Deactivated!" };
 
   const isValidPassword = await comparePassword(
     payload.password,

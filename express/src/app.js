@@ -55,7 +55,7 @@ app.use(
 );
 
 app.use(process.env.VERSION + "/auth", authRoutes);
-app.use(process.env.VERSION + "/orders", orderRoutes);
+app.use(process.env.VERSION + "/orders", auth, orderRoutes);
 
 //Middleware for handling errors
 app.use(errorMiddleware);

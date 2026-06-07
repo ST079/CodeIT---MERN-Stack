@@ -4,7 +4,7 @@ const router = express.Router();
 import auth from "../middlewares/auth.js";
 import checkRole from "../middlewares/checkRole.js";
 import orderController from "../controllers/order.controller.js";
-import { ROLE_ADMIN, ROLE_USER } from "../constants/roles.js";
+import { ROLE_ADMIN, ROLE_MERCHANT, ROLE_USER } from "../constants/roles.js";
 import { orderSchema, orderStatusSchema } from "../libs/schemas/orderSchema.js";
 import { validate } from "../middlewares/validate.js";
 
@@ -17,6 +17,13 @@ router.get(
   orderController.getOrdersByUser,
 );
 
+router.get(
+  "/merchant",
+  auth,
+  checkRole(ROLE_MERCHANT),
+  orderController.getOrdersByMerchant,
+);
+
 router.get("/:id", auth, checkRole(ROLE_USER), orderController.getOrderById);
 
 router.post("/", auth, validate(orderSchema), orderController.createOrder);
@@ -27,7 +34,6 @@ router.delete("/:id", auth, checkRole(ROLE_ADMIN), orderController.deleteOrder);
 
 router.put(
   "/:id/status",
-  auth,
   checkRole(ROLE_ADMIN),
   validate(orderStatusSchema),
   orderController.updateOrderStatus,
@@ -35,21 +41,18 @@ router.put(
 
 router.post(
   "/:id/payment/khalti",
-  auth,
   checkRole(ROLE_USER),
   orderController.orderPaymentViaKhalti,
 );
 
 router.put(
   "/:id/confirm-payment",
-  auth,
   checkRole(ROLE_USER),
   orderController.confirmOrderPayment,
 );
 
 router.post(
   "/:id/payment/cash",
-  auth,
   checkRole(ROLE_USER),
   orderController.orderPaymentViaCash,
 );

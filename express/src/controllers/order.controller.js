@@ -99,6 +99,15 @@ const confirmOrderPayment = async (req, res, next) => {
   }
 };
 
+const getOrdersByMerchant = async (req, res, next) => {
+  try {
+    const orders = await orderService.getOrdersByMerchant(req.user._id);
+    res.json(orders);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   getAllOrders,
   getOrdersByUser,
@@ -110,4 +119,5 @@ export default {
   orderPaymentViaKhalti,
   orderPaymentViaCash,
   confirmOrderPayment,
+  getOrdersByMerchant,
 };
